@@ -41,4 +41,10 @@ Self-hosted Plus Jakarta Sans and Source Sans 3 (400, 500, 600, 700) were downlo
 - https://github.com/google/fonts/blob/main/ofl/plusjakartasans/OFL.txt
 - https://github.com/google/fonts/blob/main/ofl/sourcesans3/OFL.txt
 
-Barlow Condensed and Public Sans files were removed. The Kinerelle symbol is new code-native curved-path artwork. Its full and compact wordmarks are outlined vectors derived from the included Plus Jakarta Sans and Source Sans 3 fonts, whose licenses remain bundled. Flow lines and interface icons are original code-native SVGs. Google/Apple marks remain inside an inert integration template; no disabled social controls are displayed.
+Barlow Condensed and Public Sans files were removed. The Kinerelle logo restores the original angled movement symbol and circular accent. Its full and compact wordmarks are outlined vectors derived from the included Plus Jakarta Sans and Source Sans 3 fonts, whose licenses remain bundled. Flow lines and interface icons are original code-native SVGs. Google/Apple marks remain inside an inert integration template; no disabled social controls are displayed.
+
+## Latest requested visual update
+
+`home2-guided-care.jpg`: https://www.pexels.com/photo/physiotherapist-exercising-with-a-patient-20860617/ — Funkcinės Terapijos Centras, Pexels license. A real photograph of guided rehabilitation activity replaces the Home 2 banner.
+
+The original movement symbol has been restored in all light/dark/full/compact assets and the favicon, retaining the Kinerelle wordmark and current palette.

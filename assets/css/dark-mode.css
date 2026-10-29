@@ -49,16 +49,11 @@
 [data-theme="dark"] .logo img.brand-compact {
   content: url("../images/logo-compact-dark.svg");
 }
-[data-theme="dark"] .orbital-art {
-  opacity: 0.28;
-}
-[data-theme="dark"] .program-section > .program-orbit {
-  opacity: 0.18;
-}
-[data-theme="dark"] .orbital-art .orbit-companion {
-  stroke: #a6d8de;
-  opacity: 0.65;
-}
+
 [data-theme="dark"] .button.secondary {
   border-color: var(--control-border);
+}
+
+[data-theme="dark"] .sweep-art {
+  opacity: 0.25;
 }

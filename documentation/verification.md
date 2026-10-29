@@ -44,3 +44,9 @@ See `brand-name-check.md` for the exact-name and official USPTO checks. India/WI
 The approved file structure is retained: one root `index.html`, 15 secondary documents in `pages/`, source assets and documentation. The current GitHub Pages `main`/root publishing path is preserved. The final handoff verifies the resulting build and served files against repository source.
 
 These checks cover Chromium frontend behavior, not real clinical integrations, secure identity, live scheduling, payment processing, physical printer output, Safari/Firefox certification or a full legal/accessibility audit.
+
+## Follow-up: original symbol and open background sweep
+
+The original movement mark was restored in all five logo/favicon variants. Exactly two decorative curve placements remain, one per homepage; hero and closing-card coils were removed. The single open path runs from approximately 200° to 45° with smooth desktop scroll rotation (−8°/+8°), static reduced-motion behavior and simplified mobile presentation. Home 2 uses a new licensed guided-exercise photograph. All public navbar primary buttons read Login and keep their existing routes.
+
+Executed 200 responsive/theme layout checks across both homepages and all remaining page types. Verified the original symbol path, artwork placement counts, navbar labels, replacement image, scroll/reduced-motion behavior and absence of JavaScript exceptions. Reviewed actual desktop/tablet/mobile screenshots and focused artwork captures. JavaScript data logic was not modified.

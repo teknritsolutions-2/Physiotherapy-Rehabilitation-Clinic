@@ -55,7 +55,7 @@ GitHub Pages uses the existing `main` branch root. The source includes no genera
 
 The proposed brand is **Kinerelle**, with descriptor **Physiotherapy & Rehabilitation** and positioning **Movement supported. Progress understood.** Read `brand-name-check.md` before commercial brand adoption.
 
-The redesigned symbol is a curved kinetic path, accompanied by an outlined vector wordmark. All text in the logo SVG is real vector paths, derived from the included font families, so it renders without external font requests. Assets: `logo.svg`, `logo-dark.svg`, `logo-compact.svg`, `logo-compact-dark.svg`, `favicon.svg`. The compact lockup is used only in the existing patient sidebar.
+The original movement symbol is restored, accompanied by the outlined Kinerelle vector wordmark. All text in the logo SVG is real vector paths, derived from the included font families, so it renders without external font requests. Assets: `logo.svg`, `logo-dark.svg`, `logo-compact.svg`, `logo-compact-dark.svg`, `favicon.svg`. The compact lockup is used only in the existing patient sidebar.
 
 The secondary token is `--secondary: #A6D8DE`. Surface-aware `--accent-text`, `--control-border`, `--art-ink`, `--art-soft`, `--path-line` and `--chart-track` tokens support both themes. Small light-mode text uses primary teal or charcoal, never the pale secondary.
 
@@ -64,3 +64,9 @@ Old `.flow-line` and `.pulse-edge::after` implementations have been removed. The
 The authentication pages retain saved theme/direction without visible toggles. They have no overlay home link, redundant eyebrow, large notice, unavailable-provider UI or dashboard shortcut. Their logo links home. One concise disclosure beside the main action identifies a local profile and instructs the use of a made-up password. Passwords are neither stored nor authenticated; visibility and confirmation behavior are preserved. Disabled provider components are inert inside `<template id="oauth-controls">` for a later real OAuth integration.
 
 The dashboard runtime `assets/js/dashboard.js`, storage keys, calculations and booking/receipt logic were left unchanged. The previously removed banner, Back to clinic link and settings notice remain removed. Only its logo, palette and shared style improvements apply.
+
+## Original mark and limited open-sweep artwork
+
+The original two-stroke movement symbol and circular accent are restored beside the Kinerelle wordmark. Navbar primary actions now read **Login**; their destinations are unchanged.
+
+Closed orbital/coiled artwork has been removed. Exactly two background placements remain: Home 1’s between-session support section and Home 2’s care-program section. Each uses one continuous variable-radius curve from approximately 200° at its lower endpoint to 45° at its upper endpoint. Desktop scroll-driven rotation is limited to −8°/+8°; reduced-motion and mobile receive static artwork. No artwork is placed in hero media, closing CTAs, auth pages or dashboard views.

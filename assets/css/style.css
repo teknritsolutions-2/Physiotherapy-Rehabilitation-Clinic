@@ -3589,7 +3589,7 @@ dialog .button-row {
   }
   .rhythm-media img {
     border-radius: 20px;
-    object-position: 53% center;
+    object-position: center 55%;
   }
   .rhythm-note {
     bottom: 79px;
@@ -4206,8 +4206,8 @@ dialog .button-row {
 
 /* Photographic crops protect faces; pricing baselines align across all three options. */
 .rhythm-media img {
-  aspect-ratio: 1.85;
-  object-position: center 40%;
+  aspect-ratio: 1.8;
+  object-position: center 55%;
 }
 .program-feature img {
   object-position: center 12%;
@@ -4232,7 +4232,7 @@ dialog .button-row {
 }
 @media (max-width: 679px) {
   .rhythm-media img {
-    aspect-ratio: 1.2;
+    aspect-ratio: 1.5;
   }
   .therapist-card > img {
     aspect-ratio: 1.05;
@@ -4344,32 +4344,8 @@ dialog .button-row {
 }
 .auth-card h2 {
   max-width: 440px;
-}
-/* Organic artwork is integrated behind selected sections; none is a card-border fragment. */
-.orbital-art {
-  position: absolute;
-  pointer-events: none;
-  color: var(--art-ink);
-  opacity: 0.22;
-  width: 100%;
-  height: 100%;
-}
-.orbital-art path {
-  stroke: currentColor;
-  stroke-width: 1.8;
-  vector-effect: non-scaling-stroke;
-}
-.orbital-art .orbit-companion {
-  stroke: var(--art-soft);
-  stroke-width: 2;
-}
-.hero-media > .hero-orbit {
-  width: 100%;
-  height: 115%;
-  inset-inline-start: 0;
-  top: -6%;
-  z-index: 0;
-}
+} /* Organic artwork is integrated behind selected sections; none is a card-border fragment. */
+
 .hero-media::before {
   background: var(--mist);
   opacity: 0.7;
@@ -4379,42 +4355,12 @@ dialog .button-row {
   isolation: isolate;
   overflow: clip;
 }
-.program-section > .program-orbit {
-  width: 100%;
-  height: 100%;
-  inset: 0;
-  opacity: 0.14;
-  transform-origin: 65% 50%;
-}
+
 .program-section > .wrap {
   position: relative;
   z-index: 1;
 }
-.closing > .closing-orbit {
-  width: 380px;
-  height: 220px;
-  inset-inline-end: 7%;
-  top: 50%;
-  transform: translateY(-50%);
-  opacity: 0.18;
-}
-@keyframes orbital-drift {
-  from {
-    rotate: -10deg;
-  }
-  to {
-    rotate: 10deg;
-  }
-}
-@supports (animation-timeline: view()) {
-  @media (min-width: 1100px) and (prefers-reduced-motion: no-preference) {
-    .program-section > .program-orbit {
-      animation: orbital-drift linear both;
-      animation-timeline: view();
-      animation-range: entry 0% exit 100%;
-    }
-  }
-}
+
 /* Five equally spaced nodes share the exact connecting-path coordinate system. */
 .recovery-pathway {
   position: relative;
@@ -4817,28 +4763,12 @@ dialog .button-row {
   .hero-copy > p {
     font-size: 17px;
   }
-  .orbital-art {
-    opacity: 0.16;
-  }
-  .hero-media > .hero-orbit {
-    width: 100%;
-    height: 108%;
-    inset-inline-start: 0;
-  }
-  .program-section > .program-orbit {
-    display: none;
-  }
+
   .closing {
     padding: 27px 24px;
     margin-block: 0 38px;
   }
-  .closing > .closing-orbit {
-    width: 250px;
-    height: 190px;
-    inset-inline-end: -60px;
-    top: 25%;
-    opacity: 0.12;
-  }
+
   .recovery-pathway {
     display: flex;
     flex-direction: column;
@@ -4994,5 +4924,54 @@ dialog .button-row {
   }
   .remember-row {
     gap: 9px;
+  }
+}
+
+/* Selected background sweep: one continuous open curve, never a repeated coil. */
+.sweep-section {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+}
+.sweep-section > .wrap {
+  position: relative;
+  z-index: 1;
+}
+.sweep-art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  color: var(--art-ink);
+  opacity: 0.2;
+  pointer-events: none;
+  transform-origin: 50% 50%;
+}
+.sweep-art path {
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+@keyframes sweep-scroll {
+  from {
+    rotate: -8deg;
+  }
+  to {
+    rotate: 8deg;
+  }
+}
+@supports (animation-timeline: view()) {
+  @media (min-width: 1100px) and (prefers-reduced-motion: no-preference) {
+    .sweep-art {
+      animation: sweep-scroll linear both;
+      animation-timeline: view();
+      animation-range: entry 0% exit 100%;
+    }
+  }
+}
+@media (max-width: 679px) {
+  .sweep-art {
+    opacity: 0.13;
   }
 }
