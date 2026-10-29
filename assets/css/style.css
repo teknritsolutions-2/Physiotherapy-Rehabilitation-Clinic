@@ -4581,6 +4581,9 @@ dialog .button-row {
 .page-therapists .soft-section {
   margin-top: 48px;
 }
+.page-therapists .closing {
+  margin-block-start: 48px;
+}
 @media (min-width: 680px) and (max-width: 1099px) {
   .program-grid {
     grid-template-columns: 1fr;
@@ -4901,6 +4904,9 @@ dialog .button-row {
   }
   .page-therapists .soft-section {
     margin-top: 32px;
+  }
+  .page-therapists .closing {
+    margin-block-start: 32px;
   }
 }
 @media (max-width: 359px) {
