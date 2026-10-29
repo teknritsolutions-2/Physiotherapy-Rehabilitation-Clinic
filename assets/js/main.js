@@ -91,7 +91,9 @@ Clinic.services = {
   sports: {
     title: "Sports injury rehabilitation",
     subtitle: "A considered path back to the activities you enjoy.",
-    image: "therapy-support",
+    image: "service-sports",
+    imageAlt:
+      "Close view of hands supporting a patient’s knee during physical therapy",
     description:
       "Movement assessment, strength and mobility work, and a guided return to the activities that matter to you.",
     benefit:
@@ -100,7 +102,9 @@ Clinic.services = {
   surgery: {
     title: "Post-surgery rehabilitation",
     subtitle: "Supported movement for the next chapter of your recovery.",
-    image: "leg-mobility",
+    image: "service-recovery",
+    imageAlt:
+      "Practitioner guiding a seated patient through a supported leg stretch",
     description:
       "Following clinical clearance, work towards appropriate range of motion and progressively guided activity with an individualized plan.",
     benefit:
@@ -109,7 +113,8 @@ Clinic.services = {
   back: {
     title: "Back pain physiotherapy",
     subtitle: "Care that considers the way you live, work and move.",
-    image: "back-care",
+    image: "service-back",
+    imageAlt: "Practitioner observing a patient’s forward-bending movement",
     description:
       "Explore your movement, discuss activity goals and learn about mobility, strength and posture with your physiotherapist.",
     benefit:
@@ -367,9 +372,9 @@ document.querySelectorAll("[data-area]").forEach((b) =>
     if (areaImage) {
       const imageMap = {
         Knee: "knee-care",
-        Back: "movement",
-        Shoulder: "shoulder-care",
-        Hip: "hip-care",
+        Back: "area-back",
+        Shoulder: "joint",
+        Hip: "area-hip",
         Ankle: "ankle-care",
       };
       areaImage.src =
@@ -396,7 +401,7 @@ if (document.querySelector("#service-title")) {
   document.querySelector("#service-image").src =
     "../assets/images/" + (s.image || "joint") + ".jpg";
   document.querySelector("#service-image").alt =
-    s.title + " — illustrative guided care";
+    s.imageAlt || s.title + " — illustrative guided care";
   document
     .querySelectorAll('a[href="booking.html"]')
     .forEach(
@@ -410,7 +415,8 @@ const articles = {
   assessment: {
     title: "Preparing for your first physiotherapy assessment",
     sub: "A little preparation can make room for a better conversation.",
-    image: "consultation",
+    image: "article-assessment",
+    imageAlt: "Healthcare professional reviewing a clipboard and writing notes",
     sections: [
       [
         "Start with what matters to you",
@@ -429,7 +435,9 @@ const articles = {
   process: {
     title: "Understanding the rehabilitation process",
     sub: "Why individual goals and regular review matter.",
-    image: "care-conversation",
+    image: "article-process",
+    imageAlt:
+      "Patient and healthcare professional discussing next steps in a consultation room",
     sections: [
       [
         "A plan starts with a person",
@@ -448,7 +456,8 @@ const articles = {
   activity: {
     title: "Returning to activity, one step at a time",
     sub: "Make your goals part of the conversation.",
-    image: "therapy-support",
+    image: "article-activity",
+    imageAlt: "Practitioner guiding an arm exercise with a resistance band",
     sections: [
       [
         "Define your activity goal",
@@ -467,7 +476,8 @@ const articles = {
   habits: {
     title: "Building consistent movement habits",
     sub: "Create space for your clinician-provided plan.",
-    image: "seated-mobility",
+    image: "article-habits",
+    imageAlt: "Older adult practising a stretching routine at home",
     sections: [
       [
         "Make the plan clear",
@@ -491,7 +501,7 @@ if (document.querySelector("#article-title")) {
   document.querySelector("#article-image").src =
     "../assets/images/" + a.image + ".jpg";
   document.querySelector("#article-image").alt =
-    a.title + " — illustrative movement context";
+    a.imageAlt || a.title + " — illustrative movement context";
   document.querySelector("#article-body").innerHTML = a.sections
     .map(([h, p]) => `<h2>${h}</h2><p>${p}</p>`)
     .join("");

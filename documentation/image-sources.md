@@ -53,3 +53,32 @@ The original movement symbol has been restored in all light/dark/full/compact as
 ## Silk ribbon reference and original artwork
 
 Stripe’s homepage (https://stripe.com/) and Billing page (https://stripe.com/billing) were visually reviewed on 2026-10-29 for their broad, shaded, fibre-textured ribbons. Kinerelle’s teal/glacier geometry, shaders, animation and static SVG fallback were created for this site. No Stripe artwork, shaders or implementation code was copied or embedded.
+
+
+## Distinct photographs for repeated placements
+
+Each new photograph below is assigned to a single content placement, including query-driven service/article views and body-area selections. Repeated branding and the two decorative ribbon fallbacks are not clinical photographs. These assets were downloaded at 1200px wide under the Pexels license; originals were not mirrored or AI-transformed.
+
+| Asset | Source | Photographer / context |
+|---|---|---|
+| program-recovery.jpg | https://www.pexels.com/photo/a-therapist-massaging-the-leg-of-a-client-5793886/ | Yan Krukau; Practitioner supporting a patient’s bent leg on a treatment table |
+| program-mobility.jpg | https://www.pexels.com/photo/woman-in-white-dress-up-shirt-touching-the-back-of-knees-of-woman-in-white-t-shirt-5793651/ | Yan Krukau; Practitioner assessing a standing patient’s leg alignment |
+| service-overview-sports.jpg | https://www.pexels.com/photo/woman-on-physiotherapy-session-5793922/ | Yan Krukau; Practitioner guiding a patient’s raised arm on a treatment table |
+| service-overview-back.jpg | https://www.pexels.com/photo/physiotherapist-at-work-5794059/ | Yan Krukau; Practitioner applying supportive tape during a back-care session |
+| focus-sports.jpg | https://www.pexels.com/photo/a-woman-and-man-are-working-on-a-woman-s-back-27730435/ | Jonathan Borba; Illustrative practitioner supporting a seated patient’s shoulder movement |
+| focus-recovery.jpg | https://www.pexels.com/photo/27730554/ | Jonathan Borba; Illustrative practitioner supporting leg movement during rehabilitation |
+| focus-everyday.jpg | https://www.pexels.com/photo/physiotherapist-helping-a-patient-exercise-his-neck-20860589/ | Funkcinės Terapijos Centras; Illustrative practitioner guiding a patient’s neck movement |
+| contact-care.jpg | https://www.pexels.com/photo/a-doctor-talking-the-patient-7579831/ | cottonbro studio; Healthcare professional listening to a patient across a consultation desk |
+| login-care.jpg | https://www.pexels.com/photo/woman-in-white-long-sleeve-shirt-stretching-woman-s-arm-5793700/ | Yan Krukau; Practitioner supporting a seated patient’s arm movement |
+| signup-care.jpg | https://www.pexels.com/photo/a-woman-talking-to-her-doctor-4266930/ | Cedric Fauntleroy; Patient and healthcare professional discussing care while seated |
+| journal-assessment.jpg | https://www.pexels.com/photo/doctor-talking-to-a-patient-and-making-notes-8413157/ | SHVETS production; Healthcare professional taking notes during a patient conversation |
+| journal-habits.jpg | https://www.pexels.com/photo/elderly-woman-stretching-in-attic-room-10222726/ | Ron Lach; Woman practising a stretch in a sunlit room at home |
+| service-sports.jpg | https://www.pexels.com/photo/physical-therapy-session-with-rehabilitation-37719628/ | Nothing Ahead; Close view of hands supporting a patient’s knee during physical therapy |
+| service-recovery.jpg | https://www.pexels.com/photo/physiotherapist-and-patient-stretching-leg-20860625/ | Funkcinės Terapijos Centras; Practitioner guiding a seated patient through a supported leg stretch |
+| service-back.jpg | https://www.pexels.com/photo/bent-over-patient-examined-by-a-physiotherapist-20860590/ | Funkcinės Terapijos Centras; Practitioner observing a patient’s forward-bending movement |
+| article-assessment.jpg | https://www.pexels.com/photo/photo-of-person-holding-paper-and-pen-7088483/ | MART PRODUCTION; Healthcare professional reviewing a clipboard and writing notes |
+| article-process.jpg | https://www.pexels.com/photo/a-doctor-talking-to-a-patient-4266940/ | Cedric Fauntleroy; Patient and healthcare professional discussing next steps in a consultation room |
+| article-activity.jpg | https://www.pexels.com/photo/crop-anonymous-woman-stretching-elastic-band-near-professional-chiropractor-4506166/ | Kaboompics; Practitioner guiding an arm exercise with a resistance band |
+| article-habits.jpg | https://www.pexels.com/photo/an-elderly-man-exercising-at-home-6975762/ | Mikhail Nilov; Older adult practising a stretching routine at home |
+| area-back.jpg | https://www.pexels.com/photo/physiotherapist-helping-a-patient-exercise-his-back-20860615/ | Funkcinės Terapijos Centras; Practitioner supporting a seated patient’s upper-back movement |
+| area-hip.jpg | https://www.pexels.com/photo/physiotherapist-exercising-patient-leg-20860588/ | Funkcinės Terapijos Centras; Practitioner guiding a patient’s supported leg movement |

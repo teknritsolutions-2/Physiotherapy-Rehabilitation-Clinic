@@ -58,3 +58,10 @@ Executed 200 responsive/theme layout checks across both homepages and all remain
 The thin open sweeps described in earlier historical checks were removed. The current artwork is an original shaded, fibre-textured WebGL ribbon at exactly two section edges, one per homepage. Stripe’s homepage, Payments and Billing pages were visited visually to clarify the requested treatment; no Stripe assets or code were copied.
 
 Twenty responsive/theme/direction checks passed at 320, 390, 834, 1100 and 1440px. Checks confirmed no horizontal overflow, no blocked content links, decorative accessibility attributes, capped canvas resolution and no WebGL errors or missing assets. Frame comparisons confirmed active motion and a stable reduced-motion still. Offscreen draw calls stopped. Forced graphics-context loss restored the SVG fallback, and the same fallback rendered with JavaScript disabled. Desktop and mobile screenshots were reviewed in light LTR and dark RTL. JavaScript syntax, SVG XML and changed-file whitespace checks passed. Patient data and authentication handlers were unchanged.
+
+
+## Current follow-up: remove repeated photography
+
+Added 21 distinct, licensed Pexels photographs for repeated homepage, service, care-focus, journal, contact and authentication placements, including dynamic service/article and body-area views. Every source and photographer is listed in `image-sources.md`. Existing site structure, text hierarchy, ribbon artwork, booking behavior and authentication behavior remain unchanged.
+
+Audited 40 photography placements (including query-driven variants and all body-area selections): no repeated image filenames, broken images, JavaScript exceptions or missing assets. All 66 page/viewport combinations passed at 390, 834 and 1440px. Reviewed rendered image crops and full-page captures, then adjusted source-specific framing to keep the care interaction visible. Authentication photography remains intentionally hidden at mobile sizes.

@@ -4245,13 +4245,23 @@ dialog .button-row {
   object-position: center 55%;
 }
 .program-feature img {
-  object-position: center 12%;
+  object-position: center 55%;
+}
+.auth-visual > img[src$="login-care.jpg"] {
+  object-position: 70% center;
+}
+#service-image[src$="service-recovery.jpg"],
+#service-image[src$="guided-mobility.jpg"] {
+  object-position: center 65%;
+}
+.area-image img[src$="area-hip.jpg"] {
+  object-position: center 70%;
 }
 .therapist-card > img {
   aspect-ratio: 0.95;
   object-position: center 12%;
 }
-.service-row img[src*="therapy.jpg"] {
+.service-row img[src$="service-overview-sports.jpg"] {
   object-position: center 20%;
 }
 .price-card > h2 {
