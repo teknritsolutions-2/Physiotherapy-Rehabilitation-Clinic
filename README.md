@@ -18,7 +18,7 @@ Visit http://localhost:8010. Open `index.html` for Home 1; all 15 secondary page
 - Centralized indicative INR pricing, correct package prefill and a focused booking-request interface.
 - General enquiry review/copy handoff; no message is falsely reported as sent.
 - Complete four-column footer, privacy/terms dialogs, sticky navigation, Home dropdown and accessible mobile drawers.
-- Separate sign-in and sign-up forms with visibility/confirmation controls and hidden social integrations.
+- Separate sign-in and sign-up pages with stacked fields, full-width actions, password visibility/confirmation, Google and Apple buttons, and top-right theme/direction controls.
 - Existing patient dashboard architecture, restyled with the new identity, sharper SVG icons and recorded-data activity curves.
 - Local booking changes/cancellation, optional illustrative exercise tracking, history filters, receipt sample view/download/print, notifications, profile and data settings.
 - Responsive layouts, light/dark themes and LTR/RTL direction; self-hosted Plus Jakarta Sans and Source Sans 3.
@@ -65,6 +65,6 @@ Before using this for real patient care, supply verified clinic records, approve
 
 The site now uses the proposed **Kinerelle** brand and the restored original movement symbol and vector wordmark, plus the glacier secondary `#A6D8DE`. The calmer page layouts are retained. Refinements include connected recovery milestones, selected orbital artwork, balanced Home 2 care features, structured service cards, cleaner patient-space previews, an outlined Dashboard action and simplified login/sign-up forms.
 
-The 10-view patient dashboard's data logic is unchanged, including the user's prior banner/link/notice removals. Local-profile authentication remains explicitly identified beside the action; it never verifies, stores or transmits passwords.
+The 10-view patient dashboard's data logic is unchanged, including the user's prior banner/link/notice removals. Authentication forms and provider buttons show an unavailable state until a secure backend and OAuth providers are configured. They never save credentials, create a local profile or simulate a successful sign-in.
 
 See `documentation/brand-name-check.md` for the preliminary exact-name/USPTO search and the outstanding India/WIPO commercial clearance limitation. The name is proposed, not a claimed registered clinic identity.

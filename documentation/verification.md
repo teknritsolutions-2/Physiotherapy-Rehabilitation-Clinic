@@ -35,7 +35,9 @@ The former partial corner, repeated wave and unused banner styles were removed. 
 
 `assets/js/dashboard.js` is byte-for-byte unchanged from the baseline. Storage keys, calculations, request statuses, exercise tracking and receipt behavior are retained. No seeded patient records, fictional clinical percentages, confirmed bookings or payment proof were introduced. The previously removed top banner, Back to clinic link and settings prototype notice remain absent.
 
-Passwords are not saved, transmitted or verified. Authentication pages identify the action as a local profile and ask for a made-up password. Social providers are inert template components, not displayed sign-in methods. The concise action disclosure remains associated with the submit button through `aria-describedby`.
+The current authentication pages contain no demo credentials or local-profile instructions. Google and Apple buttons are visible with brand marks. Authentication, registration, provider sign-in and password reset report unavailable states until a secure service is connected. Credentials are not saved or transmitted, and no successful sign-in is simulated.
+
+Client authentication layout update: 40 combinations passed across 320, 390, 834, 1024 and 1440px, both themes and both directions. Checks covered field stacking, matching input/CTA widths, provider visibility/logos, top-right display controls, no navbar/footer, password visibility and mismatch correction, unavailable states, and no profile creation or credential storage.
 
 ## Brand and publishing boundaries
 

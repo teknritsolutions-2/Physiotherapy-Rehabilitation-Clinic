@@ -41,7 +41,7 @@ Self-hosted Plus Jakarta Sans and Source Sans 3 (400, 500, 600, 700) were downlo
 - https://github.com/google/fonts/blob/main/ofl/plusjakartasans/OFL.txt
 - https://github.com/google/fonts/blob/main/ofl/sourcesans3/OFL.txt
 
-Barlow Condensed and Public Sans files were removed. The Kinerelle logo restores the original angled movement symbol and circular accent. Its full and compact wordmarks are outlined vectors derived from the included Plus Jakarta Sans and Source Sans 3 fonts, whose licenses remain bundled. Flow lines and interface icons are original code-native SVGs. Google/Apple marks remain inside an inert integration template; no disabled social controls are displayed.
+Barlow Condensed and Public Sans files were removed. The Kinerelle logo restores the original angled movement symbol and circular accent. Its full and compact wordmarks are outlined vectors derived from the included Plus Jakarta Sans and Source Sans 3 fonts, whose licenses remain bundled. Flow lines and interface icons are original code-native SVGs. Google and Apple marks appear on the authentication provider buttons. Provider integration is not configured; the buttons show an unavailable message without simulating authentication.
 
 ## Latest requested visual update
 

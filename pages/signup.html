@@ -38,6 +38,20 @@
       </div>
       <div class="auth-side">
         <div class="auth-card">
+          <div class="auth-tools" aria-label="Display preferences">
+            <button
+              type="button"
+              class="icon-button theme-toggle"
+              aria-label="Switch to dark theme"
+            ></button>
+            <button
+              type="button"
+              class="icon-button direction-toggle"
+              aria-label="Switch to right-to-left"
+            >
+              RTL
+            </button>
+          </div>
           <a class="logo" href="../index.html" aria-label="Kinerelle home"
             ><img
               class="brand-full"
@@ -47,8 +61,8 @@
               height="68"
           /></a>
 
-          <h2>Your care, in one place.</h2>
-          <p>Keep your next steps together, at your own pace.</p>
+          <h2>Create your account.</h2>
+          <p>Create an account to keep your care organized.</p>
 
           <form id="auth-form" data-signup="true" class="auth-form">
             <label
@@ -79,8 +93,7 @@
                   name="password"
                   required
                   minlength="8"
-                  autocomplete="off"
-                  placeholder="Use a made-up password" /><button
+                  autocomplete="new-password" /><button
                   type="button"
                   class="password-toggle"
                   aria-label="Show password"
@@ -101,8 +114,7 @@
                   name="confirm"
                   required
                   minlength="8"
-                  autocomplete="off"
-                  placeholder="Use a made-up password" /><button
+                  autocomplete="new-password" /><button
                   type="button"
                   class="password-toggle"
                   aria-label="Show password"
@@ -117,53 +129,52 @@
                     <circle cx="12" cy="12" r="3" />
                   </svg></button></span
             ></label>
-            <p class="auth-disclosure" id="profile-disclosure">
-              Local profile only, not secure patient sign-in. Use a made-up
-              password; it is never saved or verified.
-            </p>
-            <button
-              type="submit"
-              class="button"
-              aria-describedby="profile-disclosure"
-            >
-              Create Local Profile <span aria-hidden="true">↗</span>
+            <button type="submit" class="button">
+              Create Account <span aria-hidden="true">↗</span>
             </button>
             <p id="auth-status" role="status"></p>
           </form>
-          <template id="oauth-controls"
-            ><div class="social-row">
-              <button class="button secondary" disabled>
-                <svg viewBox="0 0 24 24">
-                  <path
-                    fill="#4285F4"
-                    d="M21.6 12.2c0-.7-.1-1.4-.2-2.1H12v4h5.4a4.6 4.6 0 0 1-2 3v2.5h3.3c1.9-1.8 2.9-4.3 2.9-7.4Z"
-                  />
-                  <path
-                    fill="#34A853"
-                    d="M12 22c2.7 0 5-.9 6.7-2.4L15.4 17c-.9.6-2 1-3.4 1a6 6 0 0 1-5.6-4.1H3v2.6A10 10 0 0 0 12 22Z"
-                  />
-                  <path
-                    fill="#FBBC05"
-                    d="M6.4 13.9a6 6 0 0 1 0-3.8V7.5H3a10 10 0 0 0 0 9l3.4-2.6Z"
-                  />
-                  <path
-                    fill="#EA4335"
-                    d="M12 6c1.5 0 2.8.5 3.8 1.5l2.9-2.9A9.6 9.6 0 0 0 12 2a10 10 0 0 0-9 5.5l3.4 2.6A6 6 0 0 1 12 6Z"
-                  />
-                </svg>
-                Google</button
-              ><button class="button secondary" disabled>
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                  <path
-                    d="M17 12.7c0-2.2 1.8-3.3 1.9-3.4-1-1.5-2.6-1.7-3.2-1.7-1.4-.1-2.7.8-3.4.8-.7 0-1.8-.8-2.9-.8-1.5 0-2.9.9-3.7 2.2-1.6 2.7-.4 6.7 1.2 8.9.8 1.1 1.6 2.2 2.8 2.2 1.1-.1 1.6-.7 3-.7 1.3 0 1.7.7 2.9.7 1.2 0 2-.9 2.7-2 .9-1.3 1.3-2.5 1.3-2.6-.1 0-2.6-1-2.6-3.6ZM14.8 6.1c.6-.8 1.1-1.9 1-3.1-.9.1-2.1.6-2.8 1.4-.6.7-1.2 1.8-1.1 2.9 1 .1 2.1-.5 2.9-1.2Z"
-                  />
-                </svg>
-                Apple
-              </button>
-            </div></template
-          >
+          <div class="auth-divider"><span>or continue with</span></div>
+          <div class="social-row">
+            <button
+              type="button"
+              class="button secondary"
+              data-auth-provider="Google"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  fill="#4285F4"
+                  d="M21.6 12.2c0-.7-.1-1.4-.2-2.1H12v4h5.4a4.6 4.6 0 0 1-2 3v2.5h3.3c1.9-1.8 2.9-4.3 2.9-7.4Z"
+                />
+                <path
+                  fill="#34A853"
+                  d="M12 22c2.7 0 5-.9 6.7-2.4L15.4 17c-.9.6-2 1-3.4 1a6 6 0 0 1-5.6-4.1H3v2.6A10 10 0 0 0 12 22Z"
+                />
+                <path
+                  fill="#FBBC05"
+                  d="M6.4 13.9a6 6 0 0 1 0-3.8V7.5H3a10 10 0 0 0 0 9l3.4-2.6Z"
+                />
+                <path
+                  fill="#EA4335"
+                  d="M12 6c1.5 0 2.8.5 3.8 1.5l2.9-2.9A9.6 9.6 0 0 0 12 2a10 10 0 0 0-9 5.5l3.4 2.6A6 6 0 0 1 12 6Z"
+                />
+              </svg>
+              Continue with Google</button
+            ><button
+              type="button"
+              class="button secondary"
+              data-auth-provider="Apple"
+            >
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M17 12.7c0-2.2 1.8-3.3 1.9-3.4-1-1.5-2.6-1.7-3.2-1.7-1.4-.1-2.7.8-3.4.8-.7 0-1.8-.8-2.9-.8-1.5 0-2.9.9-3.7 2.2-1.6 2.7-.4 6.7 1.2 8.9.8 1.1 1.6 2.2 2.8 2.2 1.1-.1 1.6-.7 3-.7 1.3 0 1.7.7 2.9.7 1.2 0 2-.9 2.7-2 .9-1.3 1.3-2.5 1.3-2.6-.1 0-2.6-1-2.6-3.6ZM14.8 6.1c.6-.8 1.1-1.9 1-3.1-.9.1-2.1.6-2.8 1.4-.6.7-1.2 1.8-1.1 2.9 1 .1 2.1-.5 2.9-1.2Z"
+                />
+              </svg>
+              Continue with Apple
+            </button>
+          </div>
           <p class="auth-switch">
-            Already have a profile? <a href="login.html">Log in</a>
+            Already have an account? <a href="login.html">Log in</a>
           </p>
         </div>
       </div>

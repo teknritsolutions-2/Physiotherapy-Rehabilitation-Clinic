@@ -579,8 +579,8 @@ document
   .querySelector("#forgot-password")
   ?.addEventListener("click", () =>
     Clinic.modal(
-      "About password reset",
-      "<p>Secure clinic sign-in is not connected, so there is no account password to reset here. This form opens a local profile only and does not verify passwords.</p>",
+      "Password reset unavailable",
+      "<p>Password reset is currently unavailable. Please contact the clinic for help accessing your account.</p>",
     ),
   );
 document.querySelector("#auth-form")?.addEventListener("submit", (e) => {
@@ -595,24 +595,29 @@ document.querySelector("#auth-form")?.addEventListener("submit", (e) => {
     return;
   }
   if (!f.reportValidity()) return;
-  const name = f.elements.name?.value.trim() || "Guest";
-  try {
-    sessionStorage.setItem(
-      "clinic.profile",
-      JSON.stringify({
-        name,
-        email: f.elements.email.value,
-        phone: f.elements.phone?.value || "",
-      }),
-    );
-  } catch {}
-  if (f.elements.remember?.checked) Clinic.write("displayName", name);
-  f.reset();
-  location.href = Clinic.page("dashboard");
+  f.querySelector("#auth-status").textContent =
+    f.dataset.signup === "true"
+      ? "Account registration is currently unavailable. Please try again later."
+      : "Sign-in is currently unavailable. Please try again later.";
 });
+document.querySelectorAll("[data-auth-provider]").forEach((button) =>
+  button.addEventListener("click", () => {
+    const provider = button.dataset.authProvider;
+    Clinic.modal(
+      `${provider} sign-in unavailable`,
+      `<p>${provider} sign-in is currently unavailable. Please try again later.</p>`,
+    );
+  }),
+);
 document
-  .querySelector('[name="confirm"]')
-  ?.addEventListener("input", (e) => e.target.setCustomValidity(""));
+  .querySelectorAll('#auth-form [name="password"], #auth-form [name="confirm"]')
+  .forEach((input) =>
+    input.addEventListener("input", () => {
+      document
+        .querySelector('#auth-form [name="confirm"]')
+        ?.setCustomValidity("");
+    }),
+  );
 document.querySelector("#contact-form")?.addEventListener("submit", (event) => {
   event.preventDefault();
   const form = event.target;

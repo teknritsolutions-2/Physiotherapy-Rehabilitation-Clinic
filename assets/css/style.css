@@ -1929,6 +1929,41 @@ label > .optional {
   width: 100%;
   max-width: 420px;
 }
+.auth-tools {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-bottom: 24px;
+  direction: ltr;
+}
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-block: 24px;
+  color: var(--muted);
+  font-size: 16px;
+}
+.auth-divider::before,
+.auth-divider::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: var(--line);
+}
+.social-row {
+  display: grid;
+  gap: 12px;
+}
+.social-row .button {
+  width: 100%;
+  gap: 12px;
+}
+.social-row svg {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
 
 .auth-card > .logo img {
   width: 230px;
@@ -4333,12 +4368,6 @@ dialog .button-row {
   font-size: 17px;
   line-height: 1.5;
 }
-.auth-disclosure {
-  font-size: 16px;
-  line-height: 1.55;
-  margin: 0;
-  color: var(--muted);
-}
 .auth-card > .logo {
   margin-bottom: 24px;
 }
@@ -4900,9 +4929,6 @@ dialog .button-row {
   }
   .auth-card h2 {
     font-size: 33px;
-  }
-  .auth-disclosure {
-    font-size: 16px;
   }
   .section:has(+ .closing) {
     padding-bottom: 28px;
