@@ -48,3 +48,8 @@ Barlow Condensed and Public Sans files were removed. The Kinerelle logo restores
 `home2-guided-care.jpg`: https://www.pexels.com/photo/physiotherapist-exercising-with-a-patient-20860617/ — Funkcinės Terapijos Centras, Pexels license. A real photograph of guided rehabilitation activity replaces the Home 2 banner.
 
 The original movement symbol has been restored in all light/dark/full/compact assets and the favicon, retaining the Kinerelle wordmark and current palette.
+
+
+## Silk ribbon reference and original artwork
+
+Stripe’s homepage (https://stripe.com/) and Billing page (https://stripe.com/billing) were visually reviewed on 2026-10-29 for their broad, shaded, fibre-textured ribbons. Kinerelle’s teal/glacier geometry, shaders, animation and static SVG fallback were created for this site. No Stripe artwork, shaders or implementation code was copied or embedded.

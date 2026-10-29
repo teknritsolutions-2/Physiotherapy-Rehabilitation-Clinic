@@ -693,3 +693,228 @@ if (topButton && footerTopControl && "IntersectionObserver" in window) {
     );
   }).observe(footerTopControl);
 }
+
+// Original silk-ribbon mesh. Only the two marked homepage canvases initialize it.
+// Draw a still for reduced motion; suspend rendering offscreen and in hidden tabs.
+document.querySelectorAll("[data-care-ribbon]").forEach((canvas) => {
+  if (!("IntersectionObserver" in window) || !("ResizeObserver" in window))
+    return;
+  const host = canvas.parentElement;
+  const gl = canvas.getContext("webgl", {
+    alpha: true,
+    antialias: true,
+    premultipliedAlpha: false,
+    powerPreference: "low-power",
+  });
+  if (!gl) return;
+
+  const vertexSource = `
+    attribute vec2 a_surface;
+    uniform float u_aspect;
+    uniform float u_phase;
+    uniform float u_variant;
+    varying vec2 v_surface;
+    varying vec3 v_normal;
+    vec3 surface(float t, float v) {
+      float angle = t * (4.2 - u_variant * 1.1) + u_phase;
+      float width = 0.58 + 0.08 * cos(t * 2.0);
+      vec3 center = vec3(t * u_aspect * 1.14,
+        sin(t * 2.8 + u_phase * 0.12) * 0.24 + t * 0.12,
+        cos(t * 2.1) * 0.18);
+      return center + v * width * vec3(0.10 * sin(t * 2.0), cos(angle), sin(angle));
+    }
+    void main() {
+      vec3 p = surface(a_surface.x, a_surface.y);
+      vec3 tangent = surface(a_surface.x + 0.002, a_surface.y) - p;
+      vec3 across = surface(a_surface.x, a_surface.y + 0.002) - p;
+      v_normal = normalize(cross(tangent, across));
+      v_surface = a_surface;
+      gl_Position = vec4((p.x + p.z * 0.18) / u_aspect, p.y, -p.z * 0.25, 1.0);
+    }
+  `;
+  const derivatives = gl.getExtension("OES_standard_derivatives");
+  const fragmentSource = `
+    ${derivatives ? "#extension GL_OES_standard_derivatives : enable" : ""}
+    #ifdef GL_FRAGMENT_PRECISION_HIGH
+      precision highp float;
+    #else
+      precision mediump float;
+    #endif
+    uniform float u_dark;
+    varying vec2 v_surface;
+    varying vec3 v_normal;
+    void main() {
+      float across = v_surface.y * 0.5 + 0.5;
+      vec3 teal = vec3(0.208, 0.408, 0.459);
+      vec3 glacier = vec3(0.651, 0.847, 0.871);
+      vec3 pearl = vec3(0.91, 0.96, 0.94);
+      vec3 color = mix(teal, glacier, smoothstep(0.0, 0.72, across));
+      color = mix(color, pearl, smoothstep(0.65, 1.0, across) * 0.82);
+      vec3 normal = normalize(v_normal);
+      float light = abs(dot(normal, normalize(vec3(-0.25, 0.65, 1.0))));
+      float sheen = pow(light, 12.0) * 0.24;
+      float fibreCoord = v_surface.y * 180.0 + sin(v_surface.x * 12.0) * 1.8;
+      float fineCoord = v_surface.y * 360.0 + v_surface.x * 32.0;
+      float fibres = sin(fibreCoord) ${derivatives ? "* (1.0 - smoothstep(0.7, 3.0, fwidth(fibreCoord)))" : "* 0.3"};
+      float fine = sin(fineCoord) ${derivatives ? "* (1.0 - smoothstep(0.7, 3.0, fwidth(fineCoord)))" : "* 0.2"};
+      float texture = fibres * 0.055 + fine * 0.02;
+      float edge = pow(abs(v_surface.y), 18.0) * 0.12;
+      color = color * (0.64 + light * 0.34 + texture) + sheen + edge;
+      color = mix(color, color * 0.86, u_dark);
+      gl_FragColor = vec4(color, 1.0);
+    }
+  `;
+  const shaders = [];
+  const compile = (type, source) => {
+    const shader = gl.createShader(type);
+    if (!shader) return null;
+    gl.shaderSource(shader, source);
+    gl.compileShader(shader);
+    if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+      gl.deleteShader(shader);
+      return null;
+    }
+    shaders.push(shader);
+    return shader;
+  };
+  const vertex = compile(gl.VERTEX_SHADER, vertexSource);
+  const fragment = compile(gl.FRAGMENT_SHADER, fragmentSource);
+  if (!vertex || !fragment) {
+    shaders.forEach((shader) => gl.deleteShader(shader));
+    return;
+  }
+  const program = gl.createProgram();
+  if (!program) return;
+  gl.attachShader(program, vertex);
+  gl.attachShader(program, fragment);
+  gl.linkProgram(program);
+  shaders.forEach((shader) => gl.deleteShader(shader));
+  if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+    gl.deleteProgram(program);
+    return;
+  }
+  const vertices = [];
+  const indices = [];
+  const lengthSteps = 220;
+  const widthSteps = 36;
+  for (let row = 0; row <= lengthSteps; row++) {
+    for (let column = 0; column <= widthSteps; column++) {
+      vertices.push((row / lengthSteps) * 2 - 1, (column / widthSteps) * 2 - 1);
+      if (row < lengthSteps && column < widthSteps) {
+        const start = row * (widthSteps + 1) + column;
+        indices.push(start, start + widthSteps + 1, start + 1);
+        indices.push(start + 1, start + widthSteps + 1, start + widthSteps + 2);
+      }
+    }
+  }
+  gl.useProgram(program);
+  const vertexBuffer = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+  const position = gl.getAttribLocation(program, "a_surface");
+  gl.enableVertexAttribArray(position);
+  gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0);
+  const indexBuffer = gl.createBuffer();
+  gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
+  gl.bufferData(
+    gl.ELEMENT_ARRAY_BUFFER,
+    new Uint16Array(indices),
+    gl.STATIC_DRAW,
+  );
+  const aspect = gl.getUniformLocation(program, "u_aspect");
+  const phase = gl.getUniformLocation(program, "u_phase");
+  const dark = gl.getUniformLocation(program, "u_dark");
+  gl.uniform1f(
+    gl.getUniformLocation(program, "u_variant"),
+    canvas.dataset.careRibbon === "wave" ? 1 : 0,
+  );
+  gl.enable(gl.DEPTH_TEST);
+  gl.clearColor(0, 0, 0, 0);
+
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)");
+  const section = host.closest("section");
+  let visible = false;
+  let lost = false;
+  let frame = 0;
+  let previous = 0;
+  let elapsed = 0;
+  let targetScroll = 0;
+  let smoothScroll = 0;
+  const updateScroll = () => {
+    const rect = section.getBoundingClientRect();
+    targetScroll = Math.max(
+      0,
+      Math.min(1, (innerHeight - rect.top) / (innerHeight + rect.height)),
+    );
+  };
+  const draw = () => {
+    if (lost) return;
+    const rect = host.getBoundingClientRect();
+    if (!rect.width || !rect.height) return;
+    const ratio = Math.min(devicePixelRatio || 1, 1.5);
+    const width = Math.round(rect.width * ratio);
+    const height = Math.round(rect.height * ratio);
+    if (canvas.width !== width || canvas.height !== height) {
+      canvas.width = width;
+      canvas.height = height;
+    }
+    gl.viewport(0, 0, width, height);
+    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+    gl.uniform1f(aspect, rect.width / rect.height);
+    gl.uniform1f(
+      phase,
+      reduced.matches ? 0.7 : 0.7 + elapsed * 0.11 + smoothScroll * 0.9,
+    );
+    gl.uniform1f(
+      dark,
+      document.documentElement.dataset.theme === "dark" ? 1 : 0,
+    );
+    gl.drawElements(gl.TRIANGLES, indices.length, gl.UNSIGNED_SHORT, 0);
+    host.classList.add("is-ready");
+  };
+  const animate = (time) => {
+    frame = 0;
+    if (!visible || document.hidden || reduced.matches || lost) return;
+    if (time - previous >= 32) {
+      elapsed += Math.min((time - previous) / 1000, 0.06);
+      previous = time;
+      smoothScroll += (targetScroll - smoothScroll) * 0.07;
+      draw();
+    }
+    frame = requestAnimationFrame(animate);
+  };
+  const sync = () => {
+    cancelAnimationFrame(frame);
+    frame = 0;
+    previous = performance.now();
+    if (!visible || document.hidden || lost) return;
+    updateScroll();
+    draw();
+    if (!reduced.matches) frame = requestAnimationFrame(animate);
+  };
+  new IntersectionObserver(
+    ([entry]) => {
+      visible = entry.isIntersecting;
+      sync();
+    },
+    { rootMargin: "100px" },
+  ).observe(section);
+  new ResizeObserver(() => {
+    if (visible) draw();
+  }).observe(host);
+  new MutationObserver(() => {
+    if (visible) draw();
+  }).observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["data-theme"],
+  });
+  addEventListener("scroll", updateScroll, { passive: true });
+  document.addEventListener("visibilitychange", sync);
+  reduced.addEventListener("change", sync);
+  canvas.addEventListener("webglcontextlost", (event) => {
+    event.preventDefault();
+    lost = true;
+    cancelAnimationFrame(frame);
+    host.classList.remove("is-ready");
+  });
+});
