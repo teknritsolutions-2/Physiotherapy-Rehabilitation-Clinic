@@ -1,0 +1,10 @@
+:root[data-theme="dark"]{--paper:#15171B;--soft:#22252B;--ink:#F7F8F7;--muted:#B1B7BF;--line:#3C414A;--accent-text:#8EDBEA;color-scheme:dark}
+[data-theme="dark"] .logo img{content:url('../images/logo-dark.svg')}
+[data-theme="dark"] .button.secondary{border-color:#677078}
+[data-theme="dark"] .area-card.selected{border-color:#8EDBEA}
+[data-theme="dark"] .area-card.selected:before{border-color:#8EDBEA}
+[data-theme="dark"] .price-card.popular{border-color:#8EDBEA}
+[data-theme="dark"] .chart-bar,[data-theme="dark"] .heatmap span.recorded{background:#8EDBEA}
+[data-theme="dark"] .heatmap span.recorded{border-color:#8EDBEA}
+[data-theme="dark"] .sidebar-profile .avatar,[data-theme="dark"] .small-avatar{background:#8EDBEA;color:#15171B}
+[data-theme="dark"] .receipt-watermark{color:#8EDBEA}
