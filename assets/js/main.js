@@ -70,7 +70,7 @@ Clinic.icon = (name) => {
     calendar:
       '<rect x="4" y="5" width="16" height="16" rx="3"/><path d="M8 3v4m8-4v4M4 11h16m-11 4h2m2 0h2"/>',
     plan: '<path d="M8 4H5v17h14V4h-3M9 3h6v4H9Zm-1 9 2 2 5-5m-7 9h8"/>',
-    move: '<path d="M3 17c5 0 4-10 9-10s4 10 9 10M18 13l3 4-4 2"/>',
+    move: '<path d="M4 4v16h16M7 15l4-5 4 2 5-7M16 5h4v4"/>',
     overview:
       '<rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/>',
     history: '<path d="M4 8a9 9 0 1 1-1 7M3 3v6h6m3-2v6l4 2"/>',
