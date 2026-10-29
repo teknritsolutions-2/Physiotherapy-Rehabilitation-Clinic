@@ -53,7 +53,3 @@
 [data-theme="dark"] .button.secondary {
   border-color: var(--control-border);
 }
-
-[data-theme="dark"] .sweep-art {
-  opacity: 0.25;
-}
