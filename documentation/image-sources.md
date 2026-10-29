@@ -57,7 +57,7 @@ Stripe’s homepage (https://stripe.com/) and Billing page (https://stripe.com/b
 
 ## Distinct photographs for repeated placements
 
-Each new photograph below is assigned to a single content placement, including query-driven service/article views and body-area selections. Repeated branding and the two decorative ribbon fallbacks are not clinical photographs. These assets were downloaded at 1200px wide under the Pexels license; originals were not mirrored or AI-transformed.
+Each new photograph below is assigned to a single content placement, including query-driven service/article views and body-area selections. Repeated branding and the decorative ribbon fallbacks are not clinical photographs. These assets were downloaded at 1200px wide under the Pexels license; originals were not mirrored or AI-transformed.
 
 | Asset | Source | Photographer / context |
 |---|---|---|
@@ -82,3 +82,5 @@ Each new photograph below is assigned to a single content placement, including q
 | article-habits.jpg | https://www.pexels.com/photo/an-elderly-man-exercising-at-home-6975762/ | Mikhail Nilov; Older adult practising a stretching routine at home |
 | area-back.jpg | https://www.pexels.com/photo/physiotherapist-helping-a-patient-exercise-his-back-20860615/ | Funkcinės Terapijos Centras; Practitioner supporting a seated patient’s upper-back movement |
 | area-hip.jpg | https://www.pexels.com/photo/physiotherapist-exercising-patient-leg-20860588/ | Funkcinės Terapijos Centras; Practitioner guiding a patient’s supported leg movement |
+
+The expanded ribbon system includes six original surface styles and matching static vector fallbacks (`care-ribbon*.svg`). These are generated from Kinerelle’s geometry and palette, without external artwork.

@@ -4400,7 +4400,7 @@ dialog .button-row {
   z-index: 1;
 }
 
-/* A shaded silk ribbon sits below the content in just two feature sections. */
+/* Shaded ribbon surfaces are contained behind public-page content. */
 .ribbon-section {
   position: relative;
   isolation: isolate;
@@ -4417,6 +4417,13 @@ dialog .button-row {
   height: 300px;
   pointer-events: none;
   contain: strict;
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
 }
 .care-ribbon img,
 .care-ribbon canvas {
@@ -4435,6 +4442,121 @@ dialog .button-row {
 .care-ribbon.is-ready img {
   visibility: hidden;
 }
+.home-one-banner,
+.home-two-banner {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+}
+.home-one-banner {
+  background: linear-gradient(110deg, var(--paper) 30%, var(--soft) 100%);
+}
+.home-one-banner .hero {
+  position: relative;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 72px;
+  min-height: 670px;
+  padding-block: 68px 64px;
+}
+.home-one-banner .hero-copy {
+  position: relative;
+  z-index: 2;
+}
+.home-one-banner h1 {
+  font-size: clamp(48px, 4.7vw, 68px);
+  color: var(--ink);
+  line-height: 1.14;
+}
+.home-one-banner .hero-copy > p {
+  font-size: 20px;
+  max-width: 500px;
+}
+.home-one-banner .hero-media {
+  z-index: 1;
+  width: 90%;
+  margin-inline-start: auto;
+  padding: 0 0 30px;
+}
+.home-one-banner .hero-media::before {
+  display: none;
+}
+.home-one-banner .hero-media > img {
+  aspect-ratio: 0.86;
+  border-radius: 220px 220px 28px 28px;
+  object-position: 57% center;
+  border: 6px solid var(--paper);
+}
+.ribbon-hero {
+  width: 64%;
+  height: 120%;
+  inset: -10% auto auto;
+  inset-inline-end: -10%;
+}
+.home-two-banner {
+  padding-bottom: 65px;
+}
+.home-two-banner .rhythm-hero {
+  position: relative;
+  z-index: 1;
+}
+.home-two-banner .rhythm-heading {
+  position: relative;
+  background: var(--paper);
+  padding-bottom: 18px;
+}
+.home-two-banner .rhythm-media {
+  margin-inline: 42px;
+}
+.ribbon-home-two {
+  height: 520px;
+  bottom: -30px;
+}
+.ribbon-intro {
+  isolation: isolate;
+}
+.ribbon-intro .wrap {
+  padding-inline-end: min(28vw, 350px);
+}
+.ribbon-intro-art {
+  height: 125%;
+  width: min(36vw, 480px);
+  inset: -12% auto auto;
+  inset-inline-end: -30px;
+  opacity: 0.85;
+}
+.page-pricing .ribbon-intro .wrap {
+  padding-inline: 150px;
+}
+.page-pricing .ribbon-intro-art {
+  width: 300px;
+  inset-inline-end: -100px;
+}
+@media (min-width: 680px) and (max-width: 1099px) {
+  .home-one-banner .hero {
+    gap: 30px;
+    min-height: 570px;
+    padding-block: 48px;
+  }
+  .home-one-banner .hero-media {
+    width: 100%;
+  }
+  .home-one-banner h1 {
+    font-size: 48px;
+  }
+  .ribbon-hero {
+    width: 74%;
+    inset-inline-end: -22%;
+  }
+  .home-two-banner .rhythm-media {
+    margin-inline: 20px;
+  }
+  .ribbon-home-two {
+    height: 360px;
+  }
+  .ribbon-intro .wrap {
+    padding-inline-end: 25%;
+  }
+}
 @media (max-width: 679px) {
   .ribbon-section {
     padding-bottom: 110px;
@@ -4442,6 +4564,65 @@ dialog .button-row {
   .care-ribbon {
     height: 190px;
     bottom: -45px;
+  }
+  .home-one-banner .hero {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    gap: 40px;
+    padding-block: 38px 50px;
+  }
+  .home-one-banner h1 {
+    font-size: clamp(42px, 10vw, 54px);
+  }
+  .home-one-banner .hero-copy > p {
+    font-size: 18px;
+  }
+  .home-one-banner .hero-copy .button-row {
+    align-items: stretch;
+  }
+  .home-one-banner .hero-copy .button {
+    width: 100%;
+  }
+  .home-one-banner .hero-media {
+    width: 88%;
+    margin-inline: auto;
+  }
+  .home-one-banner .hero-media > img {
+    aspect-ratio: 1;
+  }
+  .home-one-banner .media-caption {
+    inset-inline-start: -14px;
+  }
+  .ribbon-hero {
+    width: 130%;
+    height: 470px;
+    inset: auto auto -40px;
+    inset-inline-end: -23%;
+  }
+  .home-two-banner {
+    padding-bottom: 50px;
+  }
+  .home-two-banner .rhythm-media {
+    margin-inline: 0;
+  }
+  .ribbon-home-two {
+    height: 240px;
+    bottom: -40px;
+  }
+  .ribbon-intro {
+    padding-bottom: 95px;
+  }
+  .ribbon-intro .wrap,
+  .page-pricing .ribbon-intro .wrap {
+    padding-inline: 0;
+  }
+  .ribbon-intro-art,
+  .page-pricing .ribbon-intro-art {
+    width: 280px;
+    height: 155px;
+    inset: auto auto -60px;
+    inset-inline-end: -25px;
+    opacity: 0.6;
   }
 }
 

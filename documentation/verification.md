@@ -65,3 +65,10 @@ Twenty responsive/theme/direction checks passed at 320, 390, 834, 1100 and 1440p
 Added 21 distinct, licensed Pexels photographs for repeated homepage, service, care-focus, journal, contact and authentication placements, including dynamic service/article and body-area views. Every source and photographer is listed in `image-sources.md`. Existing site structure, text hierarchy, ribbon artwork, booking behavior and authentication behavior remain unchanged.
 
 Audited 40 photography placements (including query-driven variants and all body-area selections): no repeated image filenames, broken images, JavaScript exceptions or missing assets. All 66 page/viewport combinations passed at 390, 834 and 1440px. Reviewed rendered image crops and full-page captures, then adjusted source-specific framing to keep the care interaction visible. Authentication photography remains intentionally hidden at mobile sizes.
+
+
+## Current follow-up: smoother, varied public-page ribbons
+
+Replaced the frame-skipping renderer with continuous frame timing, analytic surface normals, softer band-limited material detail and feathered alpha edges. Redesigned Home 1’s banner and added ribbon art to both homepage banners. Each other public page has one placement; authentication and dashboard views have none. Six shapes provide upright twists, flowing waves, open loops, folds and arcs.
+
+128 layout checks and 60 artwork checks passed across 320, 390, 834 and 1440px in light LTR/dark RTL. The animation diagnostic measured 87 draws for 87 animation frames, with no skipped-frame gate and no phase discontinuities. Reduced-motion frames remained identical; active-motion frames changed; offscreen rendering stopped. Forced context loss restored the fallback, and static artwork loaded with JavaScript disabled. No WebGL errors, missing assets, blocked section actions or horizontal overflow were found. A further 40 focused checks passed after final boundary, open-loop and mobile-button adjustments. Desktop/mobile screenshots were reviewed. These are automated/browser observations, not a claim about frame rate on every device.

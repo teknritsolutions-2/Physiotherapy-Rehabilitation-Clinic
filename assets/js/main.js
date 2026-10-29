@@ -704,227 +704,312 @@ if (topButton && footerTopControl && "IntersectionObserver" in window) {
   }).observe(footerTopControl);
 }
 
-// Original silk-ribbon mesh. Only the two marked homepage canvases initialize it.
-// Draw a still for reduced motion; suspend rendering offscreen and in hidden tabs.
+// Shaded ribbon surfaces: continuous frame timing, analytic normals and soft edges.
+// Each canvas initializes only near the viewport; auth and patient pages have none.
+const ribbonShapes = { twist: 0, wave: 1, sail: 2, loop: 3, fold: 4, arc: 5 };
 document.querySelectorAll("[data-care-ribbon]").forEach((canvas) => {
   if (!("IntersectionObserver" in window) || !("ResizeObserver" in window))
     return;
   const host = canvas.parentElement;
-  const gl = canvas.getContext("webgl", {
-    alpha: true,
-    antialias: true,
-    premultipliedAlpha: false,
-    powerPreference: "low-power",
-  });
-  if (!gl) return;
-
-  const vertexSource = `
-    attribute vec2 a_surface;
-    uniform float u_aspect;
-    uniform float u_phase;
-    uniform float u_variant;
-    varying vec2 v_surface;
-    varying vec3 v_normal;
-    vec3 surface(float t, float v) {
-      float angle = t * (4.2 - u_variant * 1.1) + u_phase;
-      float width = 0.58 + 0.08 * cos(t * 2.0);
-      vec3 center = vec3(t * u_aspect * 1.14,
-        sin(t * 2.8 + u_phase * 0.12) * 0.24 + t * 0.12,
-        cos(t * 2.1) * 0.18);
-      return center + v * width * vec3(0.10 * sin(t * 2.0), cos(angle), sin(angle));
-    }
-    void main() {
-      vec3 p = surface(a_surface.x, a_surface.y);
-      vec3 tangent = surface(a_surface.x + 0.002, a_surface.y) - p;
-      vec3 across = surface(a_surface.x, a_surface.y + 0.002) - p;
-      v_normal = normalize(cross(tangent, across));
-      v_surface = a_surface;
-      gl_Position = vec4((p.x + p.z * 0.18) / u_aspect, p.y, -p.z * 0.25, 1.0);
-    }
-  `;
-  const derivatives = gl.getExtension("OES_standard_derivatives");
-  const fragmentSource = `
-    ${derivatives ? "#extension GL_OES_standard_derivatives : enable" : ""}
-    #ifdef GL_FRAGMENT_PRECISION_HIGH
-      precision highp float;
-    #else
-      precision mediump float;
-    #endif
-    uniform float u_dark;
-    varying vec2 v_surface;
-    varying vec3 v_normal;
-    void main() {
-      float across = v_surface.y * 0.5 + 0.5;
-      vec3 teal = vec3(0.208, 0.408, 0.459);
-      vec3 glacier = vec3(0.651, 0.847, 0.871);
-      vec3 pearl = vec3(0.91, 0.96, 0.94);
-      vec3 color = mix(teal, glacier, smoothstep(0.0, 0.72, across));
-      color = mix(color, pearl, smoothstep(0.65, 1.0, across) * 0.82);
-      vec3 normal = normalize(v_normal);
-      float light = abs(dot(normal, normalize(vec3(-0.25, 0.65, 1.0))));
-      float sheen = pow(light, 12.0) * 0.24;
-      float fibreCoord = v_surface.y * 180.0 + sin(v_surface.x * 12.0) * 1.8;
-      float fineCoord = v_surface.y * 360.0 + v_surface.x * 32.0;
-      float fibres = sin(fibreCoord) ${derivatives ? "* (1.0 - smoothstep(0.7, 3.0, fwidth(fibreCoord)))" : "* 0.3"};
-      float fine = sin(fineCoord) ${derivatives ? "* (1.0 - smoothstep(0.7, 3.0, fwidth(fineCoord)))" : "* 0.2"};
-      float texture = fibres * 0.055 + fine * 0.02;
-      float edge = pow(abs(v_surface.y), 18.0) * 0.12;
-      color = color * (0.64 + light * 0.34 + texture) + sheen + edge;
-      color = mix(color, color * 0.86, u_dark);
-      gl_FragColor = vec4(color, 1.0);
-    }
-  `;
-  const shaders = [];
-  const compile = (type, source) => {
-    const shader = gl.createShader(type);
-    if (!shader) return null;
-    gl.shaderSource(shader, source);
-    gl.compileShader(shader);
-    if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-      gl.deleteShader(shader);
+  const section = host.closest("section");
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)");
+  let controller;
+  let initialized = false;
+  let visible = false;
+  const initialize = () => {
+    const gl = canvas.getContext("webgl", {
+      alpha: true,
+      antialias: true,
+      premultipliedAlpha: true,
+      powerPreference: "low-power",
+    });
+    if (!gl) return null;
+    const derivatives = gl.getExtension("OES_standard_derivatives");
+    const vertexSource = `
+      attribute vec2 a_surface;
+      uniform float u_aspect;
+      uniform float u_phase;
+      uniform float u_shape;
+      varying vec2 v_surface;
+      varying vec3 v_normal;
+      void main() {
+        float t = a_surface.x;
+        float v = a_surface.y;
+        float angle = t * 3.4 + u_phase;
+        float rate = 3.4;
+        float width = 0.58 + 0.05 * cos(t * 2.0);
+        float dw = -0.1 * sin(t * 2.0);
+        vec3 center = vec3(t * u_aspect * 1.15, sin(t * 2.8) * 0.18, cos(t * 2.0) * 0.12);
+        vec3 dc = vec3(u_aspect * 1.15, cos(t * 2.8) * 0.504, -sin(t * 2.0) * 0.24);
+        vec3 across;
+        vec3 da;
+        if (u_shape > 0.5 && u_shape < 1.5) {
+          angle = t * 1.9 + u_phase;
+          rate = 1.9;
+          center.y = sin(t * 3.7) * 0.25;
+          dc.y = cos(t * 3.7) * 0.925;
+          width = 0.52;
+          dw = 0.0;
+        }
+        if (u_shape > 1.5 && u_shape < 2.5) {
+          angle = t * 3.1 + u_phase;
+          center = vec3(sin(t * 2.4) * 0.18, t * 1.3, cos(t * 2.0) * 0.16);
+          dc = vec3(cos(t * 2.4) * 0.432, 1.3, -sin(t * 2.0) * 0.32);
+          width = 0.76 + 0.08 * cos(t * 2.0);
+          dw = -0.16 * sin(t * 2.0);
+          across = vec3(cos(angle), 0.0, sin(angle));
+          da = vec3(-sin(angle) * 3.1, 0.0, cos(angle) * 3.1);
+        } else if (u_shape > 2.5 && u_shape < 3.5) {
+          float a = t * 2.75 + 0.35;
+          float r = 0.50 + t * 0.25;
+          float scale = min(u_aspect, 1.4);
+          center = vec3(cos(a) * r * scale, sin(a) * r * 1.25, sin(a * 1.5) * 0.18);
+          dc = vec3((cos(a) * 0.25 - sin(a) * r * 2.75) * scale,
+            (sin(a) * 0.25 + cos(a) * r * 2.75) * 1.25, cos(a * 1.5) * 0.7425);
+          float roll = t * 1.7 + u_phase;
+          across = vec3(cos(a) * cos(roll), sin(a) * cos(roll), sin(roll));
+          da = vec3(-sin(a) * 2.75 * cos(roll) - cos(a) * sin(roll) * 1.7,
+            cos(a) * 2.75 * cos(roll) - sin(a) * sin(roll) * 1.7, cos(roll) * 1.7);
+          width = 0.25;
+          dw = 0.0;
+        } else {
+          if (u_shape > 3.5 && u_shape < 4.5) {
+            angle = t * 2.5 + u_phase;
+            rate = 2.5;
+            center.y = sin(t * 2.4) * 0.32 + t * 0.22;
+            dc.y = cos(t * 2.4) * 0.768 + 0.22;
+            width = 0.68;
+            dw = 0.0;
+          }
+          if (u_shape > 4.5) {
+            angle = t * 2.0 + u_phase;
+            rate = 2.0;
+            center.y = t * t * 0.65 - 0.35;
+            dc.y = t * 1.3;
+            width = 0.4;
+            dw = 0.0;
+          }
+          across = vec3(0.0, cos(angle), sin(angle));
+          da = vec3(0.0, -sin(angle) * rate, cos(angle) * rate);
+        }
+        vec3 p = center + v * width * across;
+        vec3 tangent = dc + v * (dw * across + width * da);
+        v_normal = normalize(cross(tangent, width * across));
+        if (u_shape > 1.5 && u_shape < 2.5) {
+          float c = 0.96;
+          float s = -0.28;
+          p.xy = mat2(c, s, -s, c) * p.xy;
+          v_normal.xy = mat2(c, s, -s, c) * v_normal.xy;
+        }
+        v_surface = a_surface;
+        gl_Position = vec4((p.x + p.z * 0.12) / u_aspect, p.y, -p.z * 0.25, 1.0);
+      }
+    `;
+    const fragmentSource = `
+      ${derivatives ? "#extension GL_OES_standard_derivatives : enable" : ""}
+      #ifdef GL_FRAGMENT_PRECISION_HIGH
+        precision highp float;
+      #else
+        precision mediump float;
+      #endif
+      uniform float u_dark;
+      varying vec2 v_surface;
+      varying vec3 v_normal;
+      void main() {
+        float across = v_surface.y * 0.5 + 0.5;
+        vec3 teal = vec3(0.208, 0.408, 0.459);
+        vec3 glacier = vec3(0.651, 0.847, 0.871);
+        vec3 pearl = vec3(0.91, 0.96, 0.94);
+        vec3 color = mix(teal, glacier, smoothstep(0.0, 0.75, across));
+        color = mix(color, pearl, smoothstep(0.66, 1.0, across) * 0.72);
+        float light = abs(dot(normalize(v_normal), normalize(vec3(-0.25, 0.65, 1.0))));
+        float coord = v_surface.y * 90.0 + sin(v_surface.x * 6.0) * 0.6;
+        float fibre = sin(coord) ${derivatives ? "* (1.0 - smoothstep(0.6, 2.5, fwidth(coord)))" : "* 0.0"};
+        color = color * (0.68 + light * 0.29 + fibre * 0.018) + pow(light, 10.0) * 0.18;
+        color = mix(color, color * 0.88, u_dark);
+        float feather = ${derivatives ? "max(fwidth(v_surface.y) * 1.5, 0.002)" : "0.025"};
+        float alpha = smoothstep(0.0, feather, 1.0 - abs(v_surface.y));
+        gl_FragColor = vec4(color, alpha);
+      }
+    `;
+    const shaders = [];
+    const compile = (type, source) => {
+      const shader = gl.createShader(type);
+      if (!shader) return null;
+      gl.shaderSource(shader, source);
+      gl.compileShader(shader);
+      if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+        gl.deleteShader(shader);
+        return null;
+      }
+      shaders.push(shader);
+      return shader;
+    };
+    const vertex = compile(gl.VERTEX_SHADER, vertexSource);
+    const fragment = compile(gl.FRAGMENT_SHADER, fragmentSource);
+    const program = vertex && fragment ? gl.createProgram() : null;
+    if (!program) {
+      shaders.forEach((shader) => gl.deleteShader(shader));
       return null;
     }
-    shaders.push(shader);
-    return shader;
-  };
-  const vertex = compile(gl.VERTEX_SHADER, vertexSource);
-  const fragment = compile(gl.FRAGMENT_SHADER, fragmentSource);
-  if (!vertex || !fragment) {
+    gl.attachShader(program, vertex);
+    gl.attachShader(program, fragment);
+    gl.linkProgram(program);
     shaders.forEach((shader) => gl.deleteShader(shader));
-    return;
-  }
-  const program = gl.createProgram();
-  if (!program) return;
-  gl.attachShader(program, vertex);
-  gl.attachShader(program, fragment);
-  gl.linkProgram(program);
-  shaders.forEach((shader) => gl.deleteShader(shader));
-  if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
-    gl.deleteProgram(program);
-    return;
-  }
-  const vertices = [];
-  const indices = [];
-  const lengthSteps = 220;
-  const widthSteps = 36;
-  for (let row = 0; row <= lengthSteps; row++) {
-    for (let column = 0; column <= widthSteps; column++) {
-      vertices.push((row / lengthSteps) * 2 - 1, (column / widthSteps) * 2 - 1);
-      if (row < lengthSteps && column < widthSteps) {
-        const start = row * (widthSteps + 1) + column;
-        indices.push(start, start + widthSteps + 1, start + 1);
-        indices.push(start + 1, start + widthSteps + 1, start + widthSteps + 2);
+    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+      gl.deleteProgram(program);
+      return null;
+    }
+    const vertices = [],
+      indices = [];
+    const rows = 320,
+      columns = 48;
+    for (let row = 0; row <= rows; row++) {
+      for (let column = 0; column <= columns; column++) {
+        vertices.push((row / rows) * 2 - 1, (column / columns) * 2 - 1);
+        if (row < rows && column < columns) {
+          const start = row * (columns + 1) + column;
+          indices.push(
+            start,
+            start + columns + 1,
+            start + 1,
+            start + 1,
+            start + columns + 1,
+            start + columns + 2,
+          );
+        }
       }
     }
-  }
-  gl.useProgram(program);
-  const vertexBuffer = gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
-  const position = gl.getAttribLocation(program, "a_surface");
-  gl.enableVertexAttribArray(position);
-  gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0);
-  const indexBuffer = gl.createBuffer();
-  gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
-  gl.bufferData(
-    gl.ELEMENT_ARRAY_BUFFER,
-    new Uint16Array(indices),
-    gl.STATIC_DRAW,
-  );
-  const aspect = gl.getUniformLocation(program, "u_aspect");
-  const phase = gl.getUniformLocation(program, "u_phase");
-  const dark = gl.getUniformLocation(program, "u_dark");
-  gl.uniform1f(
-    gl.getUniformLocation(program, "u_variant"),
-    canvas.dataset.careRibbon === "wave" ? 1 : 0,
-  );
-  gl.enable(gl.DEPTH_TEST);
-  gl.clearColor(0, 0, 0, 0);
-
-  const reduced = matchMedia("(prefers-reduced-motion: reduce)");
-  const section = host.closest("section");
-  let visible = false;
-  let lost = false;
-  let frame = 0;
-  let previous = 0;
-  let elapsed = 0;
-  let targetScroll = 0;
-  let smoothScroll = 0;
-  const updateScroll = () => {
-    const rect = section.getBoundingClientRect();
-    targetScroll = Math.max(
-      0,
-      Math.min(1, (innerHeight - rect.top) / (innerHeight + rect.height)),
+    gl.useProgram(program);
+    gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+    const position = gl.getAttribLocation(program, "a_surface");
+    gl.enableVertexAttribArray(position);
+    gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0);
+    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, gl.createBuffer());
+    gl.bufferData(
+      gl.ELEMENT_ARRAY_BUFFER,
+      new Uint16Array(indices),
+      gl.STATIC_DRAW,
     );
-  };
-  const draw = () => {
-    if (lost) return;
-    const rect = host.getBoundingClientRect();
-    if (!rect.width || !rect.height) return;
-    const ratio = Math.min(devicePixelRatio || 1, 1.5);
-    const width = Math.round(rect.width * ratio);
-    const height = Math.round(rect.height * ratio);
-    if (canvas.width !== width || canvas.height !== height) {
-      canvas.width = width;
-      canvas.height = height;
-    }
-    gl.viewport(0, 0, width, height);
-    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-    gl.uniform1f(aspect, rect.width / rect.height);
+    const aspect = gl.getUniformLocation(program, "u_aspect");
+    const phase = gl.getUniformLocation(program, "u_phase");
+    const dark = gl.getUniformLocation(program, "u_dark");
     gl.uniform1f(
-      phase,
-      reduced.matches ? 0.7 : 0.7 + elapsed * 0.11 + smoothScroll * 0.9,
+      gl.getUniformLocation(program, "u_shape"),
+      ribbonShapes[canvas.dataset.careRibbon] ?? 0,
     );
-    gl.uniform1f(
-      dark,
-      document.documentElement.dataset.theme === "dark" ? 1 : 0,
+    gl.enable(gl.DEPTH_TEST);
+    gl.enable(gl.BLEND);
+    gl.blendFuncSeparate(
+      gl.SRC_ALPHA,
+      gl.ONE_MINUS_SRC_ALPHA,
+      gl.ONE,
+      gl.ONE_MINUS_SRC_ALPHA,
     );
-    gl.drawElements(gl.TRIANGLES, indices.length, gl.UNSIGNED_SHORT, 0);
-    host.classList.add("is-ready");
-  };
-  const animate = (time) => {
-    frame = 0;
-    if (!visible || document.hidden || reduced.matches || lost) return;
-    if (time - previous >= 32) {
-      elapsed += Math.min((time - previous) / 1000, 0.06);
+    gl.clearColor(0, 0, 0, 0);
+    let lost = false,
+      frame = 0,
+      previous = 0,
+      elapsed = 0,
+      progress = null;
+    let width = 1,
+      height = 1;
+    const resize = () => {
+      const rect = host.getBoundingClientRect();
+      width = rect.width;
+      height = rect.height;
+      if (!width || !height) return;
+      const ratio = Math.min(
+        devicePixelRatio || 1,
+        2,
+        Math.sqrt(2400000 / (width * height)),
+      );
+      const pixelWidth = Math.max(1, Math.round(width * ratio));
+      const pixelHeight = Math.max(1, Math.round(height * ratio));
+      if (canvas.width !== pixelWidth || canvas.height !== pixelHeight) {
+        canvas.width = pixelWidth;
+        canvas.height = pixelHeight;
+      }
+    };
+    const targetProgress = () => {
+      const rect = section.getBoundingClientRect();
+      return Math.max(
+        0,
+        Math.min(1, (innerHeight - rect.top) / (innerHeight + rect.height)),
+      );
+    };
+    const draw = () => {
+      if (lost || !width || !height) return;
+      gl.viewport(0, 0, canvas.width, canvas.height);
+      gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+      gl.uniform1f(aspect, width / height);
+      gl.uniform1f(
+        phase,
+        0.65 + (reduced.matches ? 0 : elapsed * 0.065 + (progress ?? 0) * 0.42),
+      );
+      gl.uniform1f(
+        dark,
+        document.documentElement.dataset.theme === "dark" ? 1 : 0,
+      );
+      gl.drawElements(gl.TRIANGLES, indices.length, gl.UNSIGNED_SHORT, 0);
+      host.classList.add("is-ready");
+    };
+    const animate = (time) => {
+      frame = 0;
+      if (!visible || document.hidden || reduced.matches || lost) return;
+      const dt = Math.max(0, Math.min((time - previous) / 1000, 0.05));
       previous = time;
-      smoothScroll += (targetScroll - smoothScroll) * 0.07;
+      elapsed += dt;
+      const target = targetProgress();
+      progress =
+        progress === null
+          ? target
+          : progress + (target - progress) * (1 - Math.exp(-dt * 4));
       draw();
-    }
-    frame = requestAnimationFrame(animate);
-  };
-  const sync = () => {
-    cancelAnimationFrame(frame);
-    frame = 0;
-    previous = performance.now();
-    if (!visible || document.hidden || lost) return;
-    updateScroll();
-    draw();
-    if (!reduced.matches) frame = requestAnimationFrame(animate);
+      frame = requestAnimationFrame(animate);
+    };
+    const sync = () => {
+      cancelAnimationFrame(frame);
+      frame = 0;
+      if (!visible || document.hidden || lost) return;
+      resize();
+      previous = performance.now();
+      if (progress === null) progress = targetProgress();
+      draw();
+      if (!reduced.matches) frame = requestAnimationFrame(animate);
+    };
+    new ResizeObserver(() => {
+      if (visible && !document.hidden) {
+        resize();
+        draw();
+      }
+    }).observe(host);
+    new MutationObserver(() => {
+      if (visible && !document.hidden) draw();
+    }).observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-theme"],
+    });
+    document.addEventListener("visibilitychange", sync);
+    reduced.addEventListener("change", sync);
+    canvas.addEventListener("webglcontextlost", (event) => {
+      event.preventDefault();
+      lost = true;
+      cancelAnimationFrame(frame);
+      host.classList.remove("is-ready");
+    });
+    return { sync };
   };
   new IntersectionObserver(
     ([entry]) => {
       visible = entry.isIntersecting;
-      sync();
+      if (visible && !initialized) {
+        initialized = true;
+        controller = initialize();
+      }
+      controller?.sync();
     },
-    { rootMargin: "100px" },
-  ).observe(section);
-  new ResizeObserver(() => {
-    if (visible) draw();
-  }).observe(host);
-  new MutationObserver(() => {
-    if (visible) draw();
-  }).observe(document.documentElement, {
-    attributes: true,
-    attributeFilter: ["data-theme"],
-  });
-  addEventListener("scroll", updateScroll, { passive: true });
-  document.addEventListener("visibilitychange", sync);
-  reduced.addEventListener("change", sync);
-  canvas.addEventListener("webglcontextlost", (event) => {
-    event.preventDefault();
-    lost = true;
-    cancelAnimationFrame(frame);
-    host.classList.remove("is-ready");
-  });
+    { rootMargin: "80px" },
+  ).observe(host);
 });
