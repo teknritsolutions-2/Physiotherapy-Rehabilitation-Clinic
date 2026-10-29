@@ -1107,7 +1107,7 @@ hr {
 }
 .program-grid {
   display: grid;
-  grid-template-columns: 1.25fr 1fr;
+  grid-template-columns: 1.1fr 1fr;
   gap: 35px;
 }
 .program-feature {
@@ -4426,7 +4426,7 @@ dialog .button-row {
 }
 .care-feature {
   display: grid;
-  grid-template-columns: 120px minmax(0, 1fr);
+  grid-template-columns: minmax(164px, 34%) minmax(0, 1fr);
   background: var(--paper);
   border: 1px solid var(--line);
   border-radius: 18px;
@@ -4598,7 +4598,7 @@ dialog .button-row {
   }
   .care-feature > img {
     height: auto;
-    aspect-ratio: 2;
+    aspect-ratio: 1.65;
   }
   .pathway-section > .wrap {
     display: grid;
@@ -4823,7 +4823,11 @@ dialog .button-row {
     gap: 18px;
   }
   .care-feature {
-    grid-template-columns: 95px minmax(0, 1fr);
+    grid-template-columns: 1fr;
+  }
+  .care-feature > img {
+    height: auto;
+    aspect-ratio: 1.65;
   }
   .care-feature > div {
     padding: 20px 18px;
