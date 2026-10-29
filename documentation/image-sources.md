@@ -41,4 +41,4 @@ Self-hosted Plus Jakarta Sans and Source Sans 3 (400, 500, 600, 700) were downlo
 - https://github.com/google/fonts/blob/main/ofl/plusjakartasans/OFL.txt
 - https://github.com/google/fonts/blob/main/ofl/sourcesans3/OFL.txt
 
-Barlow Condensed and Public Sans files were removed. The established movement-symbol SVG was recolored in the approved teal/coral palette; its silhouette was retained. Flow lines and interface icons are original code-native SVGs. Google/Apple marks appear solely in disabled sign-in integration controls.
+Barlow Condensed and Public Sans files were removed. The Kinerelle symbol is new code-native curved-path artwork. Its full and compact wordmarks are outlined vectors derived from the included Plus Jakarta Sans and Source Sans 3 fonts, whose licenses remain bundled. Flow lines and interface icons are original code-native SVGs. Google/Apple marks remain inside an inert integration template; no disabled social controls are displayed.

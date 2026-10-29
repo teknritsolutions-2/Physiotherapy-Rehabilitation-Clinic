@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta
       name="description"
-      content="Thoughtful physiotherapy and rehabilitation support for everyday movement. Explore care pathways, plan a session request and visit your patient space."
+      content="Kinerelle. Thoughtful physiotherapy and rehabilitation support for everyday movement. Explore care pathways, plan a session request and visit your patient space."
     />
     <meta name="theme-color" content="#356875" />
-    <title>Patient Sign Up | Physiotherapy & Rehabilitation Clinic</title>
+    <title>
+      Patient Sign Up | Kinerelle — Physiotherapy &amp; Rehabilitation
+    </title>
     <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="../assets/css/style.css" />
     <link rel="stylesheet" href="../assets/css/dark-mode.css" />
@@ -25,7 +27,7 @@
           loading="lazy"
           width="1200"
           height="850"
-        /><a href="../index.html" class="auth-home">← Back to the clinic</a>
+        />
         <div>
           <span class="eyebrow">Your care, within reach</span>
           <h1>
@@ -35,51 +37,19 @@
         </div>
       </div>
       <div class="auth-side">
-        <div class="auth-utilities">
-          <div class="utilities">
-            <button
-              class="icon-button theme-toggle"
-              aria-label="Toggle color theme"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.6"
-              >
-                <circle cx="12" cy="12" r="4" />
-                <path
-                  d="M12 1v3m0 16v3M1 12h3m16 0h3M4 4l2 2m12 12 2 2M4 20l2-2M18 6l2-2"
-                />
-              </svg></button
-            ><button
-              class="icon-button direction-toggle"
-              aria-label="Switch reading direction"
-            >
-              RTL
-            </button>
-          </div>
-        </div>
         <div class="auth-card">
-          <a class="logo" href="../index.html"
+          <a class="logo" href="../index.html" aria-label="Kinerelle home"
             ><img
+              class="brand-full"
               src="../assets/images/logo.svg"
-              alt="Clinic home"
-              width="60"
-              height="60"
+              alt="Kinerelle — Physiotherapy &amp; Rehabilitation"
+              width="270"
+              height="68"
           /></a>
-          <div class="eyebrow">
-            <span class="tiny-cross">+</span> Patient portal
-          </div>
-          <h2>
-            Make room<br />
-            for your care.
-          </h2>
-          <p>A calmer place to organize your next steps.</p>
-          <div class="notice compact">
-            Browser-based access only. Secure clinic sign-in is not connected;
-            your password is not saved or verified.
-          </div>
+
+          <h2>Your care, in one place.</h2>
+          <p>Keep your next steps together, at your own pace.</p>
+
           <form id="auth-form" data-signup="true" class="auth-form">
             <label
               >Full name<input
@@ -109,7 +79,8 @@
                   name="password"
                   required
                   minlength="8"
-                  autocomplete="new-password" /><button
+                  autocomplete="off"
+                  placeholder="Use a made-up password" /><button
                   type="button"
                   class="password-toggle"
                   aria-label="Show password"
@@ -130,7 +101,8 @@
                   name="confirm"
                   required
                   minlength="8"
-                  autocomplete="new-password" /><button
+                  autocomplete="off"
+                  placeholder="Use a made-up password" /><button
                   type="button"
                   class="password-toggle"
                   aria-label="Show password"
@@ -143,46 +115,52 @@
                   >
                     <path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z" />
                     <circle cx="12" cy="12" r="3" />
-                  </svg></button></span></label
-            ><button type="submit" class="button">
-              Create Browser Profile <span aria-hidden="true">↗</span>
+                  </svg></button></span
+            ></label>
+            <p class="auth-disclosure" id="profile-disclosure">
+              Local profile only, not secure patient sign-in. Use a made-up
+              password; it is never saved or verified.
+            </p>
+            <button
+              type="submit"
+              class="button"
+              aria-describedby="profile-disclosure"
+            >
+              Create Local Profile <span aria-hidden="true">↗</span>
             </button>
             <p id="auth-status" role="status"></p>
           </form>
-          <div class="or-line"><span>Other ways to sign in</span></div>
-          <div class="social-row">
-            <button class="button secondary" disabled>
-              <svg viewBox="0 0 24 24">
-                <path
-                  fill="#4285F4"
-                  d="M21.6 12.2c0-.7-.1-1.4-.2-2.1H12v4h5.4a4.6 4.6 0 0 1-2 3v2.5h3.3c1.9-1.8 2.9-4.3 2.9-7.4Z"
-                />
-                <path
-                  fill="#34A853"
-                  d="M12 22c2.7 0 5-.9 6.7-2.4L15.4 17c-.9.6-2 1-3.4 1a6 6 0 0 1-5.6-4.1H3v2.6A10 10 0 0 0 12 22Z"
-                />
-                <path
-                  fill="#FBBC05"
-                  d="M6.4 13.9a6 6 0 0 1 0-3.8V7.5H3a10 10 0 0 0 0 9l3.4-2.6Z"
-                />
-                <path
-                  fill="#EA4335"
-                  d="M12 6c1.5 0 2.8.5 3.8 1.5l2.9-2.9A9.6 9.6 0 0 0 12 2a10 10 0 0 0-9 5.5l3.4 2.6A6 6 0 0 1 12 6Z"
-                />
-              </svg>
-              Google</button
-            ><button class="button secondary" disabled>
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path
-                  d="M17 12.7c0-2.2 1.8-3.3 1.9-3.4-1-1.5-2.6-1.7-3.2-1.7-1.4-.1-2.7.8-3.4.8-.7 0-1.8-.8-2.9-.8-1.5 0-2.9.9-3.7 2.2-1.6 2.7-.4 6.7 1.2 8.9.8 1.1 1.6 2.2 2.8 2.2 1.1-.1 1.6-.7 3-.7 1.3 0 1.7.7 2.9.7 1.2 0 2-.9 2.7-2 .9-1.3 1.3-2.5 1.3-2.6-.1 0-2.6-1-2.6-3.6ZM14.8 6.1c.6-.8 1.1-1.9 1-3.1-.9.1-2.1.6-2.8 1.4-.6.7-1.2 1.8-1.1 2.9 1 .1 2.1-.5 2.9-1.2Z"
-                />
-              </svg>
-              Apple
-            </button>
-          </div>
-          <p class="fine-print">Google and Apple sign-in are unavailable.</p>
-          <a href="dashboard.html" class="text-link"
-            >Explore the patient space <span aria-hidden="true">↗</span></a
+          <template id="oauth-controls"
+            ><div class="social-row">
+              <button class="button secondary" disabled>
+                <svg viewBox="0 0 24 24">
+                  <path
+                    fill="#4285F4"
+                    d="M21.6 12.2c0-.7-.1-1.4-.2-2.1H12v4h5.4a4.6 4.6 0 0 1-2 3v2.5h3.3c1.9-1.8 2.9-4.3 2.9-7.4Z"
+                  />
+                  <path
+                    fill="#34A853"
+                    d="M12 22c2.7 0 5-.9 6.7-2.4L15.4 17c-.9.6-2 1-3.4 1a6 6 0 0 1-5.6-4.1H3v2.6A10 10 0 0 0 12 22Z"
+                  />
+                  <path
+                    fill="#FBBC05"
+                    d="M6.4 13.9a6 6 0 0 1 0-3.8V7.5H3a10 10 0 0 0 0 9l3.4-2.6Z"
+                  />
+                  <path
+                    fill="#EA4335"
+                    d="M12 6c1.5 0 2.8.5 3.8 1.5l2.9-2.9A9.6 9.6 0 0 0 12 2a10 10 0 0 0-9 5.5l3.4 2.6A6 6 0 0 1 12 6Z"
+                  />
+                </svg>
+                Google</button
+              ><button class="button secondary" disabled>
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M17 12.7c0-2.2 1.8-3.3 1.9-3.4-1-1.5-2.6-1.7-3.2-1.7-1.4-.1-2.7.8-3.4.8-.7 0-1.8-.8-2.9-.8-1.5 0-2.9.9-3.7 2.2-1.6 2.7-.4 6.7 1.2 8.9.8 1.1 1.6 2.2 2.8 2.2 1.1-.1 1.6-.7 3-.7 1.3 0 1.7.7 2.9.7 1.2 0 2-.9 2.7-2 .9-1.3 1.3-2.5 1.3-2.6-.1 0-2.6-1-2.6-3.6ZM14.8 6.1c.6-.8 1.1-1.9 1-3.1-.9.1-2.1.6-2.8 1.4-.6.7-1.2 1.8-1.1 2.9 1 .1 2.1-.5 2.9-1.2Z"
+                  />
+                </svg>
+                Apple
+              </button>
+            </div></template
           >
           <p class="auth-switch">
             Already have a profile? <a href="login.html">Log in</a>

@@ -57,7 +57,7 @@
 /* Pulse & Flow: shared tokens, elements and accessible interaction states. */
 :root {
   --primary: #356875;
-  --coral: #d6a99d;
+  --secondary: #a6d8de;
   --paper: #ffffff;
   --soft: #f7f9f8;
   --mist: #edf1f0;
@@ -69,10 +69,20 @@
   --display: "Plus Jakarta Sans", sans-serif;
   --body: "Source Sans 3", sans-serif;
   --gutter: 64px;
-  --section: 76px;
-  --compact: 44px;
+  --section: 72px;
+  --compact: 40px;
   --radius: 18px;
   color-scheme: light;
+
+  --control-border: #7a8c93;
+
+  --art-ink: #356875;
+
+  --art-soft: #a6d8de;
+
+  --path-line: #356875;
+
+  --chart-track: #7a8c93;
 }
 * {
   box-sizing: border-box;
@@ -243,15 +253,17 @@ hr {
   height: 20px;
 }
 .button:hover {
-  background: #295561;
-  border-color: #295561;
+  background: var(--primary);
+  border-color: var(--primary);
   box-shadow: 0 5px 15px #252d3110;
   transform: translateY(-1px);
+
+  filter: brightness(0.94);
 }
 .button.secondary {
   color: var(--ink);
   background: transparent;
-  border-color: var(--line);
+  border-color: var(--control-border);
 }
 .button.secondary:hover {
   background: var(--mist);
@@ -294,7 +306,7 @@ hr {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--line);
+  border: 1px solid var(--control-border);
   border-radius: 10px;
   background: var(--paper);
   font-size: 14px;
@@ -321,35 +333,7 @@ hr {
   border-radius: 14px;
   flex-shrink: 0;
 }
-.flow-line {
-  position: absolute;
-  width: 100%;
-  height: auto;
-  pointer-events: none;
-  color: var(--primary);
-  opacity: 0.17;
-}
-.pulse-edge {
-  position: relative;
-}
-.pulse-edge::after {
-  content: "";
-  position: absolute;
-  width: 60px;
-  height: 30px;
-  inset-inline-end: 13px;
-  top: -1px;
-  border-top: 2px solid var(--coral);
-  border-inline-end: 2px solid var(--coral);
-  border-start-end-radius: 18px;
-  opacity: 0.7;
-  pointer-events: none;
-  transition: opacity 0.2s;
-}
-.pulse-edge:hover::after,
-.pulse-edge:focus-within::after {
-  opacity: 1;
-}
+
 /* Sticky public shell. Drawer and dropdown behaviors are shared with the portal. */
 .logo {
   display: inline-flex;
@@ -360,18 +344,11 @@ hr {
   letter-spacing: -0.025em;
 }
 .logo img {
-  width: 42px;
-  height: 42px;
+  width: 206px;
+  height: 52px;
   object-fit: contain;
 }
-.logo small {
-  font-family: var(--body);
-  font-size: 11px;
-  font-weight: 400;
-  color: inherit;
-  letter-spacing: 0;
-  line-height: 1.6;
-}
+
 .site-header {
   position: sticky;
   top: 0;
@@ -451,6 +428,7 @@ hr {
   gap: 20px;
 }
 .header-actions .button {
+  height: 44px;
   font-size: 15px;
   min-height: 44px;
   padding: 10px 17px;
@@ -460,11 +438,27 @@ hr {
   display: none;
 }
 .dashboard-link {
+  height: 44px;
+  line-height: 1.4;
   display: inline-flex;
   align-items: center;
   gap: 7px;
   white-space: nowrap;
   font-size: 15px;
+
+  min-height: 44px;
+
+  padding: 9px 15px;
+
+  border: 1px solid var(--control-border);
+
+  border-radius: 11px;
+
+  justify-content: center;
+
+  transition:
+    background 0.2s,
+    border-color 0.2s;
 }
 .dashboard-link .arrow {
   width: 17px;
@@ -505,17 +499,17 @@ hr {
   grid-template-columns: 1fr 1fr;
   gap: 64px;
   align-items: center;
-  padding-block: 60px 44px;
+  padding-block: 52px 36px;
 }
 .hero h1 {
-  font-size: clamp(46px, 4.05vw, 60px);
+  font-size: clamp(46px, 3.9vw, 56px);
   line-height: 1.18;
   max-width: 620px;
   color: var(--accent-text);
   letter-spacing: -0.045em;
 }
 .hero-copy > p {
-  font-size: 19px;
+  font-size: 18px;
   max-width: 470px;
   margin-block: 24px 28px;
 }
@@ -539,16 +533,8 @@ hr {
   position: absolute;
   inset: 0 -16px 12px 30px;
   border-radius: 25px 25px 75px 25px;
-  background: var(--mist);
 }
-.hero-media .flow-line {
-  width: 120%;
-  inset-inline-start: -14%;
-  bottom: -23px;
-  z-index: 2;
-  color: var(--coral);
-  opacity: 0.85;
-}
+
 .media-caption {
   position: absolute;
   bottom: 5px;
@@ -718,7 +704,7 @@ hr {
   border-radius: 7px;
   color: #252d31;
   background: #ffffffe8;
-  font-size: 14px;
+  font-size: 15px;
 }
 .area-description {
   padding: 20px 8px 8px;
@@ -730,47 +716,7 @@ hr {
   font-size: 17px;
   margin-block: 10px;
 }
-.pathway-section {
-  padding-bottom: 54px;
-}
-.recovery-pathway {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 30px;
-  padding-top: 36px;
-}
-.recovery-pathway > .flow-line {
-  top: 0;
-  height: 100px;
-  width: 100%;
-  opacity: 0.25;
-}
-.milestone {
-  position: relative;
-  padding-top: 10px;
-  z-index: 1;
-}
-.milestone-dot {
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  background: var(--paper);
-  border: 1px solid var(--coral);
-  color: var(--accent-text);
-  font-size: 15px;
-  margin-bottom: 24px;
-}
-.milestone h3 {
-  font-size: 17px;
-  letter-spacing: -0.02em;
-}
-.milestone p {
-  font-size: 16px;
-  margin-block: 9px 0;
-}
+
 .how-care {
   display: grid;
   grid-template-columns: 1fr 1.1fr;
@@ -827,7 +773,7 @@ hr {
   align-items: center;
   gap: 13px;
   margin-bottom: 23px;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
 }
 .preview-head small {
@@ -861,11 +807,7 @@ hr {
 .exercise-item small {
   font-size: 14px;
 }
-.exercise-preview .flow-line {
-  bottom: -20px;
-  inset-inline: 0;
-  opacity: 0.12;
-}
+
 .preview-ring {
   width: 22px;
   height: 22px;
@@ -922,17 +864,12 @@ hr {
 .portal-preview .preview-head {
   justify-content: space-between;
 }
-.portal-preview .logo {
-  font-size: 10px;
-  gap: 5px;
-}
+
 .portal-preview .logo img {
-  width: 30px;
-  height: 30px;
+  width: 154px;
+  height: 39px;
 }
-.portal-preview .logo small {
-  font-size: 9px;
-}
+
 .badge {
   display: inline-flex;
   align-items: center;
@@ -946,7 +883,7 @@ hr {
   line-height: 1.5;
 }
 .portal-preview > h3 {
-  font-size: 23px;
+  font-size: 24px;
   margin-bottom: 25px;
 }
 .portal-feature-grid {
@@ -982,21 +919,19 @@ hr {
   justify-content: space-between;
   align-items: center;
   color: var(--muted);
-  font-size: 14px;
+  font-size: 15px;
+
+  gap: 18px;
 }
-.preview-bottom svg {
-  width: 60px;
-  color: var(--accent-text);
-  opacity: 0.65;
-}
+
 .closing {
   position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 40px;
-  padding: 40px 44px;
-  margin-block: 15px 64px;
+  gap: 30px;
+  padding: 34px 38px;
+  margin-block: 0 48px;
   background: var(--soft);
   border: 1px solid var(--line);
   border-radius: 22px;
@@ -1017,12 +952,7 @@ hr {
   flex-shrink: 0;
   z-index: 1;
 }
-.closing .flow-line {
-  width: 340px;
-  inset-inline-end: 20px;
-  bottom: -45px;
-  opacity: 0.13;
-}
+
 .closing-content {
   position: relative;
   z-index: 1;
@@ -1042,21 +972,12 @@ hr {
 .footer-brand {
   position: relative;
 }
-.footer-brand .logo {
-  font-size: 16px;
-}
-.footer-brand .logo small {
-  font-size: 13px;
-}
+
 .footer-brand p {
   font-size: 16px;
   max-width: 280px;
 }
-.footer-brand .flow-line {
-  position: static;
-  width: 220px;
-  margin-top: 3px;
-}
+
 .footer-grid nav h2 {
   font: 600 16px/1.5 var(--display);
   margin-bottom: 18px;
@@ -1139,9 +1060,7 @@ hr {
 }
 .rhythm-media img {
   width: 100%;
-  aspect-ratio: 2.45;
   border-radius: 24px;
-  object-position: center 45%;
 }
 .rhythm-note {
   position: absolute;
@@ -1221,53 +1140,7 @@ hr {
   margin-top: 15px;
   color: var(--accent-text);
 }
-.program-side {
-  display: grid;
-  gap: 25px;
-}
-.program-side article {
-  border-bottom: 1px solid var(--line);
-  padding-bottom: 25px;
-}
-.program-side .eyebrow {
-  margin-bottom: 12px;
-}
-.program-side h3 {
-  font-size: 24px;
-}
-.program-side p {
-  font-size: 17px;
-}
-.rhythm-process {
-  position: relative;
-  text-align: center;
-  padding-block: 64px 40px;
-}
-.rhythm-process h2 {
-  max-width: 780px;
-  margin-inline: auto;
-}
-.rhythm-process > .flow-line {
-  position: relative;
-  max-width: 700px;
-  height: 70px;
-  margin-block: 20px 0;
-}
-.three-notes {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 44px;
-}
-.three-notes p {
-  font-size: 17px;
-  margin-block: 10px;
-}
-.three-notes b {
-  display: block;
-  color: var(--ink);
-  font-weight: 600;
-  margin-bottom: 8px;
-}
+
 .rhythm-support {
   display: grid;
   grid-template-columns: 0.75fr 1fr;
@@ -1306,11 +1179,7 @@ hr {
 .rhythm-close > p {
   margin-inline: auto;
 }
-.rhythm-close > .flow-line {
-  width: 360px;
-  bottom: 0;
-  inset-inline-start: -100px;
-}
+
 /* Page-specific information architecture. */
 .page-intro {
   position: relative;
@@ -1330,12 +1199,7 @@ hr {
 .page-intro .lead {
   margin-block: 20px 0;
 }
-.page-intro > .flow-line {
-  width: 550px;
-  inset-inline-end: -100px;
-  bottom: -65px;
-  opacity: 0.12;
-}
+
 .about-opening {
   display: grid;
   grid-template-columns: 1.6fr 1fr;
@@ -1347,7 +1211,7 @@ hr {
   aspect-ratio: 1.75;
 }
 .about-note {
-  border-inline-start: 2px solid var(--coral);
+  border-inline-start: 2px solid var(--secondary);
   padding-inline-start: 35px;
 }
 .about-note > svg {
@@ -1410,7 +1274,7 @@ hr {
   border-radius: 22px;
 }
 .service-directory {
-  margin-bottom: 60px;
+  margin-bottom: 36px;
 }
 .service-row {
   display: grid;
@@ -1458,30 +1322,9 @@ hr {
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: var(--coral);
+  background: var(--secondary);
 }
-.support-categories {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
-}
-.support-categories > a {
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  padding: 27px;
-  background: var(--paper);
-}
-.support-categories h3 {
-  margin-top: 20px;
-  font-size: 22px;
-}
-.support-categories p {
-  font-size: 17px;
-  margin-bottom: 17px;
-}
-.support-categories > a > svg {
-  color: var(--accent-text);
-}
+
 .treatment-expect {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1637,8 +1480,6 @@ details p {
   flex-direction: column;
 }
 .therapist-card > img {
-  aspect-ratio: 1.15;
-  object-position: center 15%;
   border-radius: 19px 19px 0 0;
 }
 .therapist-card h2 {
@@ -1675,9 +1516,7 @@ details p {
   padding-bottom: 20px;
   border-bottom: 1px solid var(--line);
 }
-.page-therapists .soft-section {
-  margin-top: 64px;
-}
+
 .pricing-section {
   margin-bottom: 30px;
 }
@@ -1844,7 +1683,7 @@ details p {
 }
 .article-disclosure {
   background: var(--soft);
-  border-inline-start: 2px solid var(--coral);
+  border-inline-start: 2px solid var(--secondary);
   padding: 20px;
   margin-block: 28px;
   font-size: 16px;
@@ -1895,7 +1734,7 @@ textarea {
   min-width: 0;
   min-height: 49px;
   padding: 11px 14px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--control-border);
   border-radius: 10px;
   background: var(--paper);
   font-size: 16px;
@@ -1910,7 +1749,7 @@ textarea {
 input::placeholder,
 textarea::placeholder {
   color: var(--muted);
-  opacity: 0.9;
+  opacity: 1;
 }
 .check {
   display: flex;
@@ -2062,14 +1901,7 @@ label > .optional {
   inset: 0;
   background: linear-gradient(#171c2020, transparent 40%, #171c20b0);
 }
-.auth-home {
-  position: absolute;
-  top: 30px;
-  inset-inline-start: 35px;
-  color: #ffffff;
-  font-size: 16px;
-  z-index: 1;
-}
+
 .auth-visual > div {
   position: absolute;
   bottom: 55px;
@@ -2086,37 +1918,28 @@ label > .optional {
   max-width: 440px;
 }
 .auth-side {
-  padding: 80px 55px 38px;
+  padding: 60px 48px 38px;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
 }
-.auth-utilities {
-  position: absolute;
-  top: 24px;
-  inset-inline-end: 30px;
-}
+
 .auth-card {
   width: 100%;
   max-width: 420px;
 }
-.auth-card > .logo {
-  margin-bottom: 23px;
-}
+
 .auth-card > .logo img {
-  width: 52px;
-  height: 52px;
+  width: 230px;
+  height: 58px;
 }
 .auth-card h2 {
   font-size: 35px;
   color: var(--accent-text);
   line-height: 1.25;
 }
-.auth-card > .eyebrow {
-  font-size: 14px;
-  margin-bottom: 11px;
-}
+
 .auth-card > p {
   font-size: 17px;
   margin-block: 12px 20px;
@@ -2124,7 +1947,7 @@ label > .optional {
 .notice {
   padding: 18px 22px;
   background: var(--soft);
-  border-inline-start: 2px solid var(--coral);
+  border-inline-start: 2px solid var(--secondary);
   border-radius: 0 10px 10px 0;
   font-size: 16px;
   margin-block: 20px;
@@ -2180,33 +2003,7 @@ label > .optional {
 .remember-row .text-button {
   font-size: 14px;
 }
-.or-line {
-  height: 12px;
-  border-top: 1px solid var(--line);
-  text-align: center;
-  margin-block: 28px 19px;
-}
-.or-line > span {
-  display: inline-block;
-  position: relative;
-  top: -15px;
-  background: var(--paper);
-  padding-inline: 14px;
-  font-size: 14px;
-  color: var(--muted);
-}
-.social-row {
-  display: flex;
-  gap: 13px;
-}
-.social-row > button {
-  width: 50%;
-  gap: 10px;
-}
-.social-row svg {
-  width: 19px;
-  height: 19px;
-}
+
 .auth-switch {
   border-top: 1px solid var(--line);
   padding-top: 20px;
@@ -2215,9 +2012,7 @@ label > .optional {
   font-weight: 600;
   color: var(--accent-text);
 }
-.auth-card > .fine-print {
-  font-size: 14px;
-}
+
 /* Portal architecture is retained: persistent sidebar, metrics, main and supporting panels. */
 .dashboard-shell {
   display: flex;
@@ -2239,12 +2034,7 @@ label > .optional {
 .sidebar-brand {
   padding-inline: 10px;
 }
-.sidebar-brand .logo {
-  font-size: 15px;
-}
-.sidebar-brand .logo small {
-  font-size: 13px;
-}
+
 .sidebar-profile {
   display: grid;
   grid-template-columns: 40px 1fr;
@@ -2258,7 +2048,7 @@ label > .optional {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: var(--coral);
+  background: var(--secondary);
   color: #252d31;
   display: grid;
   place-items: center;
@@ -2356,20 +2146,7 @@ label > .optional {
 .dashboard-main main:focus {
   outline: none;
 }
-.local-banner {
-  display: flex;
-  justify-content: space-between;
-  gap: 18px;
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  font-size: 14px;
-  padding: 11px 15px;
-  margin-bottom: 28px;
-}
-.local-banner > span:last-child {
-  color: var(--muted);
-}
+
 .dashboard-title {
   display: flex;
   justify-content: space-between;
@@ -2630,7 +2407,7 @@ label > .optional {
   overflow: visible;
 }
 .flow-chart text {
-  font: 13px var(--body);
+  font: 14px var(--body);
   fill: var(--muted);
 }
 .flow-chart .grid-line {
@@ -2905,12 +2682,10 @@ dialog .button-row {
     font-size: 12px;
     gap: 6px;
   }
-  .logo small {
-    font-size: 10px;
-  }
+
   .logo img {
-    width: 36px;
-    height: 36px;
+    width: 190px;
+    height: 48px;
   }
   .header-actions .button {
     padding-inline: 13px;
@@ -3049,15 +2824,7 @@ dialog .button-row {
   .area-card {
     padding-inline: 20px;
   }
-  .recovery-pathway {
-    gap: 18px;
-  }
-  .milestone h3 {
-    font-size: 16px;
-  }
-  .milestone p {
-    font-size: 15px;
-  }
+
   .how-care {
     gap: 40px;
   }
@@ -3079,9 +2846,7 @@ dialog .button-row {
   .portal-feature-grid {
     gap: 20px;
   }
-  .portal-preview .preview-head .logo > span {
-    display: none;
-  }
+
   .closing {
     padding: 32px;
     margin-bottom: 48px;
@@ -3100,9 +2865,7 @@ dialog .button-row {
   .footer-brand p {
     max-width: 330px;
   }
-  .footer-brand .flow-line {
-    display: none;
-  }
+
   .rhythm-heading {
     gap: 0 45px;
   }
@@ -3112,9 +2875,7 @@ dialog .button-row {
   .rhythm-heading p {
     font-size: 18px;
   }
-  .rhythm-media img {
-    aspect-ratio: 1.9;
-  }
+
   .rhythm-note {
     inset-inline-start: 22px;
     bottom: 22px;
@@ -3134,9 +2895,7 @@ dialog .button-row {
   .rhythm-support {
     gap: 40px;
   }
-  .three-notes {
-    gap: 28px;
-  }
+
   .about-opening {
     gap: 35px;
   }
@@ -3166,12 +2925,7 @@ dialog .button-row {
   .service-row h2 {
     font-size: 28px;
   }
-  .support-categories {
-    gap: 20px;
-  }
-  .support-categories > a {
-    padding: 23px;
-  }
+
   .treatment-expect {
     gap: 45px;
   }
@@ -3298,10 +3052,7 @@ dialog .button-row {
   .dashboard-header {
     padding-inline: 25px;
   }
-  .local-banner {
-    flex-direction: column;
-    gap: 5px;
-  }
+
   .metrics {
     grid-template-columns: 1fr 1fr;
   }
@@ -3366,39 +3117,14 @@ dialog .button-row {
   .pricing-footnote {
     align-items: start;
   }
-  .support-categories {
-    grid-template-columns: 1fr;
-  }
-  .support-categories > a {
-    display: grid;
-    grid-template-columns: 45px 1fr 24px;
-    align-items: center;
-    gap: 0 20px;
-  }
-  .support-categories .mini-icon {
-    grid-row: span 2;
-  }
-  .support-categories h3 {
-    margin: 0;
-  }
-  .support-categories p {
-    grid-column: 2;
-    margin-block: 6px 0;
-  }
-  .support-categories > a > svg {
-    grid-column: 3;
-    grid-row: 1/3;
-  }
+
   .hero h1 {
     font-size: 40px;
   }
   .hero {
     gap: 30px;
   }
-  .hero-media > img {
-    aspect-ratio: 0.75;
-    object-position: 59% center;
-  }
+
   .hero .button-row {
     flex-direction: column;
     align-items: start;
@@ -3460,9 +3186,7 @@ dialog .button-row {
   .program-grid {
     grid-template-columns: 1fr;
   }
-  .program-side {
-    grid-template-columns: 1fr 1fr;
-  }
+
   .rhythm-support {
     grid-template-columns: 0.7fr 1fr;
     gap: 30px;
@@ -3540,9 +3264,7 @@ dialog .button-row {
     inset-inline-end: 17px;
     font-size: 25px;
   }
-  .dashboard-sidebar .logo > span {
-    display: none;
-  }
+
   .dashboard-main {
     width: 100%;
     margin: 0;
@@ -3595,13 +3317,7 @@ dialog .button-row {
   .logo {
     font-size: 13px;
   }
-  .logo small {
-    font-size: 11px;
-  }
-  .logo img {
-    width: 38px;
-    height: 38px;
-  }
+
   .eyebrow {
     font-size: 14px;
     margin-bottom: 13px;
@@ -3626,7 +3342,6 @@ dialog .button-row {
     display: none;
   }
   .hero-copy > p {
-    font-size: 17px;
     margin-block: 20px 23px;
   }
   .hero .button-row {
@@ -3650,9 +3365,7 @@ dialog .button-row {
   .hero-media::before {
     inset: -8px -8px 10px 15px;
   }
-  .hero-media .flow-line {
-    bottom: -13px;
-  }
+
   .media-caption {
     inset-inline-start: 12px;
     bottom: 2px;
@@ -3735,47 +3448,7 @@ dialog .button-row {
   .area-description p {
     font-size: 16px;
   }
-  .pathway-section {
-    padding-bottom: 25px;
-  }
-  .recovery-pathway {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    padding: 0;
-    margin-top: 5px;
-  }
-  .recovery-pathway > .flow-line {
-    display: none;
-  }
-  .milestone {
-    display: grid;
-    grid-template-columns: 35px 1fr;
-    gap: 4px 20px;
-    padding-block: 12px 20px;
-  }
-  .milestone:not(:last-child)::before {
-    content: "";
-    position: absolute;
-    top: 36px;
-    bottom: -16px;
-    inset-inline-start: 17px;
-    width: 1px;
-    border-inline-start: 1px solid var(--coral);
-  }
-  .milestone-dot {
-    grid-row: span 2;
-    margin: 0;
-    position: relative;
-  }
-  .milestone h3 {
-    font-size: 18px;
-    padding-top: 5px;
-  }
-  .milestone p {
-    font-size: 16px;
-    margin: 2px 0 0;
-  }
+
   .how-care {
     grid-template-columns: 1fr;
     gap: 28px;
@@ -3832,12 +3505,7 @@ dialog .button-row {
   .portal-preview {
     padding: 23px;
   }
-  .portal-preview .preview-head .logo > span {
-    display: inline;
-  }
-  .portal-preview > h3 {
-    font-size: 23px;
-  }
+
   .portal-feature-grid {
     gap: 24px 17px;
   }
@@ -3849,8 +3517,6 @@ dialog .button-row {
   }
   .closing {
     display: block;
-    padding: 26px 23px;
-    margin-block: 4px 38px;
   }
   .closing h2 {
     font-size: 27px;
@@ -3862,11 +3528,7 @@ dialog .button-row {
     margin-top: 22px;
     max-width: 100%;
   }
-  .closing .flow-line {
-    bottom: -35px;
-    width: 250px;
-    inset-inline-end: -55px;
-  }
+
   .footer-grid {
     grid-template-columns: 1fr 1fr;
     gap: 28px 25px;
@@ -3875,9 +3537,7 @@ dialog .button-row {
   .footer-brand {
     grid-column: 1/-1;
   }
-  .footer-brand .logo {
-    font-size: 15px;
-  }
+
   .footer-brand p {
     max-width: 350px;
     margin-block: 16px 0;
@@ -3928,7 +3588,6 @@ dialog .button-row {
     margin-top: 25px;
   }
   .rhythm-media img {
-    aspect-ratio: 1.2;
     border-radius: 20px;
     object-position: 53% center;
   }
@@ -3977,37 +3636,7 @@ dialog .button-row {
   .program-feature h3 {
     font-size: 25px;
   }
-  .program-side {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-  .program-side article {
-    padding-bottom: 20px;
-  }
-  .program-side h3 {
-    font-size: 23px;
-  }
-  .rhythm-process {
-    padding-block: 38px 20px;
-    text-align: start;
-  }
-  .rhythm-process h2 br {
-    display: none;
-  }
-  .rhythm-process > .flow-line {
-    height: 50px;
-    margin-block: 10px 0;
-  }
-  .three-notes {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-  .three-notes p {
-    font-size: 16px;
-    margin: 0;
-    border-bottom: 1px solid var(--line);
-    padding-bottom: 16px;
-  }
+
   .rhythm-support {
     grid-template-columns: 1fr;
     gap: 27px;
@@ -4034,11 +3663,7 @@ dialog .button-row {
     font-size: 17px;
     margin-top: 17px;
   }
-  .page-intro > .flow-line {
-    width: 320px;
-    bottom: -25px;
-    opacity: 0.08;
-  }
+
   .about-opening {
     grid-template-columns: 1fr;
     gap: 25px;
@@ -4123,16 +3748,7 @@ dialog .button-row {
     gap: 9px 15px;
     margin-block: 20px;
   }
-  .support-categories {
-    grid-template-columns: 1fr;
-    gap: 18px;
-  }
-  .support-categories > a {
-    padding: 23px;
-  }
-  .support-categories h3 {
-    font-size: 22px;
-  }
+
   .treatment-expect,
   .faq {
     grid-template-columns: 1fr;
@@ -4190,9 +3806,7 @@ dialog .button-row {
     width: auto;
     grid-column: auto;
   }
-  .therapist-card > img {
-    aspect-ratio: 1.25;
-  }
+
   .therapist-card h2 {
     font-size: 24px;
   }
@@ -4202,9 +3816,7 @@ dialog .button-row {
   .therapist-card .button {
     font-size: 16px;
   }
-  .page-therapists .soft-section {
-    margin-top: 36px;
-  }
+
   .team-values {
     grid-template-columns: 1fr;
     gap: 20px;
@@ -4340,32 +3952,19 @@ dialog .button-row {
   }
   .auth-side {
     min-height: 100vh;
-    padding: 87px 24px 30px;
   }
-  .auth-card h2 {
-    font-size: 34px;
-  }
-  .auth-utilities {
-    inset-inline-end: 24px;
-  }
+
   .auth-card > .logo {
     margin-bottom: 22px;
   }
   .auth-card > p {
     font-size: 16px;
   }
-  .social-row .button {
-    padding-inline: 14px;
-    gap: 10px;
-  }
+
   .dashboard-main main {
     padding-inline: 20px;
   }
-  .local-banner {
-    font-size: 14px;
-    padding: 11px 13px;
-    margin-bottom: 24px;
-  }
+
   .dashboard-title h1 {
     font-size: 28px;
   }
@@ -4477,9 +4076,7 @@ dialog .button-row {
   .hero-reassurance {
     flex-direction: column;
   }
-  .portal-preview .logo > span {
-    display: none !important;
-  }
+
   .portal-preview {
     padding: 20px;
   }
@@ -4519,9 +4116,7 @@ dialog .button-row {
   .remember-row .text-button {
     font-size: 14px;
   }
-  .auth-side {
-    padding-inline: 20px;
-  }
+
   .dashboard-header {
     padding-inline: 18px;
   }
@@ -4714,5 +4309,690 @@ dialog .button-row {
   }
   .page-booking .page-intro h1 {
     font-size: 35px;
+  }
+}
+
+/* Kinerelle: complete brand lockups and readable supporting interface text. */
+.footer-brand .logo img {
+  width: 238px;
+  height: 60px;
+}
+.dashboard-link:hover {
+  background: var(--mist);
+  border-color: var(--accent-text);
+}
+.portal-preview .preview-head {
+  gap: 12px;
+}
+.portal-preview .preview-bottom > .text-link {
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-size: 16px;
+}
+.portal-preview .preview-bottom > span {
+  font-size: 15px;
+  line-height: 1.5;
+}
+.auth-disclosure {
+  font-size: 14px;
+  line-height: 1.55;
+  margin: 0;
+  color: var(--muted);
+}
+.auth-card > .logo {
+  margin-bottom: 24px;
+}
+.auth-card h2 {
+  max-width: 440px;
+}
+/* Organic artwork is integrated behind selected sections; none is a card-border fragment. */
+.orbital-art {
+  position: absolute;
+  pointer-events: none;
+  color: var(--art-ink);
+  opacity: 0.22;
+  width: 100%;
+  height: 100%;
+}
+.orbital-art path {
+  stroke: currentColor;
+  stroke-width: 1.8;
+  vector-effect: non-scaling-stroke;
+}
+.orbital-art .orbit-companion {
+  stroke: var(--art-soft);
+  stroke-width: 2;
+}
+.hero-media > .hero-orbit {
+  width: 100%;
+  height: 115%;
+  inset-inline-start: 0;
+  top: -6%;
+  z-index: 0;
+}
+.hero-media::before {
+  background: var(--mist);
+  opacity: 0.7;
+}
+.program-section {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+}
+.program-section > .program-orbit {
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  opacity: 0.14;
+  transform-origin: 65% 50%;
+}
+.program-section > .wrap {
+  position: relative;
+  z-index: 1;
+}
+.closing > .closing-orbit {
+  width: 380px;
+  height: 220px;
+  inset-inline-end: 7%;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.18;
+}
+@keyframes orbital-drift {
+  from {
+    rotate: -10deg;
+  }
+  to {
+    rotate: 10deg;
+  }
+}
+@supports (animation-timeline: view()) {
+  @media (min-width: 1100px) and (prefers-reduced-motion: no-preference) {
+    .program-section > .program-orbit {
+      animation: orbital-drift linear both;
+      animation-timeline: view();
+      animation-range: entry 0% exit 100%;
+    }
+  }
+}
+/* Five equally spaced nodes share the exact connecting-path coordinate system. */
+.recovery-pathway {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0;
+  margin-top: 32px;
+}
+.path-connector {
+  position: absolute;
+  top: 0;
+  inset-inline-start: 10%;
+  width: 80%;
+  height: 36px;
+  pointer-events: none;
+}
+.path-connector path {
+  stroke: var(--path-line);
+  stroke-width: 1.6;
+  vector-effect: non-scaling-stroke;
+}
+.milestone {
+  position: relative;
+  z-index: 1;
+  padding-inline: 14px;
+  text-align: center;
+  min-width: 0;
+}
+.milestone-dot {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 20px;
+  border: 1.5px solid var(--path-line);
+  border-radius: 50%;
+  background: var(--paper);
+  color: var(--accent-text);
+  font-size: 16px;
+}
+.milestone:first-of-type .milestone-dot {
+  background: var(--primary);
+  color: #ffffff;
+}
+.milestone h3 {
+  font-size: 19px;
+  line-height: 1.4;
+  min-height: 2.8em;
+  letter-spacing: -0.025em;
+}
+.milestone p {
+  font-size: 17px;
+  margin: 6px 0 0;
+}
+/* Two useful care cards match the neighboring feature without artificial empty padding. */
+.program-grid {
+  align-items: stretch;
+}
+.program-side {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 20px;
+}
+.care-feature {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  overflow: hidden;
+  min-width: 0;
+}
+.care-feature > img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center 18%;
+}
+.care-feature > div {
+  flex: 1;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.care-feature .eyebrow {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+.care-feature h3 {
+  font-size: 23px;
+}
+.care-feature p {
+  font-size: 17px;
+  margin-block: 12px 17px;
+}
+.care-topics {
+  margin: 0 0 16px;
+  padding-inline-start: 18px;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.5;
+}
+.care-topics li::marker {
+  color: var(--accent-text);
+}
+.care-feature .text-link {
+  margin-top: auto;
+  font-size: 16px;
+}
+/* Three stages form one compact process feature, distinct from the five-step recovery guide. */
+.rhythm-process {
+  position: relative;
+  text-align: center;
+  padding-block: 48px 20px;
+}
+.rhythm-process h2 {
+  max-width: 820px;
+  margin-inline: auto;
+}
+.care-process {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 30px;
+}
+.process-connector {
+  position: absolute;
+  width: 100%;
+  height: 50px;
+  inset: 0 0 auto;
+  color: var(--path-line);
+  opacity: 0.7;
+}
+.process-connector path {
+  stroke: currentColor;
+  stroke-width: 1.4;
+  vector-effect: non-scaling-stroke;
+}
+.care-process article {
+  position: relative;
+  padding-inline: 25px;
+}
+.process-label {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 9px 19px;
+  border-radius: 12px;
+  background: var(--paper);
+  border: 1px solid var(--control-border);
+  color: var(--accent-text);
+  font-size: 16px;
+  font-weight: 600;
+}
+.care-process h3 {
+  font-size: 22px;
+  margin-top: 22px;
+}
+.care-process p {
+  font-size: 17px;
+  margin-block: 12px 0;
+}
+/* Supporting services use their natural content height with a clear aligned action. */
+.support-categories {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+.support-categories > a {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 26px;
+}
+.support-categories h3 {
+  font-size: 23px;
+  margin-top: 20px;
+}
+.support-categories p {
+  font-size: 17px;
+  margin-block: 12px 14px;
+}
+.support-categories ul {
+  margin: 0 0 20px;
+  padding-inline-start: 19px;
+  font-size: 16px;
+  color: var(--muted);
+}
+.support-categories .text-link {
+  margin-top: auto;
+  font-size: 16px;
+}
+/* Tighten only the same-background joins that previously added padding twice. */
+.pathway-section {
+  padding-bottom: 36px;
+}
+.pathway-section + .how-care {
+  padding-top: 36px;
+}
+.team-intro + .portal-intro {
+  padding-top: 36px;
+}
+.rhythm-process + .rhythm-support {
+  padding-top: 40px;
+}
+.section:has(+ .closing) {
+  padding-bottom: var(--compact);
+}
+.treatment-expect + .faq {
+  padding-top: 40px;
+}
+.page-therapists .soft-section {
+  margin-top: 48px;
+}
+@media (min-width: 680px) and (max-width: 1099px) {
+  .program-grid {
+    grid-template-columns: 1fr;
+  }
+  .program-side {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: auto;
+  }
+  .care-feature {
+    display: flex;
+    flex-direction: column;
+  }
+  .care-feature > img {
+    height: auto;
+    aspect-ratio: 2;
+  }
+  .pathway-section > .wrap {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 40px;
+    align-items: start;
+  }
+  .pathway-section .section-heading {
+    display: block;
+    margin: 0;
+  }
+  .pathway-section .section-heading > p {
+    max-width: none;
+    margin-top: 20px;
+  }
+  .pathway-section h2 {
+    font-size: 30px;
+  }
+  .recovery-pathway {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+  }
+  .path-connector {
+    display: none;
+  }
+  .milestone {
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    gap: 4px 18px;
+    padding: 0 0 23px;
+    text-align: start;
+  }
+  .milestone-dot {
+    grid-row: span 2;
+    margin: 0;
+    z-index: 1;
+  }
+  .milestone h3 {
+    min-height: 0;
+    font-size: 18px;
+    padding-top: 4px;
+  }
+  .milestone p {
+    font-size: 16px;
+    margin: 2px 0 0;
+  }
+  .milestone:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    top: 18px;
+    bottom: -18px;
+    inset-inline-start: 17px;
+    border-inline-start: 1.5px solid var(--path-line);
+  }
+  .care-feature {
+    grid-template-columns: 95px minmax(0, 1fr);
+  }
+  .care-feature > div {
+    padding: 20px;
+  }
+  .care-feature h3 {
+    font-size: 22px;
+  }
+  .care-feature p {
+    font-size: 16px;
+  }
+  .care-process article {
+    padding-inline: 15px;
+  }
+  .care-process h3 {
+    font-size: 20px;
+  }
+  .care-process p {
+    font-size: 16px;
+  }
+  .support-categories {
+    gap: 20px;
+  }
+  .support-categories > a {
+    padding: 22px;
+  }
+  .support-categories h3 {
+    font-size: 22px;
+  }
+  .support-categories p {
+    font-size: 16px;
+  }
+  .support-categories ul {
+    font-size: 16px;
+  }
+}
+@media (min-width: 680px) and (max-width: 850px) {
+  .program-side {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: auto;
+  }
+  .care-feature {
+    grid-template-columns: 150px minmax(0, 1fr);
+  }
+  .support-categories {
+    grid-template-columns: 1fr;
+  }
+  .support-categories > a {
+    display: grid;
+    grid-template-columns: 44px 1fr 1fr;
+    gap: 0 22px;
+    align-items: start;
+  }
+  .support-categories .mini-icon {
+    grid-row: span 2;
+  }
+  .support-categories h3 {
+    margin: 0;
+  }
+  .support-categories p {
+    grid-column: 2;
+    margin-block: 8px 0;
+  }
+  .support-categories ul {
+    grid-column: 3;
+    grid-row: 1/3;
+    margin: 0;
+  }
+  .support-categories .text-link {
+    grid-column: 2/4;
+    margin-top: 16px;
+  }
+}
+@media (max-width: 679px) {
+  .logo img {
+    width: 186px;
+    height: 47px;
+  }
+  .footer-brand .logo img {
+    width: 230px;
+    height: 58px;
+  }
+  .sidebar-brand .logo img {
+    width: 160px;
+    height: 46px;
+  }
+  .auth-card > .logo img {
+    width: 224px;
+    height: 57px;
+  }
+  .portal-preview .logo img {
+    width: 149px;
+    height: 38px;
+  }
+  .portal-preview .preview-head {
+    align-items: center;
+  }
+  .portal-preview .badge {
+    font-size: 14px;
+  }
+  .preview-bottom {
+    flex-direction: column;
+    align-items: start;
+    gap: 12px;
+  }
+  .portal-preview > h3 {
+    font-size: 24px;
+  }
+  .hero-copy > p {
+    font-size: 17px;
+  }
+  .orbital-art {
+    opacity: 0.16;
+  }
+  .hero-media > .hero-orbit {
+    width: 100%;
+    height: 108%;
+    inset-inline-start: 0;
+  }
+  .program-section > .program-orbit {
+    display: none;
+  }
+  .closing {
+    padding: 27px 24px;
+    margin-block: 0 38px;
+  }
+  .closing > .closing-orbit {
+    width: 250px;
+    height: 190px;
+    inset-inline-end: -60px;
+    top: 25%;
+    opacity: 0.12;
+  }
+  .recovery-pathway {
+    display: flex;
+    flex-direction: column;
+    margin-top: 12px;
+  }
+  .path-connector {
+    display: none;
+  }
+  .milestone {
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    gap: 4px 18px;
+    padding: 0 0 24px;
+    text-align: start;
+  }
+  .milestone-dot {
+    grid-row: span 2;
+    margin: 0;
+    z-index: 1;
+  }
+  .milestone h3 {
+    min-height: 0;
+    font-size: 19px;
+    padding-top: 3px;
+  }
+  .milestone p {
+    margin: 2px 0 0;
+    font-size: 16px;
+  }
+  .milestone:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    top: 18px;
+    bottom: -18px;
+    inset-inline-start: 17px;
+    border-inline-start: 1.5px solid var(--path-line);
+  }
+  .pathway-section {
+    padding-bottom: 18px;
+  }
+  .pathway-section + .how-care,
+  .team-intro + .portal-intro {
+    padding-top: 24px;
+  }
+  .program-side {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 18px;
+  }
+  .care-feature {
+    grid-template-columns: 95px minmax(0, 1fr);
+  }
+  .care-feature > div {
+    padding: 20px 18px;
+  }
+  .care-feature h3 {
+    font-size: 22px;
+  }
+  .care-feature p {
+    font-size: 16px;
+  }
+  .care-feature .text-link {
+    font-size: 16px;
+    gap: 8px;
+  }
+  .rhythm-process {
+    text-align: start;
+    padding-block: 36px 16px;
+  }
+  .care-process {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    margin-top: 25px;
+  }
+  .process-connector {
+    display: none;
+  }
+  .care-process article {
+    padding: 0 0 22px;
+    border-bottom: 1px solid var(--line);
+  }
+  .process-label {
+    min-height: 42px;
+    font-size: 15px;
+    padding: 8px 15px;
+  }
+  .care-process h3 {
+    margin-top: 16px;
+    font-size: 22px;
+  }
+  .care-process p {
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  .rhythm-process + .rhythm-support {
+    padding-top: 24px;
+  }
+  .support-categories {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .support-categories > a {
+    padding: 24px;
+  }
+  .support-categories h3 {
+    font-size: 23px;
+  }
+  .support-categories p {
+    font-size: 16px;
+  }
+  .support-categories ul {
+    font-size: 16px;
+  }
+  .auth-side {
+    align-items: flex-start;
+    padding: 35px 24px 30px;
+  }
+  .auth-form {
+    gap: 18px;
+  }
+  .auth-card h2 {
+    font-size: 33px;
+  }
+  .auth-disclosure {
+    font-size: 14px;
+  }
+  .section:has(+ .closing) {
+    padding-bottom: 28px;
+  }
+  .page-therapists .soft-section {
+    margin-top: 32px;
+  }
+}
+@media (max-width: 359px) {
+  .logo img {
+    width: 173px;
+    height: 44px;
+  }
+  .care-feature {
+    grid-template-columns: 1fr;
+  }
+  .care-feature > img {
+    aspect-ratio: 1.7;
+    height: auto;
+    object-position: center 18%;
+  }
+  .portal-preview .preview-head {
+    flex-wrap: wrap;
+  }
+  .auth-side {
+    padding-inline: 20px;
+  }
+  .remember-row {
+    gap: 9px;
   }
 }

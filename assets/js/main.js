@@ -404,7 +404,7 @@ if (document.querySelector("#service-title")) {
         (a.href =
           "booking.html?service=" + (params.get("service") || "sports")),
     );
-  document.title = s.title + " | Physiotherapy & Rehabilitation Clinic";
+  document.title = s.title + " | Kinerelle — Physiotherapy & Rehabilitation";
 }
 const articles = {
   assessment: {
@@ -495,7 +495,7 @@ if (document.querySelector("#article-title")) {
   document.querySelector("#article-body").innerHTML = a.sections
     .map(([h, p]) => `<h2>${h}</h2><p>${p}</p>`)
     .join("");
-  document.title = a.title + " | Movement Journal";
+  document.title = a.title + " | Kinerelle Movement Journal";
 }
 /* Booking requests persist only non-sensitive scheduling preferences. */
 Clinic.bindBooking = () => {
@@ -579,8 +579,8 @@ document
   .querySelector("#forgot-password")
   ?.addEventListener("click", () =>
     Clinic.modal(
-      "Password reset integration",
-      '<p>No authentication provider is connected to this template, so there is no password to reset. In a deployed clinic portal, this action must connect to the configured identity provider.</p><a class="button" href="dashboard.html">Continue as a Guest ↗</a>',
+      "About password reset",
+      "<p>Secure clinic sign-in is not connected, so there is no account password to reset here. This form opens a local profile only and does not verify passwords.</p>",
     ),
   );
 document.querySelector("#auth-form")?.addEventListener("submit", (e) => {

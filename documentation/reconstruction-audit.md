@@ -16,7 +16,7 @@ Baseline: `225c9193f0bd9936500fba668b8613a9cef5f51c`, the initial GitHub commit.
 | Baseline finding | Reconstruction |
 |---|---|
 | Condensed display font, uppercase headlines up to 124px | Plus Jakarta Sans headings, Source Sans 3 body, sentence case; homepage 52–60px and inner titles 42–48px on desktop |
-| Cobalt/glacier, angular sports identity | Mineral teal `#356875`, warm coral `#D6A99D`, neutral clinical surfaces, soft 18–24px cards and media |
+| Cobalt/glacier, angular sports identity | Mineral teal `#356875`, soft glacier teal `#A6D8DE`, neutral clinical surfaces, soft 18–24px cards and media |
 | Reused approach, journey, team and closing sections | Page-specific information architecture, distinct homepages and separate About/Services compositions |
 | Repeated or athletic stock assets | Expanded licensed real-photo library; removed runner/bodybuilding assets and protected faces with appropriate crops |
 | Short, incomplete footer | Four navigation columns, Privacy/Terms disclosures and circular Back-to-Top |

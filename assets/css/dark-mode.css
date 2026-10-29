@@ -6,28 +6,24 @@
   --ink: #f7f9f8;
   --muted: #b8c2c6;
   --line: #404d52;
-  --accent-text: #d6a99d;
+  --accent-text: #a6d8de;
   --tint: #242c30;
+  --control-border: #7a8c93;
+  --art-ink: #a6d8de;
+  --art-soft: #356875;
+  --path-line: #a6d8de;
+  --chart-track: #7a8c93;
   color-scheme: dark;
 }
 [data-theme="dark"] .logo img {
   content: url("../images/logo-dark.svg");
 }
-[data-theme="dark"] .flow-line {
-  color: #d6a99d;
-  opacity: 0.17;
-}
-[data-theme="dark"] .hero-media .flow-line {
-  opacity: 0.6;
-}
-[data-theme="dark"] .button.secondary {
-  border-color: #68747b;
-}
+
 [data-theme="dark"] .mini-icon {
-  color: #d6a99d;
+  color: #a6d8de;
 }
 [data-theme="dark"] .price-card.popular {
-  border-color: #d6a99d;
+  border-color: #a6d8de;
 }
 [data-theme="dark"] .milestone-dot {
   background: #242c30;
@@ -37,15 +33,32 @@
   color: #ffffff;
 }
 [data-theme="dark"] .heatmap span.recorded {
-  background: #d6a99d;
-  border-color: #d6a99d;
+  background: #a6d8de;
+  border-color: #a6d8de;
 }
 [data-theme="dark"] .flow-chart .trend-fill {
-  fill: #d6a99d;
+  fill: #a6d8de;
 }
 [data-theme="dark"] .calendar-legend i {
-  background: #d6a99d;
+  background: #a6d8de;
 }
 [data-theme="dark"] .calendar-legend .ring {
   background: transparent;
+}
+
+[data-theme="dark"] .logo img.brand-compact {
+  content: url("../images/logo-compact-dark.svg");
+}
+[data-theme="dark"] .orbital-art {
+  opacity: 0.28;
+}
+[data-theme="dark"] .program-section > .program-orbit {
+  opacity: 0.18;
+}
+[data-theme="dark"] .orbital-art .orbit-companion {
+  stroke: #a6d8de;
+  opacity: 0.65;
+}
+[data-theme="dark"] .button.secondary {
+  border-color: var(--control-border);
 }

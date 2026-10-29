@@ -1,47 +1,46 @@
-# Pulse & Flow verification — 29 October 2026
+# Kinerelle refinement verification — 29 October 2026
 
-Test browser: installed Playwright Chromium, headless, Asia/Kolkata timezone. Tests, screenshots, sample downloads and tooling were kept outside the deliverable in `/private/tmp/pulse-qa` and `/private/tmp/pulse-tools`.
+The existing Pulse & Flow layouts were refined rather than rebuilt. Baseline: the latest dashboard cleanup at `f5549b92b37360209503e1c7d09228fafac02c7e`, preserving the user's changes after the brief's reviewed commit.
 
-## Executed functional tests
+Browser: installed Playwright Chromium, Asia/Kolkata timezone. Tools, registry-search evidence, downloads and screenshots remain outside the deliverable under `/private/tmp/kinerelle-qa` and `/private/tmp/kinerelle-tools`.
 
-The full regression run passed **76 assertions** with **zero JavaScript exceptions**. It exercised:
+## Executed checks
 
-- Home dropdown hover, click, focus/Arrow Down, Escape and outside click; actual sticky positioning and Back-to-Top.
-- Theme persistence, RTL, LTR/RTL drawer edges, focus trapping, Escape, scroll restoration and mobile dashboard navigation.
-- Body-area selection and care links; therapist-focus preference prefill.
-- All three numerical rates (`₹1,200`, `₹900`, `₹3,400`), plan IDs and booking prefill.
-- Date minimum, contact-field validation, request review, pending local storage, request detail/change/cancel and history status filters.
-- A four-session package producing exactly one pending request, with no fabricated confirmations or payment state.
-- Opt-in example exercise tracking, daily completion persistence/history and trend values derived from recorded check-ins.
-- Receipt sample detail, actual HTML download, print-action invocation and issued-only filtering.
-- Notifications/read state, profile changes, reminder preference, data export and confirmed deletion.
-- Sign-up mismatch validation, password visibility, browser-profile continuation, password reset disclosure and logout. Persistent storage was checked to exclude passwords, email and booking notes.
-- Contact enquiry review/copy handoff with no sent-success claim; all four service and article variants.
+- **77 functional assertions passed**, covering dropdown, sticky header, theme/direction persistence, drawers/focus/Escape/scroll lock, body-area links, care preference, all three indicative prices and package IDs, booking validation/review/save/change/cancel, exercise check-ins/history/progress, receipt details/download/print, notifications, profile, settings/export/deletion, password visibility/confirmation, local profiles/logout, enquiry review/copy and all service/article variants.
+- **32 focused refinement checks passed**: branded titles/logos, removal of old decorative classes, exact five-node connector alignment, two image-led Home 2 cards, structured service details/actions, outlined Dashboard action, auth clutter removal, concise local-profile disclosures, saved auth theme/direction, dark wordmark, preserved sidebar destinations and prior banner/link/notice removals, calculated contrast and supported/reduced/mobile motion states.
+- **704 layout combinations passed**: all 16 HTML documents × all 11 requested widths × light LTR, dark LTR, light RTL and dark RTL. Widths: 320, 360, 390, 430, 640, 768, 820, 1024, 1280, 1440, 1920px. No detected page/content overflow, failed decoded image or JavaScript exception.
+- **144 additional targeted layouts** checked Home 2, Login and Sign-up at twelve widths (including 1100px), in all four modes. This includes mobile auth top-spacing and desktop navigation boundaries.
+- Both JavaScript files pass syntax checking. Runtime HTML, styles and scripts pass formatting checks. Local page/asset link auditing passes.
 
-A final targeted run also checked Privacy/Terms dialogs and the footer’s circular Back-to-Top control after correcting overlap with the floating control.
+## Measured contrast
 
-## Layout and image checks
+| Foreground / background | Light | Dark |
+|---|---:|---:|
+| Secondary body text / page | 4.80:1 | 9.46:1 |
+| Accent heading / page | 6.20:1 | 11.03:1 |
+| White primary-button label / teal | 6.20:1 | 6.20:1 |
+| Essential control border / page | 3.50:1 | 4.90:1 |
 
-**704 combinations passed:** all 16 HTML documents × 11 requested widths × 4 theme/direction modes.
+These are computed token/control checks, not a claim of a formal accessibility certification. The pale secondary is not used for small text on white. Decorative artwork is intentionally subdued and is not a medical data display.
 
-Widths: 320, 360, 390, 430, 640, 768, 820, 1024, 1280, 1440, 1920.
+## Visual review and corrections
 
-Modes: light LTR, dark LTR, light RTL, dark RTL.
+Reviewed full-page screenshots and contact sheets for both homepages, About, Services, Service Details, Therapists, Pricing, Booking, Contact, Login, Sign-up and the dashboard at 390, 820 and 1440px in light LTR and dark RTL. Exercise Plans, Session History and Payment Receipts also received separate captures. Final focused screenshots cover all theme/direction variants of Home 2 and authentication.
 
-Checks included page/content overflow, image decoding and browser exceptions. There were no detected overflow or failed image results. Another **120 targeted layout checks** covered Home 1, Home 2 and Pricing across ten widths (including the 1100px navigation boundary) and all four modes after final header/photo refinements. Desktop navigation blocks were checked for collisions.
+Corrections include a bounded hero SVG, a five-node connector whose exact coordinates match milestone centers, deliberate vertical tablet/mobile pathways, complete three-stage process content, structured service cards, clean sidebar/preview borders, a real preview login action, matched header action heights and reduced double padding. Measured unused space between Home 2 care details and actions was reduced to about 29px without arbitrary card minimum heights or filler paragraphs. Mobile login starts near the top rather than leaving a large blank region.
 
-JavaScript syntax checks passed for both runtime scripts. HTML relative-link auditing found no missing destinations or source assets. Only `index.html` is at root; 15 secondary documents remain in `pages/`. No framework, build/test output, `dist`, `scripts` or hosting folder was added. Source whitespace checks exclude the pre-existing, preserved `.gitignore` trailing-line change.
+The former partial corner, repeated wave and unused banner styles were removed. Duplicate selector blocks were consolidated instead of accumulating superseded overrides. Scroll artwork uses CSS only, rotates over a restrained 20-degree range where supported, becomes static in other browsers and disables motion for reduced-motion/mobile states.
 
-## Actual visual review
+## Patient state integrity
 
-Captured light LTR and dark RTL full-page screenshots at 390, 820 and 1440px for Home 1, Home 2, About, Services, Service Details, Therapists, Pricing, Contact, Booking, Login, Sign-up and Dashboard. Separate overview, exercise-plan, history and receipt captures were taken at the same representative widths. Full-page images, focused screenshots and contact sheets were visually reviewed.
+`assets/js/dashboard.js` is byte-for-byte unchanged from the baseline. Storage keys, calculations, request statuses, exercise tracking and receipt behavior are retained. No seeded patient records, fictional clinical percentages, confirmed bookings or payment proof were introduced. The previously removed top banner, Back to clinic link and settings prototype notice remain absent.
 
-Corrections from review: protected therapist/patient faces in hero crops; moved Home 2’s caption clear of the tablet CTA; aligned pricing baselines; distributed desktop header spacing; retained tablet columns where useful; removed obsolete tablet drawer controls; prevented the floating Back-to-Top from covering its footer counterpart.
+Passwords are not saved, transmitted or verified. Authentication pages identify the action as a local profile and ask for a made-up password. Social providers are inert template components, not displayed sign-in methods. The concise action disclosure remains associated with the submit button through `aria-describedby`.
 
-The final receipt detail remained visibly marked **SAMPLE — NOT PROOF OF PAYMENT** in the mobile dialog. Tests created their own example check-ins and pending/cancelled requests. No test records are hardcoded into the site.
+## Brand and publishing boundaries
 
-## Publishing and scope
+See `brand-name-check.md` for the exact-name and official USPTO checks. India/WIPO clearance remains outstanding; the proposed identity is not presented as legally registered or exclusive.
 
-The existing GitHub Pages configuration was verified: legacy publishing from `main` at `/`. The rebuilt source keeps project-subpath-relative URLs. Publication is verified against the resulting Pages build and served source files during handoff.
+The approved file structure is retained: one root `index.html`, 15 secondary documents in `pages/`, source assets and documentation. The current GitHub Pages `main`/root publishing path is preserved. The final handoff verifies the resulting build and served files against repository source.
 
-This validates a static frontend in Chromium. No Safari/Firefox certification, formal WCAG audit or real clinical integrations are claimed. Physical printer output, secure authentication, live scheduling, clinician records and payment processing require separate integration testing. The website retains honest browser-only behavior for those unconnected actions.
+These checks cover Chromium frontend behavior, not real clinical integrations, secure identity, live scheduling, payment processing, physical printer output, Safari/Firefox certification or a full legal/accessibility audit.
