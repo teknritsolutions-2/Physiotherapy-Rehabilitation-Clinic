@@ -1,4 +1,28 @@
-html[dir="rtl"] .joint-marker{left:auto;right:38%}
-@media(max-width:1099px){html[dir="rtl"] .navigation{transform:translateX(105%)}html[dir="rtl"] .navigation.drawer-open{transform:translateX(0)}}
-@media(max-width:767px){html[dir="rtl"] .dashboard-sidebar{transform:translateX(105%)}html[dir="rtl"] .dashboard-sidebar.drawer-open{transform:translateX(0)}}
-@media(max-width:679px){html[dir="rtl"] .journey li{padding:20px 42px 15px 0}}
+/* Direction changes layout, never the photography, artwork or established symbol. */
+html[dir="rtl"] .arrow {
+  transform: rotate(180deg);
+}
+html[dir="rtl"] .notice {
+  border-radius: 10px 0 0 10px;
+}
+@media (max-width: 1099px) {
+  html[dir="rtl"] .navigation {
+    transform: translateX(105%);
+  }
+  html[dir="rtl"] .navigation.drawer-open {
+    transform: translateX(0);
+  }
+}
+@media (max-width: 767px) {
+  html[dir="rtl"] .dashboard-sidebar {
+    transform: translateX(105%);
+  }
+  html[dir="rtl"] .dashboard-sidebar.drawer-open {
+    transform: translateX(0);
+  }
+}
+@media (min-width: 680px) and (max-width: 850px) {
+  html[dir="rtl"] .price-card > ul {
+    padding: 0 22px 0 0;
+  }
+}

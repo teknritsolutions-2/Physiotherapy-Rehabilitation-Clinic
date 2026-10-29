@@ -1,31 +1,44 @@
-# Photography and fonts
+# Photography and font licensing
 
-All photographs are local JPEG downloads from Pexels, downloaded 29 October 2026. They are illustrative stock imagery, not verified clinic personnel, patients, facilities or evidence of any particular treatment outcome. Photographs are used as editorial context rather than claims of clinical capability.
+All clinical imagery is real stock photography downloaded from Pexels. No AI-generated patient images are used. People and places shown are illustrative care contexts, not verified clinic staff, patients or facilities. Care-focus cards make this distinction explicit.
 
 Pexels license: https://www.pexels.com/license/
 
-| Local asset | Pexels source ID / page | Context |
+## Added for Pulse & Flow
+
+| Asset | Source | Editorial context |
 |---|---|---|
-| athletic-hero.jpg | https://www.pexels.com/photo/a-woman-stretching-while-on-the-running-track-8456004/ | Outdoor athletic movement; Mikhail Nilov |
-| knee-care.jpg | https://www.pexels.com/photo/physiotherapist-massaging-knee-20860607/ | Knee assessment; Funkcinės Terapijos Centras |
-| ankle-care.jpg | https://www.pexels.com/photo/physiotherapist-massaging-foot-20860612/ | Foot/ankle care; Funkcinės Terapijos Centras |
-| leg-care.jpg | https://www.pexels.com/photo/physiotherapist-working-with-patient-leg-14797757/ | Guided leg rehabilitation; World Sikh Organization of Canada |
-| hip-care.jpg | https://www.pexels.com/photo/physiotherapist-holding-womans-leg-5793895/ | Guided leg/hip movement; Yan Krukau |
-| back-care.jpg | https://www.pexels.com/photo/physiotherapist-massaging-back-20860602/ | Back care; Funkcinės Terapijos Centras |
-| movement.jpg | https://www.pexels.com/photo/4506109/ | Back assessment |
-| shoulder.jpg | https://www.pexels.com/photo/4506105/ | Shoulder context |
-| guided.jpg | https://www.pexels.com/photo/4506106/ | Guided upper-body assessment |
-| joint.jpg | https://www.pexels.com/photo/4506110/ | Joint/shoulder assessment |
+| arm-movement.jpg | https://www.pexels.com/photo/physiotherapist-massaging-arms-of-patient-20860596/ | Guided shoulder movement; Funkcinės Terapijos Centras |
+| care-session.jpg | https://www.pexels.com/photo/physical-therapist-assisting-patient-in-rehab-session-31234755/ | Individual mobility support; Andrea Prochilo |
+| consultation.jpg | https://www.pexels.com/photo/hands-doctor-health-anonymous-7088834/ | Consultation and information review; MART PRODUCTION |
+| care-conversation.jpg | https://www.pexels.com/photo/couple-at-medical-appointment-7108319/ | Listening and care discussion; Pavel Danilyuk |
+| guided-mobility.jpg | https://www.pexels.com/photo/physiotherapist-helping-patient-to-exercising-20860618/ | Guided clinical movement; Funkcinės Terapijos Centras |
+| leg-mobility.jpg | https://www.pexels.com/photo/physiotherapist-holding-patient-leg-20860584/ | Leg movement guidance; Funkcinės Terapijos Centras |
+| shoulder-care.jpg | https://www.pexels.com/photo/physiotherapist-massaging-arm-20860585/ | Shoulder movement assessment; Funkcinės Terapijos Centras |
+| seated-mobility.jpg | https://www.pexels.com/photo/a-woman-sitting-on-the-therapy-bed-while-stretching-her-arm-5793798/ | Seated guided mobility; Yan Krukau |
+| therapy-support.jpg | https://www.pexels.com/photo/a-woman-is-doing-a-workout-with-a-man-27730431/ | Activity-focused care; Jonathan Borba |
+
+## Retained relevant photographs
+
+| Asset | Source | Context |
+|---|---|---|
 | therapy.jpg | https://www.pexels.com/photo/6111616/ | Supervised resistance movement |
-| assessment.jpg | https://www.pexels.com/photo/6111607/ | Guided movement context |
-| mobility.jpg | https://www.pexels.com/photo/4384679/ | Controlled athletic movement |
-| return.jpg | https://www.pexels.com/photo/4498606/ | Activity preparation |
+| hip-care.jpg | https://www.pexels.com/photo/physiotherapist-holding-womans-leg-5793895/ | Guided leg/hip movement; Yan Krukau |
+| back-care.jpg | https://www.pexels.com/photo/physiotherapist-massaging-back-20860602/ | Individual back care; Funkcinės Terapijos Centras |
+| movement.jpg | https://www.pexels.com/photo/4506109/ | Back assessment |
+| guided.jpg | https://www.pexels.com/photo/4506106/ | Upper-body guidance |
+| joint.jpg | https://www.pexels.com/photo/4506110/ | Joint/shoulder context; fallback care image |
+| knee-care.jpg | https://www.pexels.com/photo/physiotherapist-massaging-knee-20860607/ | Knee care; Funkcinės Terapijos Centras |
+| ankle-care.jpg | https://www.pexels.com/photo/physiotherapist-massaging-foot-20860612/ | Ankle/foot care; Funkcinės Terapijos Centras |
+| leg-care.jpg | https://www.pexels.com/photo/physiotherapist-working-with-patient-leg-14797757/ | Guided leg rehabilitation; World Sikh Organization of Canada |
 
-Images were fetched from `https://images.pexels.com/photos/ID/pexels-photo-ID.jpeg` with a width parameter for appropriately sized delivery. Logo and favicon SVGs are original code-native artwork.
+The athletic runner, squatting fitness model and other superseded unused photos were removed. The library contains no UI-reference screenshots. JPEGs were fetched from `images.pexels.com/photos/ID/pexels-photo-ID.jpeg` with width limits of approximately 1000–1600px. Original source photographs were not stretched, mirrored or AI-transformed.
 
-Barlow Condensed and Public Sans are distributed under the SIL Open Font License. Self-hosted TTF files were downloaded from Google Fonts (fonts.gstatic.com). Upstream licenses:
+## Fonts and artwork
 
-- https://github.com/google/fonts/blob/main/ofl/barlowcondensed/OFL.txt
-- https://github.com/google/fonts/blob/main/ofl/publicsans/OFL.txt
+Self-hosted Plus Jakarta Sans and Source Sans 3 (400, 500, 600, 700) were downloaded through Google Fonts from fonts.gstatic.com. Both are licensed under the SIL Open Font License. Copies are included in `assets/fonts/`.
 
-Google and Apple symbols appear solely on disabled authentication integration previews and retain their recognizable original branding.
+- https://github.com/google/fonts/blob/main/ofl/plusjakartasans/OFL.txt
+- https://github.com/google/fonts/blob/main/ofl/sourcesans3/OFL.txt
+
+Barlow Condensed and Public Sans files were removed. The established movement-symbol SVG was recolored in the approved teal/coral palette; its silhouette was retained. Flow lines and interface icons are original code-native SVGs. Google/Apple marks appear solely in disabled sign-in integration controls.

@@ -1,10 +1,51 @@
-:root[data-theme="dark"]{--paper:#15171B;--soft:#22252B;--ink:#F7F8F7;--muted:#B1B7BF;--line:#3C414A;--accent-text:#8EDBEA;color-scheme:dark}
-[data-theme="dark"] .logo img{content:url('../images/logo-dark.svg')}
-[data-theme="dark"] .button.secondary{border-color:#677078}
-[data-theme="dark"] .area-card.selected{border-color:#8EDBEA}
-[data-theme="dark"] .area-card.selected:before{border-color:#8EDBEA}
-[data-theme="dark"] .price-card.popular{border-color:#8EDBEA}
-[data-theme="dark"] .chart-bar,[data-theme="dark"] .heatmap span.recorded{background:#8EDBEA}
-[data-theme="dark"] .heatmap span.recorded{border-color:#8EDBEA}
-[data-theme="dark"] .sidebar-profile .avatar,[data-theme="dark"] .small-avatar{background:#8EDBEA;color:#15171B}
-[data-theme="dark"] .receipt-watermark{color:#8EDBEA}
+/* Brand accents stay muted; all large surfaces remain neutral. */
+:root[data-theme="dark"] {
+  --paper: #171c20;
+  --soft: #242c30;
+  --mist: #303a3f;
+  --ink: #f7f9f8;
+  --muted: #b8c2c6;
+  --line: #404d52;
+  --accent-text: #d6a99d;
+  --tint: #242c30;
+  color-scheme: dark;
+}
+[data-theme="dark"] .logo img {
+  content: url("../images/logo-dark.svg");
+}
+[data-theme="dark"] .flow-line {
+  color: #d6a99d;
+  opacity: 0.17;
+}
+[data-theme="dark"] .hero-media .flow-line {
+  opacity: 0.6;
+}
+[data-theme="dark"] .button.secondary {
+  border-color: #68747b;
+}
+[data-theme="dark"] .mini-icon {
+  color: #d6a99d;
+}
+[data-theme="dark"] .price-card.popular {
+  border-color: #d6a99d;
+}
+[data-theme="dark"] .milestone-dot {
+  background: #242c30;
+}
+[data-theme="dark"] .area-card.selected {
+  background: #356875;
+  color: #ffffff;
+}
+[data-theme="dark"] .heatmap span.recorded {
+  background: #d6a99d;
+  border-color: #d6a99d;
+}
+[data-theme="dark"] .flow-chart .trend-fill {
+  fill: #d6a99d;
+}
+[data-theme="dark"] .calendar-legend i {
+  background: #d6a99d;
+}
+[data-theme="dark"] .calendar-legend .ring {
+  background: transparent;
+}

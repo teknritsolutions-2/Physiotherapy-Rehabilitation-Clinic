@@ -1,47 +1,52 @@
-# Customization and behavior
+# Pulse & Flow customization
 
-## Design
+## Visual system
 
-The only brand colors are cobalt `#2D56D8` and glacier `#8EDBEA`. Neutral tokens live at the top of `assets/css/style.css`; dark overrides are in `dark-mode.css`. Direction is controlled through `html[dir]` with logical spacing and `rtl.css`. Photos and the logo are never mirrored.
+`assets/css/style.css` contains readable shared tokens, components and page-specific layouts. Brand colors are mineral teal `#356875` and muted warm coral `#D6A99D`; all larger surfaces use neutral whites/greys. `dark-mode.css` changes surfaces to `#171C20`/`#242C30`, with readable coral text accents. `rtl.css` changes layout direction and arrows without flipping photography or logos.
 
-Self-hosted fonts eliminate third-party font requests. Barlow Condensed 800/900 is the display family; Public Sans 400–700 is used for body/UI. Font licenses are included in `assets/fonts/`.
+Headings use self-hosted Plus Jakarta Sans 400–700; body/interface uses Source Sans 3 400–700. Desktop homepage headings are 52–60px; inner-page titles 42–48px; mobile titles approximately 34–40px. Sections use 76px desktop, 56px tablet, 38px mobile, with explicit compact variants. Card corners are 18–24px; buttons and controls are 10–12px.
 
-The shared header/footer is included directly in each public HTML document for static hosting. If changing shared navigation, update each public page. Login, sign-up and dashboard intentionally have no public header/footer. `main.js` initializes dropdowns, drawers, preferences and public interactions. `dashboard.js` owns portal views.
+Flow-line SVGs are decorative continuity motifs, not ECGs or vital-sign displays. The public pathway connects assessment, planning, therapy, exercise support and review. Card-edge detailing is static until hover/focus. Reduced-motion users receive no transitions. Portal curves count recorded example activity, never clinical recovery.
 
-## Routes
+The public header/footer are real static HTML in every public page for GitHub Pages. Login/signup/dashboard have no public navbar or footer. Update shared markup consistently across public documents. Source files were formatted using a temporary formatter kept outside the project; no formatter or build system is required to use the site.
 
-- `pages/service-details.html?service=sports`, `?service=surgery`, `?service=back`, `?service=movement`.
-- `pages/blog-details.html?article=assessment`, `?article=process`, `?article=activity`, `?article=habits`.
-- Booking supports `service`, `preference` and `package` (`assessment`, `followup`, `careplan`) query parameters.
-- Portal views: `#overview`, `#book`, `#appointments`, `#plans`, `#history`, `#progress`, `#receipts`, `#notifications`, `#profile`, `#settings`.
-- Unknown service/article IDs fall back to a useful default; unknown portal hashes show Overview.
+## Central pricing configuration
 
-Services and article variants are defined in `main.js`. Public booking markup lives in `pages/booking.html`; its portal equivalent is the `CLINIC_BOOKING_FORM` string at the top of `dashboard.js`. Keep the two forms synchronized when modifying fields.
+Edit `window.CLINIC_PRICING` at the top of `assets/js/main.js`. It defines currency and all three indicative values. `[data-price]` spans render these values; the booking summary and review use `Clinic.price()`.
 
-## Local data model
+Package IDs: `assessment`, `followup`, `fourSessionPack`. Old locally saved `careplan` records remain readable through `Clinic.packageLabel()`. A package selection never creates multiple appointments or changes a payment status. The highlighted Follow-up card uses the primary action without making a popularity claim.
 
-Only keys prefixed `clinic.` are touched. LocalStorage records:
+Before approving rates, confirm fees, package terms, duration, eligibility, cancellations and payment arrangements with the client. Keep the concise indicative-rate notice until approval.
 
-- `appointments`: IDs, service, date/time preference, session type, care preference, status and creation timestamp. No contact details or notes.
-- `examplePlan`, `examplePlanDate`, `checkins`: opted-in example tracker state; check-ins have a date, example activity ID and explicit example flag.
-- `theme`, `direction`, `displayName`, `notificationsEnabled`, `notificationsRead`: UI preferences and optional display name.
+## Content and routes
 
-SessionStorage `clinic.profile` holds example name, email, phone and contact preference until the session ends or Logout is clicked. No credentials are retained. Settings exports non-sensitive prototype data and clears only this template’s keys after confirmation. This storage design does not provide user isolation or security for clinical records.
+- `service-details.html?service=sports`, `surgery`, `back` or `movement`.
+- `blog-details.html?article=assessment`, `process`, `activity` or `habits`.
+- `booking.html` accepts `service`, `preference` and `package` parameters.
+- Portal: `#overview`, `#book`, `#appointments`, `#plans`, `#history`, `#progress`, `#receipts`, `#notifications`, `#profile`, `#settings`.
 
-## Current functional contracts
+Service/article variants and public interaction logic live in `main.js`. Portal views and data behavior live in `dashboard.js`. The public booking form and `CLINIC_BOOKING_FORM` at the top of `dashboard.js` must retain matching fields. All secondary documents remain under `pages/`; only `index.html` is at root.
 
-Booking review saves locally, never confirms. Pending requests can be changed or cancelled; history can filter by date and status. Past dates are invalid. Calendar rings represent pending requests, not confirmed sessions. There is no clinical completion transition.
+Therapists are presented as generic care-focus options, with real stock photographs identified as illustrative settings. Add verified names, roles, credentials and registration details only when supplied. A focus preference does not select an available clinician. No clinic history, accreditation, address or opening hours has been invented.
 
-The optional example plan has three neutral activity slots without instructions, dosage or clinical claims. Checkboxes are daily and persist completion history. Progress charts count actual recorded example check-ins. There is no recovery score.
+## Enquiry handoff
 
-The receipt screen exposes an illustrative sample only. Its download is an actual standalone HTML document, clearly marked not proof of payment. Printing preserves the disclaimer. Clinic-issued filtering correctly produces an empty state.
+The Contact form accepts name, email, optional phone, topic and message. Native validation precedes a review dialog. Copy uses the browser Clipboard API; if permission is unavailable, the text is selected for manual copying. Both paths explicitly state that no message was sent. Connect an approved recipient/backend before adding a Send action. No enquiry data is persisted.
 
-Contact form validates and reports a local preview result without saving or sending. Login/signup never authenticate. Remembering a profile stores only its display name; a real identity provider is required to replace this behavior.
+Privacy and Terms footer buttons open readable information dialogs. They explain current behavior; obtain clinic-approved policies before collecting real patient information.
 
-## Deployment
+## Local data contract (retained)
 
-Serve the directory directly through any static host. For GitHub Pages select the repository root as the source; `index.html` is the actual homepage. Use project-relative links as supplied. A hosting service may need configuration to serve `pages/404.html` for unknown URLs. No production hosting configuration or publication has been added.
+Only keys prefixed `clinic.` are used. LocalStorage holds non-sensitive request preferences/status, opted-in example plan/check-ins, theme/direction, notification preferences/read state and an optional display name. Booking names, emails, phone and notes are not persisted.
 
-## Accessibility
+`SessionStorage['clinic.profile']` holds the browser profile’s contact fields for the tab. Logout clears the session profile and remembered display name. Passwords are never retained or verified. Social sign-in remains disabled. Browser-only state provides no clinical security or per-user access isolation.
 
-There is a skip link, logical landmarks, native labels, visible focus, reduced-motion support and accessible modal dialogs. Drawers trap focus, support Escape and restore focus/scroll. The Home menu supports pointer hover, click, Arrow Down, focus, Escape and outside click. Charts include text alternatives. Cobalt and glacier should not be repurposed as low-contrast body text on white.
+Settings exports requests/example check-ins/preferences and clears this template’s data only after confirmation. Retained records from the previous design remain readable because storage keys and ID/status semantics are unchanged.
+
+## Integration requirements
+
+Real operations require an authenticated backend, access controls, secure storage, scheduling and clinician confirmation, clinic-issued plans/session history/receipts, a contact service and a payment provider where applicable. Do not mark pending requests Attended, Confirmed or Paid without trusted records. Do not prescribe exercises from body-area clicks or infer recovery/readiness from completion counts.
+
+## Static hosting
+
+GitHub Pages uses the existing `main` branch root. The source includes no generated build directory. All internal paths are relative to support `/Physiotherapy-Rehabilitation-Clinic/`. `pages/404.html` is an explicit destination; automatic missing-URL handling depends on the host’s configuration.

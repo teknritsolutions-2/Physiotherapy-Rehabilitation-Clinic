@@ -1,62 +1,62 @@
 # Physiotherapy & Rehabilitation Clinic
 
-A complete buildless frontend template using HTML5, CSS3 and vanilla JavaScript. Start at **index.html**. All 15 secondary HTML pages are in `pages/`.
+A buildless HTML5, CSS3 and vanilla JavaScript clinic website, reconstructed around the **Pulse & Flow** design direction: calm mineral teal, warm coral, approachable type and subtle continuity-inspired lines.
 
-## Preview
-
-Run from this directory:
+## Run locally
 
 ```sh
 python3 -m http.server 8010
 ```
 
-Open http://localhost:8010. A static server gives every page a consistent LocalStorage origin. The site also uses relative asset links for deployment to a GitHub Pages project subpath. There is no build step or dependency installation.
+Visit http://localhost:8010. Open `index.html` for Home 1; all 15 secondary pages are in `pages/`. There is no build step, runtime dependency or external font request.
 
 ## Included
 
-- Two distinct editorial homepages, About, Services and parameterized service guides.
-- Therapist directory with clearly marked configurable clinician slots; three quote-based care options.
-- Journal listing and four parameterized educational articles.
-- Booking request review and local persistence; Contact, 404 and Coming Soon pages.
-- Separate login and sign-up previews with password visibility and form validation.
-- Patient portal with ten destinations, logout, booking changes/cancellation, history filters, notifications, profile, settings and data export/deletion.
-- Optional illustrative activity tracker, completion history, activity charts and calendar.
-- Sample receipt view, filter, downloadable HTML document and print stylesheet. The document is visibly marked as illustrative and is not payment proof.
-- Self-hosted Barlow Condensed / Public Sans fonts, local photography, symbol logo and favicon.
-- Persistent light/dark and LTR/RTL preferences; keyboard navigation and mobile focus-trapped drawers.
+- Two distinct complete homepages, a patient-first About page and purpose-specific service discovery.
+- Parameterized service guides and four general educational articles.
+- Therapist care-focus directory, without invented staff names or credentials.
+- Centralized indicative INR pricing, correct package prefill and a focused booking-request interface.
+- General enquiry review/copy handoff; no message is falsely reported as sent.
+- Complete four-column footer, privacy/terms dialogs, sticky navigation, Home dropdown and accessible mobile drawers.
+- Separate sign-in and sign-up forms with visibility/confirmation controls and disabled social integrations.
+- Existing patient dashboard architecture, restyled with the new identity, sharper SVG icons and recorded-data activity curves.
+- Local booking changes/cancellation, optional illustrative exercise tracking, history filters, receipt sample view/download/print, notifications, profile and data settings.
+- Responsive layouts, light/dark themes and LTR/RTL direction; self-hosted Plus Jakarta Sans and Source Sans 3.
 
-## Preview boundaries
+## Edit pricing in one place
 
-This is a frontend demonstration, not a connected patient service. Booking preferences are stored locally as **Pending Confirmation**. No clinic receives them. No live availability, attended sessions, clinician prescriptions, issued payment receipts, payments or secure authentication are simulated.
+At the top of `assets/js/main.js`:
 
-Use example identities in forms. Passwords are never saved, transmitted or verified. The sign-up/login UI opens an explicitly local profile session. Google and Apple controls are disabled until real integrations are supplied.
-
-Booking contact fields and notes are discarded; only service, session type, focus preference, date/time and local status persist. Profile contact fields live only in SessionStorage for the tab. An optional display name can be remembered in LocalStorage. Do not use this browser-only storage for real health or payment records.
-
-The portal begins with empty records. Example exercise tracking requires explicit activation and contains no exercise prescription. All chart values come from your own local example check-ins. The receipt sample contains no invented amount or transaction identifier.
-
-## Before clinic deployment
-
-Replace the explicitly identified clinician slots, pricing/quote terms and contact information with verified client data. Connect the booking/contact forms, identity provider, clinician assignments, clinical session records and receipt service to an appropriately secured backend. Have clinical text reviewed by the clinic. See `documentation/customization.md`.
-
-## Source layout
-
-```text
-index.html
-assets/
-  css/style.css, dark-mode.css, rtl.css
-  js/main.js, dashboard.js, plugins/
-  images/
-  fonts/
-pages/
-  home2.html, about.html, services.html, service-details.html
-  therapists.html, pricing.html, blog.html, blog-details.html
-  booking.html, contact.html, login.html, signup.html
-  dashboard.html, 404.html, coming-soon.html
-documentation/
-README.md
+```js
+window.CLINIC_PRICING = {
+  currency: 'INR',
+  assessment: 1200,
+  followup: 900,
+  fourSessionPack: 3400
+};
 ```
 
-The supplied attachment contained the written brief, but no separate visual-reference images. The implementation follows its described editorial direction. The clinic’s descriptive title is used without an invented company name.
+These are indicative design defaults, not approved clinic rates. Both the pricing page and booking summary use this object. Selecting the four-session pack creates one pending preference request, not four confirmed appointments. No payment is taken.
 
-See `documentation/image-sources.md` for photography and font licenses and `documentation/verification.md` for browser verification.
+## Functional boundaries
+
+Booking requests stay in this browser as **Pending Confirmation** and are not transmitted to a clinic. The site does not simulate live scheduling, secure authentication, attended sessions, clinical prescriptions, payment processing or issued receipts.
+
+Passwords are never saved, transmitted or verified. Browser profile contact fields live in SessionStorage for the tab; only an optional display name can be remembered in LocalStorage. Booking contact fields and notes are discarded after request review. Persisted requests contain only non-sensitive service/date/time/package preferences and local status.
+
+The patient dashboard starts with empty clinical records. Exercise examples require explicit activation, contain no prescription and are clearly marked. Charts count only actual recorded example check-ins. The illustrative receipt is not payment proof and contains no invented amount or transaction ID.
+
+The public contact form validates, reviews and copies an enquiry; it does not send it. No address, hours, real clinician identity or credentials have been invented.
+
+## Deployment
+
+GitHub Pages serves `main` from the repository root. Publish the source directly; `index.html` is the actual homepage. All paths support the repository subpath. There is no framework migration, `dist`, build output or extra hosting folder.
+
+## Documentation
+
+- `documentation/reconstruction-audit.md`: baseline findings and preserved behavior.
+- `documentation/customization.md`: design, configuration, routes, data contracts and integration points.
+- `documentation/image-sources.md`: real photography and font licensing.
+- `documentation/verification.md`: executed browser checks and visual review.
+
+Before using this for real patient care, supply verified clinic records, approved pricing and legal text, secure authentication, scheduling/contact integrations and appropriate clinical storage/access controls. The frontend’s truthful browser-only behavior must not be relabeled as a connected service.
