@@ -4662,6 +4662,12 @@ dialog .button-row {
     height: 160px;
     bottom: -60px;
   }
+  .page-therapists .ribbon-intro {
+    padding-bottom: 80px;
+  }
+  .page-therapists .ribbon-intro-art {
+    bottom: -52px;
+  }
   .ribbon-hero {
     height: 210px;
     bottom: -65px;
