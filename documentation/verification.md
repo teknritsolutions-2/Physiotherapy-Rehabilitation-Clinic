@@ -107,3 +107,7 @@ Compact-dashboard navigation follow-up: extended the phone drawer to tablet widt
 Replaced floating decorative objects with broad bottom-edge gradient waves in page intros, Home 1 and phone/tablet authentication backgrounds. Removed the intro copy's right-side artwork reserve. The shared arc fills its host without SVG letterboxing. Existing broad feature waves and responsive photo banners remain in place.
 
 Chromium checks covered 15 pages at 320, 390, 834, 1024 and 1440px, in light/LTR and dark/RTL (150 layouts). Verified no horizontal overflow, decorative assets load, no former standalone shapes render, and intro wave hosts span the viewport. Inspected desktop Contact and Home 1, phone journal and tablet Login screenshots for visual placement and readable foreground content.
+
+## Dark-mode decorative-wave contrast — 30 October 2026
+
+Dark-mode artwork uses reduced opacity and brightness so pale gradient bands cannot wash out foreground text. Booking intro bottom spacing now explicitly overrides its compact page padding, keeping the description above the wave in both themes. Checked 15 pages at 390, 834 and 1440px in dark mode (45 layouts), verifying no horizontal overflow and consistent artwork attenuation; visually inspected mobile Booking and desktop Home 1. Confirmed light-mode Booking retains its corrected 112px mobile bottom padding.

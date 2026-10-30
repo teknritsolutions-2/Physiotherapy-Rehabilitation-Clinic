@@ -53,3 +53,9 @@
 [data-theme="dark"] .button.secondary {
   border-color: var(--control-border);
 }
+
+/* Decorative waves remain behind readable foreground copy in dark mode. */
+[data-theme="dark"] .care-ribbon {
+  opacity: 0.18;
+  filter: brightness(0.72) saturate(0.85);
+}
