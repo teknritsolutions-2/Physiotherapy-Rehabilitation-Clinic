@@ -84,3 +84,5 @@ Each new photograph below is assigned to a single content placement, including q
 | area-hip.jpg | https://www.pexels.com/photo/physiotherapist-exercising-patient-leg-20860588/ | Funkcinės Terapijos Centras; Practitioner guiding a patient’s supported leg movement |
 
 The expanded ribbon system includes six original surface styles and matching static vector fallbacks (`care-ribbon*.svg`). These are generated from Kinerelle’s geometry and palette, without external artwork.
+
+The current `care-ribbon*.svg` artwork was redrawn as original open curves with continuous teal/glacier/mint/pearl gradients. The previous ribbed surface and mesh texture were removed. These vector images are used directly in both animated and static views.

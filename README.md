@@ -63,7 +63,7 @@ Before using this for real patient care, supply verified clinic records, approve
 
 ## Kinerelle finishing pass
 
-The site now uses the proposed **Kinerelle** brand and the restored original movement symbol and vector wordmark, plus the glacier secondary `#A6D8DE`. The calmer page layouts are retained. Refinements include connected recovery milestones, varied shaded ribbons across public pages and redesigned homepage banners, balanced Home 2 care features, structured service cards, cleaner patient-space previews, an outlined Dashboard action and simplified login/sign-up forms.
+The site now uses the proposed **Kinerelle** brand and the restored original movement symbol and vector wordmark, plus the glacier secondary `#A6D8DE`. The calmer page layouts are retained. Refinements include connected recovery milestones, flowing gradient artwork across public pages and redesigned homepage banners, balanced Home 2 care features, structured service cards, cleaner patient-space previews, an outlined Dashboard action and simplified login/sign-up forms.
 
 The 10-view patient dashboard's data logic is unchanged, including the user's prior banner/link/notice removals. Authentication forms and provider buttons show an unavailable state until a secure backend and OAuth providers are configured. They never save credentials, create a local profile or simulate a successful sign-in.
 
