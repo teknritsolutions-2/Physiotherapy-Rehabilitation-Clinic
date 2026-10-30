@@ -2731,6 +2731,16 @@ dialog .button-row {
   }
 }
 @media (max-width: 1099px) {
+  .icon-button {
+    min-width: 44px;
+    min-height: 44px;
+  }
+  .password-toggle {
+    width: 44px;
+    height: 44px;
+    top: 2px;
+    inset-inline-end: 2px;
+  }
   :root {
     --gutter: 40px;
     --section: 56px;
@@ -4531,8 +4541,22 @@ dialog .button-row {
   padding-inline: 150px;
 }
 .page-pricing .ribbon-intro-art {
-  width: 300px;
-  inset-inline-end: -100px;
+  width: min(22vw, 300px);
+  height: calc(100% - 48px);
+  inset-block-start: 24px;
+  inset-inline-end: 24px;
+  mask-image: none;
+}
+.page-contact .ribbon-intro-art {
+  width: min(26vw, 400px);
+  height: 80%;
+  inset-block-start: 10%;
+  inset-inline-end: 20px;
+  mask-image: none;
+}
+.page-pricing .ribbon-intro-art img,
+.page-contact .ribbon-intro-art img {
+  object-fit: contain;
 }
 @media (min-width: 680px) and (max-width: 1099px) {
   .home-one-banner .hero {
@@ -4626,6 +4650,14 @@ dialog .button-row {
     inset: auto auto -60px;
     inset-inline-end: -25px;
     opacity: 0.6;
+  }
+  .page-pricing .ribbon-intro-art,
+  .page-contact .ribbon-intro-art {
+    width: 160px;
+    height: 105px;
+    inset: auto auto 0;
+    inset-inline-end: calc(50% - 80px);
+    opacity: 0.85;
   }
 }
 

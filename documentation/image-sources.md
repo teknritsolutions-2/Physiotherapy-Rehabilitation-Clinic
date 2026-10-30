@@ -86,3 +86,5 @@ Each new photograph below is assigned to a single content placement, including q
 The expanded ribbon system includes six original surface styles and matching static vector fallbacks (`care-ribbon*.svg`). These are generated from Kinerelle’s geometry and palette, without external artwork.
 
 The current `care-ribbon*.svg` artwork was redrawn as original open curves with continuous teal/glacier/mint/pearl gradients. The previous ribbed surface and mesh texture were removed. These vector images are used directly in both animated and static views.
+
+`care-ribbon-pricing.svg` and `care-ribbon-contact.svg` are original rounded-ended gradient forms sized to remain fully visible in their intro banners. Logo variants retain the original movement symbol and outlined Kinerelle name, with consistent optical alignment across light/dark and full/compact versions.
