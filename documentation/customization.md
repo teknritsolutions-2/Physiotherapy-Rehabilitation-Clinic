@@ -75,3 +75,8 @@ The former thin background sweeps have been removed. Both homepages have ribbon 
 
 
 Pricing and Contact use dedicated, fully contained gradient vectors (`care-ribbon-pricing.svg` and `care-ribbon-contact.svg`) so their ends remain visible at phone, tablet and desktop widths. All four logo variants share the same centered symbol/wordmark geometry; the name aligns with the main movement bars. Small-screen icon controls and password visibility controls have tap areas of at least 44px.
+
+
+## Phone and tablet composition
+
+At widths up to 1099px, both homepage banner photos fill the banner as background imagery, with a dark teal overlay and centered foreground content/actions. The captions used on desktop are hidden at these widths. At 680–899px, three-card care and care-focus groups become full-width horizontal cards; at 900–1099px, they use one complete three-column row. Tablet timeline introductions stack above compact label/description rows, and the three care-guidance items share a full-width row below their heading. The assessment section similarly stacks its introduction above three concise items. Footer branding spans the top row, with Explore, Patient support and Care information side by side from 600–1099px. Smaller phones retain their existing stacked footer layout.

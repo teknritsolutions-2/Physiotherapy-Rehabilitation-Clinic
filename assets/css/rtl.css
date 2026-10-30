@@ -21,7 +21,7 @@ html[dir="rtl"] .notice {
     transform: translateX(0);
   }
 }
-@media (min-width: 680px) and (max-width: 850px) {
+@media (min-width: 680px) and (max-width: 899px) {
   html[dir="rtl"] .price-card > ul {
     padding: 0 22px 0 0;
   }

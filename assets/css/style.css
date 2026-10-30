@@ -2903,12 +2903,15 @@ dialog .button-row {
     max-width: 210px;
   }
   .footer-grid {
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: 30px 65px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 30px 24px;
     padding-block: 40px 30px;
   }
+  .footer-brand {
+    grid-column: 1/-1;
+  }
   .footer-brand p {
-    max-width: 330px;
+    max-width: 480px;
   }
 
   .rhythm-heading {
@@ -3110,22 +3113,12 @@ dialog .button-row {
     margin-inline: auto;
   }
 }
-@media (min-width: 680px) and (max-width: 850px) {
+@media (min-width: 680px) and (max-width: 899px) {
   .care-grid {
     grid-template-columns: 1fr 1fr;
   }
-  .care-card:last-child {
-    grid-column: 1/-1;
-    width: calc(50% - 10px);
-    justify-self: center;
-  }
   .therapist-grid {
     grid-template-columns: 1fr 1fr;
-  }
-  .therapist-card:last-child {
-    grid-column: 1/-1;
-    width: calc(50% - 10px);
-    justify-self: center;
   }
   .pricing-grid {
     grid-template-columns: 1fr;
@@ -4995,7 +4988,7 @@ dialog .button-row {
     font-size: 18px;
   }
 }
-@media (min-width: 680px) and (max-width: 850px) {
+@media (min-width: 680px) and (max-width: 899px) {
   .program-side {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-rows: auto;
@@ -5235,5 +5228,330 @@ dialog .button-row {
   }
   .remember-row {
     gap: 9px;
+  }
+}
+
+/* Phone and tablet banners use the photograph as a full-bleed background. */
+@media (max-width: 1099px) {
+  .home-one-banner .hero,
+  .home-two-banner .rhythm-hero {
+    position: static;
+    min-height: 620px;
+    padding-block: 64px;
+  }
+  .home-one-banner .hero {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .home-one-banner .hero-copy,
+  .home-two-banner .rhythm-heading {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 680px;
+    margin-inline: auto;
+    text-align: center;
+    color: #fff;
+  }
+  .home-one-banner .hero-copy h1,
+  .home-two-banner .rhythm-heading h1 {
+    font-size: clamp(40px, 5.8vw, 60px);
+    color: #fff;
+    max-width: 680px;
+    margin-inline: auto;
+  }
+  .home-one-banner .hero-copy > p,
+  .home-two-banner .rhythm-heading p {
+    color: #fff;
+    max-width: 600px;
+    margin: 22px auto 28px;
+    font-size: 19px;
+  }
+  .home-one-banner .eyebrow,
+  .home-two-banner .eyebrow {
+    color: #e1f1f2;
+  }
+  .home-one-banner .hero-media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    z-index: 0;
+  }
+  .home-one-banner .hero-media > img,
+  .home-two-banner .rhythm-media > img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+    object-fit: cover;
+    object-position: 55% center;
+    border: 0;
+    border-radius: 0;
+    z-index: 0;
+  }
+  .home-one-banner .hero-media::after,
+  .home-two-banner::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, #153a47ed, #214c5ccc);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .home-one-banner .media-caption,
+  .home-two-banner .rhythm-note {
+    display: none;
+  }
+  .home-one-banner .hero-copy .button-row {
+    justify-content: center;
+    align-items: stretch;
+    flex-direction: row;
+    gap: 12px;
+  }
+  .home-one-banner .hero-copy .button,
+  .home-two-banner .rhythm-media > .button {
+    width: auto;
+    min-width: 180px;
+    background: #fff;
+    color: #285664;
+    border-color: #fff;
+  }
+  .home-one-banner .hero-copy .button.secondary {
+    background: transparent;
+    color: #fff;
+  }
+  .home-one-banner .hero-reassurance svg {
+    color: inherit;
+  }
+  .home-one-banner .hero-reassurance {
+    justify-content: center;
+    flex-direction: row;
+    color: #e1f1f2;
+    gap: 14px 24px;
+  }
+  .home-one-banner .ribbon-hero,
+  .home-two-banner .ribbon-home-two {
+    z-index: 1;
+    opacity: 0.12;
+  }
+  .home-two-banner {
+    padding-bottom: 0;
+  }
+  .home-two-banner .rhythm-hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .home-two-banner .rhythm-heading {
+    display: block;
+    background: transparent;
+    padding: 0;
+  }
+  .home-two-banner .rhythm-media {
+    display: contents;
+    position: static;
+  }
+  .home-two-banner .rhythm-media > .button {
+    position: relative;
+    inset: auto;
+    z-index: 2;
+    margin: 0 auto;
+  }
+}
+
+/* Tablet composition: complete rows and shorter, full-width information groups. */
+@media (min-width: 680px) and (max-width: 1099px) {
+  .footer-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 30px 24px;
+  }
+  .footer-brand {
+    grid-column: 1/-1;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+  .footer-brand p {
+    margin: 0;
+  }
+  .footer-grid nav {
+    min-width: 0;
+  }
+  .footer-grid nav a {
+    font-size: 17px;
+    overflow-wrap: anywhere;
+  }
+  .pathway-section > .wrap {
+    display: block;
+  }
+  .pathway-section .section-heading {
+    max-width: 720px;
+    margin-bottom: 28px;
+  }
+  .pathway-section .section-heading > p {
+    max-width: 680px;
+    margin-top: 16px;
+  }
+  .milestone {
+    grid-template-columns: 36px minmax(170px, 0.6fr) 1fr;
+    gap: 0 18px;
+    padding-bottom: 22px;
+  }
+  .milestone-dot {
+    grid-row: 1;
+  }
+  .milestone h3 {
+    grid-column: 2;
+    margin: 0;
+  }
+  .milestone p {
+    grid-column: 3;
+    margin-top: 4px;
+  }
+  .team-values,
+  .assessment-story {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .team-values > div:first-child,
+  .assessment-story > div:first-child {
+    max-width: 720px;
+  }
+  .team-values > div:last-child {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+  }
+  .team-values p {
+    margin: 0;
+    padding: 0 0 0 18px;
+    padding-inline: 18px 0;
+    border-bottom: 0;
+    border-inline-start: 1px solid var(--line);
+  }
+  .assessment-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    padding: 24px;
+  }
+  .assessment-list > div {
+    padding: 0;
+    border: 0;
+  }
+  .values-grid {
+    gap: 24px;
+  }
+}
+@media (min-width: 680px) and (max-width: 899px) {
+  .care-grid,
+  .therapist-grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+  .care-card,
+  .therapist-card {
+    display: grid;
+    position: relative;
+    grid-template-columns: minmax(180px, 32%) minmax(0, 1fr);
+    min-height: 230px;
+    overflow: hidden;
+  }
+  .care-card:last-child,
+  .therapist-card:last-child {
+    grid-column: auto;
+    width: 100%;
+    justify-self: stretch;
+  }
+  .care-card > img,
+  .therapist-card > img {
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: 0;
+    width: 32%;
+    min-width: 180px;
+    height: 100%;
+    min-height: 0;
+    aspect-ratio: auto;
+    border-radius: 0;
+    object-position: center 30%;
+  }
+  .care-card .card-body,
+  .therapist-card .card-body {
+    grid-column: 2;
+    padding: 24px;
+    min-width: 0;
+  }
+  .pricing-grid {
+    grid-template-columns: 1fr;
+    max-width: none;
+  }
+}
+@media (min-width: 900px) and (max-width: 1099px) {
+  .care-grid,
+  .therapist-grid,
+  .pricing-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    max-width: none;
+    gap: 20px;
+  }
+  .care-card > img,
+  .therapist-card > img {
+    aspect-ratio: 1.25;
+  }
+}
+@media (max-width: 679px) {
+  .home-one-banner .hero,
+  .home-two-banner .rhythm-hero {
+    min-height: 610px;
+    padding-block: 48px;
+  }
+  .home-one-banner .hero-copy > p,
+  .home-two-banner .rhythm-heading p {
+    font-size: 18px;
+  }
+  .home-one-banner .hero-copy .button-row {
+    flex-direction: column;
+    max-width: 360px;
+    margin-inline: auto;
+  }
+  .home-one-banner .hero-copy .button {
+    width: 100%;
+  }
+  .home-one-banner .hero-reassurance {
+    flex-direction: column;
+    align-items: center;
+    font-size: 16px;
+  }
+}
+@media (min-width: 600px) and (max-width: 679px) {
+  .footer-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px 16px;
+  }
+  .footer-brand {
+    grid-column: 1/-1;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .footer-brand p {
+    margin: 0;
+  }
+  .footer-grid nav:last-child {
+    grid-column: auto;
+  }
+  .footer-grid nav h2,
+  .footer-grid nav a {
+    font-size: 16px;
   }
 }
