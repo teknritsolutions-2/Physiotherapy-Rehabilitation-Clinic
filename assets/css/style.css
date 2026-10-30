@@ -4367,13 +4367,6 @@ dialog .button-row {
   }
 }
 /* Compact banners reflect the purpose of each inner page. */
-.page-pricing .page-intro {
-  text-align: center;
-}
-.page-pricing .page-intro h1,
-.page-pricing .page-intro .lead {
-  margin-inline: auto;
-}
 .page-therapists .page-intro,
 .page-contact .page-intro,
 .page-blog .page-intro {
@@ -4401,9 +4394,6 @@ dialog .button-row {
   font-size: 42px;
 }
 @media (max-width: 679px) {
-  .page-pricing .page-intro {
-    text-align: start;
-  }
   .page-blog .page-intro .wrap {
     display: block;
   }
