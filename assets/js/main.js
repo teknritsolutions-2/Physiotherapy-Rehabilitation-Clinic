@@ -709,7 +709,7 @@ if (topButton && footerTopControl && "IntersectionObserver" in window) {
 document.querySelectorAll("[data-care-ribbon]").forEach((host) => {
   if (!("IntersectionObserver" in window)) return;
   const image = host.querySelector("img");
-  const section = host.closest("section");
+  const section = host.closest("section") || host.closest("main") || host;
   const reduced = matchMedia("(prefers-reduced-motion: reduce)");
   let visible = false,
     frame = 0,
