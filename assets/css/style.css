@@ -2811,7 +2811,23 @@ dialog .button-row {
     font-size: 17px;
   }
   .header-actions .dashboard-link {
-    justify-content: space-between;
+    justify-content: center;
+    font-weight: 600;
+  }
+  .header-actions .button,
+  .header-actions .dashboard-link {
+    height: 48px;
+    min-height: 48px;
+    justify-content: center;
+    padding: 10px 12px;
+    gap: 8px;
+    line-height: 1.4;
+  }
+  .header-actions .button .arrow,
+  .header-actions .dashboard-link .arrow {
+    display: block;
+    width: 17px;
+    height: 17px;
   }
   .hero {
     gap: 40px;
@@ -5552,6 +5568,18 @@ dialog .button-row {
   }
   .footer-grid nav h2,
   .footer-grid nav a {
+    font-size: 16px;
+  }
+}
+@media (min-width: 600px) and (max-width: 1099px) {
+  .header-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .header-actions .button,
+  .header-actions .dashboard-link {
+    min-width: 0;
     font-size: 16px;
   }
 }
