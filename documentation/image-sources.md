@@ -88,3 +88,5 @@ The expanded ribbon system includes six original surface styles and matching sta
 The current `care-ribbon*.svg` artwork was redrawn as original open curves with continuous teal/glacier/mint/pearl gradients. The previous ribbed surface and mesh texture were removed. These vector images are used directly in both animated and static views.
 
 `care-ribbon-pricing.svg` and `care-ribbon-contact.svg` are original rounded-ended gradient forms sized to remain fully visible in their intro banners. Logo variants retain the original movement symbol and outlined Kinerelle name, with consistent optical alignment across light/dark and full/compact versions.
+
+`care-ribbon-service.svg` is an original, fully contained rounded gradient arc for all service-guide variants.

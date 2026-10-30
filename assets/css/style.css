@@ -4547,7 +4547,8 @@ dialog .button-row {
   inset-inline-end: 24px;
   mask-image: none;
 }
-.page-contact .ribbon-intro-art {
+.page-contact .ribbon-intro-art,
+.page-service-details .ribbon-intro-art {
   width: min(26vw, 400px);
   height: 80%;
   inset-block-start: 10%;
@@ -4555,7 +4556,8 @@ dialog .button-row {
   mask-image: none;
 }
 .page-pricing .ribbon-intro-art img,
-.page-contact .ribbon-intro-art img {
+.page-contact .ribbon-intro-art img,
+.page-service-details .ribbon-intro-art img {
   object-fit: contain;
 }
 @media (min-width: 680px) and (max-width: 1099px) {
@@ -4652,7 +4654,8 @@ dialog .button-row {
     opacity: 0.6;
   }
   .page-pricing .ribbon-intro-art,
-  .page-contact .ribbon-intro-art {
+  .page-contact .ribbon-intro-art,
+  .page-service-details .ribbon-intro-art {
     width: 160px;
     height: 105px;
     inset: auto auto 0;

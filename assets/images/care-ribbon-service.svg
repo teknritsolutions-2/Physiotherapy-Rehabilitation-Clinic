@@ -1,0 +1,30 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="700"
+  height="500"
+  viewBox="0 0 700 500"
+  fill="none"
+>
+  <defs>
+    <linearGradient id="flow" x1="0%" y1="100%" x2="95%" y2="5%">
+      <stop stop-color="#356875" />
+      <stop offset=".32" stop-color="#70ADB8" />
+      <stop offset=".62" stop-color="#A6D8DE" />
+      <stop offset=".84" stop-color="#D9EDEA" />
+      <stop offset="1" stop-color="#EEE8DC" />
+    </linearGradient>
+    <linearGradient id="light" x1="15%" y1="0%" x2="85%" y2="100%">
+      <stop stop-color="#FFFFFF" stop-opacity=".45" />
+      <stop offset=".5" stop-color="#FFFFFF" stop-opacity="0" />
+      <stop offset="1" stop-color="#356875" stop-opacity=".12" />
+    </linearGradient>
+  </defs>
+  <path
+    d="M91 290C230 133 427 135 609 246C636 263 648 298 623 322C606 338 584 336 560 319C409 222 260 230 154 353C132 379 99 381 77 359C57 338 68 313 91 290Z"
+    fill="url(#flow)"
+  />
+  <path
+    d="M91 290C230 133 427 135 609 246C636 263 648 298 623 322C606 338 584 336 560 319C409 222 260 230 154 353C132 379 99 381 77 359C57 338 68 313 91 290Z"
+    fill="url(#light)"
+  />
+</svg>
