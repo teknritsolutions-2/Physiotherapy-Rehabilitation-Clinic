@@ -90,3 +90,5 @@ The current `care-ribbon*.svg` artwork was redrawn as original open curves with 
 `care-ribbon-pricing.svg` and `care-ribbon-contact.svg` are original rounded-ended gradient forms sized to remain fully visible in their intro banners. Logo variants retain the original movement symbol and outlined Kinerelle name, with consistent optical alignment across light/dark and full/compact versions.
 
 `care-ribbon-service.svg` is an original, fully contained rounded gradient arc for all service-guide variants.
+
+The standalone sail, loop, Contact, Pricing and service-guide shapes are no longer rendered. Page intros, Home 1 and compact authentication backgrounds now reuse the original assessment-section `care-ribbon-arc.svg` as a full-width section-edge wave. The SVG allows proportional host stretching without internal letterboxing. Existing broad lower-section waves remain in place; no photographs changed in this update.

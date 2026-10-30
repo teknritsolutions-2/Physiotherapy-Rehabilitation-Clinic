@@ -101,3 +101,9 @@ Authentication card follow-up: Login and Sign Up use one centered card at phone/
 Compact-dashboard navigation follow-up: extended the phone drawer to tablet widths below 1100px, placed branding in the compact header, moved the hamburger to the trailing/profile position and placed display controls inside the drawer. Closed drawers are inert. The desktop sidebar/header and all patient-data handlers remain unchanged.
 
 180 layout checks passed across all ten dashboard views, nine widths from 320 to 1440px, and light LTR/dark RTL. Verified full-width compact content, visible branding/menu, hidden header profile/display controls, desktop restoration and no clipped content. Tested drawer display controls, focus containment/return, Escape, navigation selection, notification links, resizing within compact widths, resizing to desktop, and the shared marketing menu. No browser exceptions or missing assets were observed. Phone/tablet header and drawer screenshots were reviewed.
+
+## Full-width background-wave follow-up — 30 October 2026
+
+Replaced floating decorative objects with broad bottom-edge gradient waves in page intros, Home 1 and phone/tablet authentication backgrounds. Removed the intro copy's right-side artwork reserve. The shared arc fills its host without SVG letterboxing. Existing broad feature waves and responsive photo banners remain in place.
+
+Chromium checks covered 15 pages at 320, 390, 834, 1024 and 1440px, in light/LTR and dark/RTL (150 layouts). Verified no horizontal overflow, decorative assets load, no former standalone shapes render, and intro wave hosts span the viewport. Inspected desktop Contact and Home 1, phone journal and tablet Login screenshots for visual placement and readable foreground content.
