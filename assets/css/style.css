@@ -5654,12 +5654,31 @@ dialog .button-row {
   }
 }
 
-/* Align visible footer logo artwork with its supporting copy on compact views. */
+/* Offset the SVG's internal left bearing so artwork meets the content gutter. */
 @media (max-width: 1099px) {
-  .footer-brand .logo {
-    margin-inline-start: -15px;
+  .header-inner {
+    padding-inline: var(--gutter);
   }
+  .header-inner > .logo {
+    --brand-art-height: 52px;
+  }
+  .footer-brand .logo {
+    --brand-art-height: 60px;
+  }
+  .header-inner > .logo,
+  .footer-brand .logo {
+    margin-inline-start: calc(var(--brand-art-height) * -0.24515625);
+  }
+  .header-inner > .logo img,
   .footer-brand .logo img {
     object-position: left center;
+  }
+}
+@media (max-width: 679px) {
+  .header-inner > .logo {
+    --brand-art-height: 47px;
+  }
+  .footer-brand .logo {
+    --brand-art-height: 58px;
   }
 }
