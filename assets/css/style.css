@@ -5394,8 +5394,9 @@ dialog .button-row {
   .footer-brand {
     grid-column: 1/-1;
     display: flex;
-    align-items: center;
-    gap: 28px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
   }
   .footer-brand p {
     margin: 0;
@@ -5558,8 +5559,9 @@ dialog .button-row {
   .footer-brand {
     grid-column: 1/-1;
     display: flex;
-    align-items: center;
-    gap: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
   }
   .footer-brand p {
     margin: 0;
@@ -5649,5 +5651,15 @@ dialog .button-row {
   }
   .auth-card h2 {
     font-size: 30px;
+  }
+}
+
+/* Align visible footer logo artwork with its supporting copy on compact views. */
+@media (max-width: 1099px) {
+  .footer-brand .logo {
+    margin-inline-start: -15px;
+  }
+  .footer-brand .logo img {
+    object-position: left center;
   }
 }
