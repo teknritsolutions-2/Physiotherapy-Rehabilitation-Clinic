@@ -55,7 +55,7 @@ GitHub Pages uses the existing `main` branch root. The source includes no genera
 
 The proposed brand is **Kinerelle**, with descriptor **Physiotherapy & Rehabilitation** and positioning **Movement supported. Progress understood.** Read `brand-name-check.md` before commercial brand adoption.
 
-The original movement symbol is restored, accompanied by the outlined Kinerelle vector wordmark. All text in the logo SVG is real vector paths, derived from the included font families, so it renders without external font requests. Assets: `logo.svg`, `logo-dark.svg`, `logo-compact.svg`, `logo-compact-dark.svg`, `favicon.svg`. The compact lockup is used only in the existing patient sidebar.
+The original movement symbol is restored, accompanied by the outlined Kinerelle vector wordmark. All text in the logo SVG is real vector paths, derived from the included font families, so it renders without external font requests. Assets: `logo.svg`, `logo-dark.svg`, `logo-compact.svg`, `logo-compact-dark.svg`, `favicon.svg`. The compact lockup is used in the patient sidebar and compact dashboard header.
 
 The secondary token is `--secondary: #A6D8DE`. Surface-aware `--accent-text`, `--control-border`, `--art-ink`, `--art-soft`, `--path-line` and `--chart-track` tokens support both themes. Small light-mode text uses primary teal or charcoal, never the pale secondary.
 
@@ -63,7 +63,7 @@ Old `.flow-line` and `.pulse-edge::after` implementations have been removed. The
 
 Login and Sign Up are separate pages with no public navbar or footer. The logo remains inside the form card and theme/direction controls sit at its top-right. Fields are vertical, the primary and Google/Apple buttons match input width, and Login keeps Remember me and Forgot password on one row. Password visibility and confirmation are supported; there are no demo credentials or prototype instructions. Provider buttons include inline brand marks. A secure authentication backend and Google/Apple OAuth configuration are still required: form submission, provider selection and password reset currently report an unavailable state. They do not store or transmit credentials, create profiles or redirect as if authentication succeeded.
 
-The dashboard runtime `assets/js/dashboard.js`, storage keys, calculations and booking/receipt logic were left unchanged. The previously removed banner, Back to clinic link and settings notice remain removed. Only its logo, palette and shared style improvements apply.
+The dashboard runtime `assets/js/dashboard.js`, storage keys, calculations and booking/receipt logic were left unchanged. The previously removed banner, Back to clinic link and settings notice remain removed. Its shared shell uses an attached sidebar on desktop and a hamburger drawer below 1100px; patient data behavior remains unchanged.
 
 ## Original mark and flowing gradient artwork
 
@@ -83,3 +83,8 @@ At widths up to 1099px, both homepage banner photos fill the banner as backgroun
 
 
 Authentication at widths up to 1099px uses a centered, single-column card for both Login and Sign Up, with the side photograph hidden. An opaque theme-aware card keeps the logo, top-right display controls, stacked form fields and provider buttons above the decorative gradient. The background is clipped to the viewport without creating horizontal overflow. `main.js` supports artwork hosted by either a section or the authentication main element. Reduced-motion/no-JavaScript behavior is retained.
+
+
+## Compact dashboard navigation
+
+Below 1100px, the dashboard content spans the viewport and navigation opens as a modal drawer. The header shows Kinerelle branding at the leading edge and the notification bell/menu at the trailing edge; the profile initial and display toggles are hidden there. Theme and RTL controls are available inside the drawer. Closed compact sidebars are inert, and opening, Escape, selection and resize handling keep focus/scroll locking synchronized. At desktop widths the attached sidebar, header display controls and avatar remain available.

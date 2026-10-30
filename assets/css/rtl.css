@@ -13,7 +13,7 @@ html[dir="rtl"] .notice {
     transform: translateX(0);
   }
 }
-@media (max-width: 767px) {
+@media (max-width: 1099px) {
   html[dir="rtl"] .dashboard-sidebar {
     transform: translateX(105%);
   }

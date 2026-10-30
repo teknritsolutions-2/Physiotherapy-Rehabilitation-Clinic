@@ -238,10 +238,18 @@ const drawer =
   document.querySelector(".navigation") ||
   document.querySelector(".dashboard-sidebar");
 const scrim = document.querySelector(".scrim");
+const isDashboardDrawer = drawer?.classList.contains("dashboard-sidebar");
+const syncDrawerAccess = () => {
+  if (isDashboardDrawer)
+    drawer.inert =
+      innerWidth < 1100 && !drawer.classList.contains("drawer-open");
+};
+syncDrawerAccess();
 let oldFocus;
 Clinic.closeDrawer = () => {
   if (!drawer) return;
   drawer.classList.remove("drawer-open");
+  syncDrawerAccess();
   if (scrim) scrim.hidden = true;
   document.body.style.overflow = "";
   menuButton?.setAttribute("aria-expanded", "false");
@@ -253,6 +261,7 @@ Clinic.closeDrawer = () => {
 menuButton?.addEventListener("click", () => {
   oldFocus = document.activeElement;
   drawer.classList.add("drawer-open");
+  syncDrawerAccess();
   drawer.setAttribute("role", "dialog");
   drawer.setAttribute("aria-modal", "true");
   drawer.setAttribute("aria-label", "Navigation");
@@ -287,13 +296,11 @@ document.addEventListener("keydown", (e) => {
   }
 });
 window.addEventListener("resize", () => {
-  if (
-    drawer?.classList.contains("drawer-open") &&
-    ((drawer.classList.contains("navigation") && innerWidth >= 1100) ||
-      (drawer.classList.contains("dashboard-sidebar") && innerWidth >= 768))
-  )
+  if (drawer?.classList.contains("drawer-open") && innerWidth >= 1100)
     Clinic.closeDrawer();
+  syncDrawerAccess();
 });
+
 const topButton = document.querySelector(".back-top");
 window.addEventListener(
   "scroll",

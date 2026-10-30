@@ -42,6 +42,23 @@
           <b id="sidebar-name">Guest profile</b
           ><span class="fine-print">Browser profile</span>
         </div>
+        <div class="sidebar-preferences">
+          <span>Display</span>
+          <div class="utilities">
+            <button
+              type="button"
+              class="icon-button theme-toggle"
+              aria-label="Toggle color theme"
+            ></button>
+            <button
+              type="button"
+              class="icon-button direction-toggle"
+              aria-label="Switch reading direction"
+            >
+              RTL
+            </button>
+          </div>
+        </div>
         <nav aria-label="Patient portal">
           <a href="#overview" data-view="overview"
             ><span aria-hidden="true">◫</span>Overview</a
@@ -73,14 +90,18 @@
       <div class="dashboard-main">
         <header class="dashboard-header">
           <div>
-            <button
-              class="icon-button menu-toggle"
-              aria-label="Open patient navigation"
-              aria-expanded="false"
-              aria-controls="dashboard-nav"
-            >
-              ☰</button
-            ><span class="eyebrow">Your care, in focus.</span>
+            <a
+              class="logo dashboard-compact-brand"
+              href="../index.html"
+              aria-label="Kinerelle home"
+              ><img
+                class="brand-compact"
+                src="../assets/images/logo-compact.svg"
+                alt="Kinerelle"
+                width="222"
+                height="64"
+            /></a>
+            <span class="eyebrow">Your care, in focus.</span>
           </div>
           <div class="button-row">
             <div class="utilities">
@@ -117,6 +138,24 @@
               aria-label="Edit profile"
               >G</a
             >
+            <button
+              type="button"
+              class="icon-button menu-toggle"
+              aria-label="Open patient navigation"
+              aria-expanded="false"
+              aria-controls="dashboard-nav"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                aria-hidden="true"
+              >
+                <path d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
           </div>
         </header>
         <main id="main" tabindex="-1">

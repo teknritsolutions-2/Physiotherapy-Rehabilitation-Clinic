@@ -96,3 +96,8 @@ Reworked both homepage banners at phone/tablet widths into full-bleed photo back
 
 
 Authentication card follow-up: Login and Sign Up use one centered card at phone/tablet widths, with gradient artwork behind the form and no side photograph. Desktop layouts are preserved. Thirty-six layout combinations passed at 320, 390, 600, 680, 834, 1024, 1099, 1100 and 1440px in light LTR/dark RTL, verifying card centering, visible backgrounds, stacked fields, matched CTA/input widths and no clipping/overflow. Tested display controls, password eyes, Google/Apple dialogs, mismatch validation, unavailable-auth states, no profile creation, background animation and reduced-motion stillness. No browser errors or missing assets were observed; desktop/tablet/phone screenshots were reviewed.
+
+
+Compact-dashboard navigation follow-up: extended the phone drawer to tablet widths below 1100px, placed branding in the compact header, moved the hamburger to the trailing/profile position and placed display controls inside the drawer. Closed drawers are inert. The desktop sidebar/header and all patient-data handlers remain unchanged.
+
+180 layout checks passed across all ten dashboard views, nine widths from 320 to 1440px, and light LTR/dark RTL. Verified full-width compact content, visible branding/menu, hidden header profile/display controls, desktop restoration and no clipped content. Tested drawer display controls, focus containment/return, Escape, navigation selection, notification links, resizing within compact widths, resizing to desktop, and the shared marketing menu. No browser exceptions or missing assets were observed. Phone/tablet header and drawer screenshots were reviewed.
